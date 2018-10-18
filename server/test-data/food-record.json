@@ -1,0 +1,23 @@
+[{
+  "id": 1,
+  "Date": "2018-07-31",
+  "Meal": 1,
+  "Quantity": 1,
+  "Unit": 1,
+  "fromProgram": false,
+  "confirmed": true,
+  "mealId": 1,
+  "abbrev_id": 2514,
+  "user_id": 1
+}, {
+  "id": 2,
+  "Date": "2018-07-31",
+  "Meal": 1,
+  "Quantity": 1,
+  "Unit": 1,
+  "fromProgram": false,
+  "confirmed": true,
+  "mealId": 1,
+  "abbrev_id": 2514,
+  "user_id": 1
+}]

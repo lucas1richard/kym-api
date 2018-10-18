@@ -1,0 +1,71 @@
+[{
+  "NDB_No": "2513z93dyB92zr368H",
+  "Seq": "1",
+  "Amount": "1.00",
+  "Description": "cup, chopped or diced",
+  "Gr_Wgt": "140.00",
+  "abbrev_id": "2514"
+}, {
+  "NDB_No": "2513z93dyB92zr368H",
+  "Seq": "2",
+  "Amount": "1.00",
+  "Description": "unit (yield from 1 lb ready-to-cook chicken)",
+  "Gr_Wgt": "52.00",
+  "abbrev_id": "2514"
+}, {
+  "NDB_No": "2513z93dyB92zr368H",
+  "Seq": "3",
+  "Amount": "0.50",
+  "Description": "breast, bone and skin removed",
+  "Gr_Wgt": "86.00",
+  "abbrev_id": "2514"
+}, {
+  "NDB_No": "2582KT8C499o64W7fiA",
+  "Seq": "1",
+  "Amount": "1.00",
+  "Description": "cup, chopped or diced",
+  "Gr_Wgt": "140.00",
+  "abbrev_id": "2583"
+}, {
+  "NDB_No": "2582KT8C499o64W7fiA",
+  "Seq": "2",
+  "Amount": "1.00",
+  "Description": "unit (yield from 1 lb ready-to-cook chicken)",
+  "Gr_Wgt": "75.00",
+  "abbrev_id": "2583"
+}, {
+  "NDB_No": "2582KT8C499o64W7fiA",
+  "Seq": "3",
+  "Amount": "1.00",
+  "Description": "leg, bone removed",
+  "Gr_Wgt": "125.00",
+  "abbrev_id": "2583"
+}, {
+  "NDB_No": "54694ixH7863pXvm",
+  "Seq": "1",
+  "Amount": "1.00",
+  "Description": "cup, pureed",
+  "Gr_Wgt": "230.00",
+  "abbrev_id": "5470"
+}, {
+  "NDB_No": "54694ixH7863pXvm",
+  "Seq": "2",
+  "Amount": "1.00",
+  "Description": "fruit without skin and seeds",
+  "Gr_Wgt": "304.00",
+  "abbrev_id": "5470"
+}, {
+  "NDB_No": "27676dV3zLsWxj7",
+  "Seq": "1",
+  "Amount": "1.00",
+  "Description": "cup, mashed",
+  "Gr_Wgt": "328.00",
+  "abbrev_id": "2768"
+}, {
+  "NDB_No": "27676dV3zLsWxj7",
+  "Seq": "2",
+  "Amount": "1.00",
+  "Description": "medium",
+  "Gr_Wgt": "151.00",
+  "abbrev_id": "2768"
+}]

@@ -1,0 +1,14 @@
+[{
+  "user_id": 1,
+  "age": 28,
+  "gender": "MALE",
+  "height": 186,
+  "units": "metric",
+  "weight": "86",
+  "bodyfat": 16,
+  "lifestyle": "Normal",
+  "goal": "Lose Fat",
+  "date": "2018-01-01",
+  "bmrTraditional": 1876,
+  "bmrBodyFat": 1900
+}]

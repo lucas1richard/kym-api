@@ -1,0 +1,25 @@
+[{
+  "id": 1,
+  "firstname": "Test",
+  "lastname": "Test",
+  "username": "",
+  "email": "test@test.test",
+  "password": "test",
+  "birthdate": "1989-01-01",
+  "googleId": "123",
+  "fitbitId": "213",
+  "fitbitToken": "456",
+  "fitbitRefreshToken": "789"
+}, {
+  "id": 2,
+  "firstname": "Test",
+  "lastname": "Test",
+  "username": "",
+  "email": "test1@test.test",
+  "password": "test",
+  "birthdate": "1989-01-01",
+  "googleId": "123",
+  "fitbitId": "213",
+  "fitbitToken": "456",
+  "fitbitRefreshToken": "789"
+}]
