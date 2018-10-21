@@ -7,7 +7,8 @@ module.exports = {
     database: 'kym',
     host: 'localhost',
     dialect: 'postgres',
-    logging: logger
+    logging: logger,
+    operatorsAliases: false
   },
   test: {
     username: 'postgres',
@@ -15,7 +16,8 @@ module.exports = {
     database: 'kym_test',
     host: '127.0.0.1',
     dialect: 'postgres',
-    logging: false
+    logging: false,
+    operatorsAliases: false
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -25,6 +27,7 @@ module.exports = {
     host: process.env.RDS_HOSTNAME || 'localhost',
     port: process.env.RDS_PORT || '5432',
     dialect: 'postgres',
-    logging: false
+    logging: false,
+    operatorsAliases: false
   }
 };

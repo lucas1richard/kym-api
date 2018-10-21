@@ -16,7 +16,7 @@ module.exports = {
             description: 'The grams of protein supplied by the foods',
             type: 'number',
             example: 16.7,
-           format: 'float'
+            format: 'float'
           },
           carbs: {
             description: 'The grams of carbs supplied by the foods',

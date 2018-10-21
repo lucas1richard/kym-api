@@ -8,7 +8,7 @@ const getCalories = async (req, res, next) => {
     await dateSchema.validate(startDate);
     await dateSchema.validate(endDate);
 
-    const activeCalories = await getCaloriesMeta(res.locals.user_id, startDate, endDate);
+    const activeCalories = await getCaloriesMeta(res.locals.uuid, startDate, endDate);
 
     res.json(activeCalories);
   } catch (err) {

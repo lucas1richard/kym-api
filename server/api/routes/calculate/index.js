@@ -18,7 +18,7 @@ router.get('/', async function getCalculate(req, res, next) {
 
 router.post('/day', async function postCalculateDay(req, res, next) {
   try {
-    const meals = await dayMealsCalculate(req.body, res.locals.user_id);
+    const meals = await dayMealsCalculate(req.body, res.locals.uuid);
     res.json(meals);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t get the day meals');

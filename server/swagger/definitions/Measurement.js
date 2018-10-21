@@ -1,3 +1,5 @@
+const { USER } = include('db/foreignKeys');
+
 module.exports = {
   type: 'object',
   properties: {
@@ -41,7 +43,7 @@ module.exports = {
       type: 'string',
       example: '2017-10-24T18:47:05.321Z'
     },
-    user_id: {
+    [USER]: {
       type: 'integer',
       example: 3
     }

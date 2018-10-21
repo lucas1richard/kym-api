@@ -1,9 +1,9 @@
 const { User } = include('db');
 const { bodySchema } = require('./validation');
 
-const updateUser = async (body, user_id) => {
+const updateUser = async (body, uuid) => {
   await bodySchema.validate(body, { allowUnknown: true });
-  const user = await User.findById(user_id);
+  const user = await User.findById(uuid);
 
   const bodyCopy = { ...body };
 

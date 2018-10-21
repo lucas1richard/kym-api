@@ -1,10 +1,11 @@
+const { USER } = include('db/foreignKeys');
 const { Program } = include('db');
 
 const getPrograms = async (req, res, next) => {
   try {
     const program = await Program.findOne({
       where: {
-        user_id: res.locals.user_id,
+        [USER]: res.locals.uuid,
         status: 'In Progress'
       }
     });

@@ -1,8 +1,9 @@
+const { USER } = include('db/foreignKeys');
 const { UserMeasurement } = include('db');
 const moment = require('moment');
 const { bodySchema } = require('./validation');
 
-const createMeasurements = async (body, user_id) => {
+const createMeasurements = async (body, uuid) => {
   await bodySchema.validate(body, {
     allowUnknown: true
   });
@@ -21,7 +22,7 @@ const createMeasurements = async (body, user_id) => {
             endDate
           ]
         },
-        user_id
+        [USER]: uuid
       }
     });
   }
@@ -34,10 +35,10 @@ const createMeasurements = async (body, user_id) => {
 
     await currentDayMeas.save();
   } else {
-    await UserMeasurement.create(Object.assign(body, { user_id }));
+    await UserMeasurement.create(Object.assign(body, { [USER]: uuid }));
   }
 
-  const allMeasurements = await UserMeasurement.findAllByUserId(user_id);
+  const allMeasurements = await UserMeasurement.findAllByUserId(uuid);
   return allMeasurements;
 };
 

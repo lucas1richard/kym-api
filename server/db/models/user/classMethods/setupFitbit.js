@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 const Program = require('../../program');
 const UserMeasurement = require('../../user-measurements');
 
@@ -35,7 +36,7 @@ async function setupFitbit(profile, token, refreshToken) {
 
   const [measurements] = await UserMeasurement.findOrCreate({
     where: {
-      user_id: savedUser.id
+      [USER]: savedUser.id
     },
     defaults: {
       gender: user.gender,

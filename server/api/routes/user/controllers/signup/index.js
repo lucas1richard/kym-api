@@ -1,16 +1,25 @@
+const chalk = require('chalk');
 const { handleRouteError } = include('utils/handleRouteError');
 const AppError = include('configure/appError');
-const { sequelize, User, UserMeasurement, Program } = include('db');
+const {
+  sequelize,
+  User,
+  UserMeasurement,
+  Program
+} = include('db');
+const { USER } = include('db/foreignKeys');
 const moment = require('moment');
 const jwt = require('jwt-simple');
-const { bodySchema, userMeasurementsSchema } = require('./validation');
+const {
+  bodySchema,
+  userMeasurementsSchema
+} = require('./validation');
 
 const signup = async (req, res, next) => {
   let transaction;
   try {
     await bodySchema.validate(req.body);
 
-    const data = req.body;
     const params = [
       'gender',
       'height',
@@ -20,42 +29,44 @@ const signup = async (req, res, next) => {
       'goal'
     ];
 
+    const { body } = req;
+    const { userMeasurements, birthdate } = body;
+
     const hasMeasurements = params.reduce((memo, param) => {
-      return memo && data.userMeasurements && data.userMeasurements[param];
+      return memo && userMeasurements && userMeasurements[param];
     }, true);
 
     if (hasMeasurements) {
       try {
-        await userMeasurementsSchema.validate(data.userMeasurements);
+        await userMeasurementsSchema.validate(userMeasurements);
 
-        const programObj = Program.makeProgramObject({
-          ...req.body,
-          ...data.userMeasurements
-        });
-        delete programObj.user_id;
+        const config = {
+          ...body,
+          ...userMeasurements
+        };
+        
+        
+        const programObj = Program.makeProgramObject(config);
 
+        delete programObj[USER];
+
+        const age = moment().diff(birthdate, 'years');
         transaction = await sequelize.transaction();
 
-        // Create the user
-        const user = await User.create({
-          ...req.body,
-          ...data.userMeasurements
-        }, { transaction });
-
-        const age = moment().diff(data.birthdate, 'years');
-
-        // Create the measurements
-        const measurement = await UserMeasurement.create({
-          ...data.userMeasurements,
-          age
-        }, { transaction });
-
-        // Create the program
-        const program = await Program.create(programObj, { transaction });
+        const [user, measurement, program] = await Promise.all([
+          User.create(config, { transaction }),
+          UserMeasurement.create({
+            ...userMeasurements,
+            age
+          }, { transaction }),
+          Program.create(programObj, { transaction })
+        ]);
 
         // Associate measurements and program
-        await user.addUserMeasurement(measurement, { transaction });
-        await user.addProgram(program, { transaction });
+        await Promise.all([
+          user.addUserMeasurement(measurement, { transaction }),
+          user.addProgram(program, { transaction })
+        ]);
 
         await transaction.commit();
 
@@ -64,15 +75,19 @@ const signup = async (req, res, next) => {
           'measurements',
           'meal-goals',
           'programs'
-        ).findById(user.id);
+        ).findById(user.uuid);
+
+        console.log(chalk.yellow.inverse('user.uuid'), user.uuid);
+        console.log(chalk.yellow.inverse('user.id'), user.id);
 
         const token = jwt.encode({
-          id: user.id
+          id: user.id,
+          uuid: user.uuid
         }, res.locals.jwtSecret);
 
         res
           .status(201)
-          .set({ token })
+          .set('token', token)
           .json(userFull);
       } catch (err) {
         throw new AppError(400, {
@@ -84,9 +99,14 @@ const signup = async (req, res, next) => {
       try {
         const user = await User.create(req.body);
         const token = jwt.encode({
-          id: user.id
+          id: user.id,
+          uuid: user.uuid
         }, res.locals.jwtSecret);
-        res.status(201).set({ token }).json(user);
+
+        res
+          .status(201)
+          .set('token', token)
+          .json(user);
       } catch (err) {
         throw new AppError(400, {
           usermessage: 'This email is already taken',

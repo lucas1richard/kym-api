@@ -36,10 +36,10 @@ describe('routes/food/controllers/createFood', () => {
           group: '0100'
         })
         .set('Accept', 'application/json')
-        .expect((res) => {
-          console.log(res.error);
-          // assert(res.error.isJoi, 'err should be isJoi');
-        })
+        // .expect((res) => {
+        //   console.log(res.error);
+        //   // assert(res.error.isJoi, 'err should be isJoi');
+        // })
         .expect(201, done);
     });
     it('fails nicely', (done) => {

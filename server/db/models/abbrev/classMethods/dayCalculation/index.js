@@ -1,5 +1,5 @@
 const AppError = include('configure/appError');
-
+const { USER } = include('db/foreignKeys');
 const filterMeals = require('./utils/filterMeals');
 const { getMeal } = require('./utils/getMeal');
 
@@ -10,11 +10,11 @@ module.exports = dayCalculation;
 
 /**
  * Get the meal for the day based on the user goals and day type
- * @param {number} user_id identifies the user
+ * @param {number} uuid identifies the user
  * @param {('train'|'rest')} type indicates whether the user will train or rest on that day
  * @return {Promise<Array>}
  */
-async function dayCalculation(user_id, type) {
+async function dayCalculation(uuid, type) {
   // Make sure that the type is either 'train' or 'rest'
   if (type !== 'train' && type !== 'rest') {
     throw new AppError(400, '`type` must be \'train\' or \'rest\'', true);
@@ -25,7 +25,7 @@ async function dayCalculation(user_id, type) {
 
   // Get the goals for training and resting days
   const goalsBothTypes = await MealGoals.findOne({
-    where: { user_id },
+    where: { [USER]: uuid },
     order: [['createdAt', 'DESC']]
   });
 

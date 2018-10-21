@@ -14,10 +14,16 @@ const Meal = require('./models/meal');
 const Program = require('./models/program');
 const Preferences = require('./models/preferences');
 const UserRecordFavorites = require('./models/user-record-favorites');
+const {
+  ABBREV,
+  USER,
+  FOOD_GROUP
+} = require('./foreignKeys');
 
-const abbrevId = { foreignKey: 'abbrev_id' };
-const userId = { foreignKey: 'user_id' };
-const FdGrpCd = { foreignKey: 'FdGrp_Cd' };
+const abbrevId = { foreignKey: ABBREV };
+const userId = { foreignKey: USER };
+const FdGrpCd = { foreignKey: FOOD_GROUP };
+
 const throughUserRecordFavorites = { through: UserRecordFavorites };
 
 AbbrevMicro.belongsTo(Abbrev, abbrevId);

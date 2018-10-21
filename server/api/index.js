@@ -5,7 +5,7 @@
  * a user.
  */
 
-const logger = require('utils/logger');
+const logger = include('utils/logger');
 const router = require('express').Router();
 const nodepath = require('path');
 const jwt = require('jwt-simple');
@@ -57,15 +57,16 @@ router.use(async function authMiddleware(req, res, next) {
 
     const { token } = req.headers;
     if (process.env.NODE_ENV !== 'test') {
-      const user_id = await checkSecureRoute(token);
-      Object.assign(res.locals, { user_id });
+      const { user_id, uuid } = await checkSecureRoute(token);
+      Object.assign(res.locals, { user_id, uuid });
     } else {
       Object.assign(res.locals, { user_id: req.headers.user_id || 1 });
     }
     next();
   } catch (err) {
-    logger.log(chalk.yellow(err.message));
-    logger.log(err);
+    logger.error(chalk.yellow(err.message));
+    console.log(err);
+    // logger.error(err);
     if (req.method === 'GET') {
       res.sendFile(
         nodepath.join(
@@ -79,7 +80,7 @@ router.use(async function authMiddleware(req, res, next) {
 });
 
 router.use((req, res, next) => {
-  console.log(`Worker ${process.pid} handling`);
+  logger.silly(`Worker ${process.pid} handling`);
   next();
 });
 
@@ -111,11 +112,12 @@ module.exports = router;
  * @param {string} path request path
  */
 async function checkSecureRoute(token) {
-  console.log(chalk.inverse('token', token));
+  logger.verbose(`token: ${token}`);
   const key = `user:token:${token}`;
   const redisStored = await redisClient.hgetAllAsync(key);
+  logger.verbose(`redisStored: ${JSON.stringify(redisStored)}`);
   if (redisStored && redisStored.user_id) {
-    return redisStored.user_id;
+    return redisStored;
   }
 
   redisClient.expire(key, 86400); // expire in 24 hours
@@ -124,16 +126,18 @@ async function checkSecureRoute(token) {
   }
 
   const secret = process.env.SECRET || '1701-Flex-NY';
-  const user_id = jwt.decode(token, secret).id || jwt.decode(token, secret).token;
-  console.log(user_id);
-  const user = await User.findById(user_id);
+  const decoded = jwt.decode(token, secret);
+
+  logger.verbose(`decoded: ${JSON.stringify(decoded)}`);
+
+  const user_id = decoded.id || decoded.token;
+  const { uuid } = decoded;
+  const user = await User.findById(uuid);
 
   if (!user) {
     throw Error('You must have an account and be logged in');
   }
 
-  redisClient.hsetAsync(`user:token:${token}`, 'user_id', user_id);
-  return user_id;
+  redisClient.hmsetAsync(key, { user_id, uuid });
+  return decoded;
 }
-
-// curl 'http://localhost:3001/api/food/chicken' -H 'Pragma: no-cache' -H 'Origin: http://localhost:3000' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36' -H 'Accept: application/json, text/plain, */*' -H 'Cache-Control: no-cache' -H 'Referer: http://localhost:3000/dashboard' -H 'Connection: keep-alive' -H 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDZ9.rKsUmOtGUXXuCorUcE-qka8S1GwTQ1RCGSeCqxaoFjY' --compressed

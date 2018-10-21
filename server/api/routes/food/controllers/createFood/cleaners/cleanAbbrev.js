@@ -1,4 +1,6 @@
-function cleanBody(body, user_id) {
+const { USER } = include('db/foreignKeys');
+
+function cleanBody(body, uuid) {
   const {
     main,
     sub,
@@ -20,7 +22,7 @@ function cleanBody(body, user_id) {
     Carbohydrates: convertToPer100(carbohydrates, servingWeight),
     GmWt_1: servingWeight,
     GmWt_Desc1: `${servingSize} ${servingDescription}`,
-    UserID: user_id,
+    [USER]: uuid,
     photo: null
   };
 }

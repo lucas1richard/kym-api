@@ -3,11 +3,11 @@ const { Abbrev } = include('db');
 const uuidv1 = require('uuid/v1');
 const { bodySchema } = require('./validation');
 
-const dayMealsCalculation = async (body, user_id) => {
+const dayMealsCalculation = async (body, uuid) => {
   // Validate
   await bodySchema.validate(body, { allowUnknown: true });
 
-  const output = await Abbrev.dayCalculation(user_id, body.type);
+  const output = await Abbrev.dayCalculation(uuid, body.type);
 
   const toSend = {
     foods: output,

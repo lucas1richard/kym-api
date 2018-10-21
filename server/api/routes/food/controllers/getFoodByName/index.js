@@ -23,8 +23,6 @@ const getFoodByName = async (req, res, next) => {
     const query = new Query(req.params.foodname);
     const offset = parseInt(req.query.offset, 10) || 0;
 
-    console.log(query);
-
     // const count = await Abbrev.scope().count({ where });
     const rowsToSend = await Abbrev.scope().findAndCountAll({
       limit: 50,

@@ -31,6 +31,8 @@ module.exports = {
     "node/prefer-global/process": ["error", "always"],
     "node/prefer-global/url-search-params": ["error", "always"],
     "node/prefer-global/url": ["error", "always"],
+    "node/no-extraneous-require": 0,
+    "no-process-exit": 0,
     // 'prettier/prettier': ['error', prettierOptions],
     'class-methods-use-this': 0,
     'object-curly-newline': 0,
@@ -66,10 +68,16 @@ module.exports = {
     {
       files: [ 'server/**/*.js', 'server/*.js' ],
       rules: {
-        'no-console': 0,
+        // 'no-console': 0,
         camelcase: 0,
         'global-require': 0,
         'prefer-arrow-callback': 0
+      }
+    },
+    {
+      files: ['*.test*js'],
+      rules: {
+        'no-undefined': 0
       }
     }
   ],

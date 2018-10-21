@@ -1,7 +1,7 @@
 const { User } = include('db');
 
-const getFavoriteFoods = async (user_id) => {
-  const user = await User.findById(user_id);
+const getFavoriteFoods = async (uuid) => {
+  const user = await User.findById(uuid);
   const abbrevs = await user.getAbbrevs();
   return abbrevs;
 };

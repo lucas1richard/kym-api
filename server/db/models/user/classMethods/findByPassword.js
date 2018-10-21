@@ -13,7 +13,7 @@ module.exports = findByPassword;
 function findByPassword(credentials) {
   assert(!!credentials, 'No credentials provided');
   assert(!!credentials.password, 'Password must be included in credentials');
-  assert.notEqual(credentials.password.length, 0, 'Password cannot be an empty string');
+  assert.strict.notEqual(credentials.password.length, 0, 'Password cannot be an empty string');
 
   const cred = Object.assign({}, credentials);
   cred.password = md5(credentials.password, 'hex');

@@ -12,7 +12,7 @@ module.exports = router;
 router.get('/', getUser);
 router.put('/', async function putUser(req, res, next) {
   try {
-    const updatedUser = await updateUser(req.body, res.locals.user_id);
+    const updatedUser = await updateUser(req.body, res.locals.uuid);
     res.json(updatedUser);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t update your information');
@@ -25,7 +25,7 @@ async function postUserMeasurements(req, res, next) {
   try {
     const measurements = await createMeasurements(
       req.body,
-      res.locals.user_id
+      res.locals.uuid
     );
     res.json(measurements);
   } catch (err) {
@@ -38,7 +38,7 @@ router.post('/measurements', postUserMeasurements);
 
 router.put('/measurements', async function putUserMeasurements(req, res, next) {
   try {
-    const measurements = await updateMeasurements(req.body, res.locals.user_id);
+    const measurements = await updateMeasurements(req.body, res.locals.uuid);
     res.json(measurements);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t update measurements');

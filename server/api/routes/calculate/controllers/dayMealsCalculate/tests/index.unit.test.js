@@ -9,7 +9,7 @@ describe('dayMealsCalculate', () => {
       const meal = await dayMealsCalculation({ type: 'train' }, 1);
       expect(meal).to.be.ok;
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
       // expect.fail();
     }
   });

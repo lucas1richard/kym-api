@@ -22,7 +22,6 @@ describe('user/classMethods/addFavoriteFood', () => {
     try {
       await addFavoriteFood(1, 2514, 3);
     } catch (err) {
-      console.log(err);
       expect(err.commonType).to.equal(404);
       expect(err.message.usermessage).to.equal('Couldn\'t find your account');
     }

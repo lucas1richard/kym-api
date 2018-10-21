@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 const swaggerPaths = include('swagger/swaggerPaths');
 
 swaggerPaths.addPath('/goals/meals', {
@@ -52,7 +53,7 @@ swaggerPaths.addPath('/goals/meals', {
                 }
               }
             },
-            user_id: {
+            [USER]: {
               type: 'integer',
               example: 3
             },

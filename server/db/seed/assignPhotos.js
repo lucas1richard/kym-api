@@ -1,8 +1,7 @@
 /* istanbul ignore next */
 const sequelize = require('../conn');
+const logger = include('utils/logger');
 
-/* istanbul ignore next */
-console.log(sequelize);
 /* istanbul ignore next */
 sequelize.query('update abbrevs set "photo"=null where true;')
   .then(() => sequelize.query('update abbrevs set "photo"=\'oil-almond.png\' where "Main" ilike \'oil\' and "Sub" iLike \'%almond%\' and photo is null;'))
@@ -125,10 +124,10 @@ sequelize.query('update abbrevs set "photo"=null where true;')
   .then(() => sequelize.query('update abbrevs set "photo"=\'keebler-logo.png\' where "Main" ilike \'keebler\' and photo is null;'))
 
   .then(() => sequelize.query('select count(*) from abbrevs where photo is null;'))
-  .then(([[{ count }]]) => console.log(`\n\n${count} abbrevs left unassigned`))
-  .then(() => console.log('\n\nDone'))
+  .then(([[{ count }]]) => logger.verbose(`\n\n${count} abbrevs left unassigned`))
+  .then(() => logger.verbose('\n\nDone'))
   .then(() => process.exit())
   .catch((er) => {
-    console.log(er.stack);
+    logger.error(er.stack);
     process.exit();
   });

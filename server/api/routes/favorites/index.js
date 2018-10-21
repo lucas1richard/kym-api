@@ -7,7 +7,7 @@ module.exports = router;
 
 router.get('/food', async function getFavorites(req, res, next) {
   try {
-    const favorites = await getFavoriteFoods(res.locals.user_id);
+    const favorites = await getFavoriteFoods(res.locals.uuid);
     res.json(favorites);
   } catch (err) {
     next(err);

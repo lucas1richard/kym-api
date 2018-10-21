@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 const { handleRouteError } = include('utils/handleRouteError');
 const { Abbrev } = include('db');
 const AppError = include('configure/appError');
@@ -16,11 +17,11 @@ const deleteFood = async (req, res, next) => {
       }, true);
     }
 
-    const { user_id } = res.locals;
+    const { uuid } = res.locals;
 
-    if (abbrev.UserID.toString() !== user_id.toString()) {
+    if (abbrev[USER].toString() !== uuid.toString()) {
       throw new AppError(401, {
-        devmessage: `User with id ${user_id} tried to delete food with id ${abbrev.id}`,
+        devmessage: `User with id ${uuid} tried to delete food with id ${abbrev.id}`,
         usermessage: 'Couldn\'t delete a food which was created by another user'
       }, true);
     }

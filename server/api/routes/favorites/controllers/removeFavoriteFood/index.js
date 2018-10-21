@@ -11,7 +11,7 @@ const removeFavoriteFood = async (req, res, next) => {
 
     // If the record is not associated, this will not cause an error
     await User.removeFavoriteFood(
-      res.locals.user_id,
+      res.locals.uuid,
       abbrevId,
       meal
     );

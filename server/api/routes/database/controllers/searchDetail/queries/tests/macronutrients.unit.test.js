@@ -15,14 +15,14 @@ describe('macronutrient queries', () => {
     });
     it('fails without a percent', () => {
       try {
-        proteinQuery(undefined, '>');
+        proteinQuery(null, '>');
       } catch (err) {
         expect(err.message).to.equal(noPercentMsg);
       }
     });
     it('fails without a comparator', () => {
       try {
-        proteinQuery(5, undefined);
+        proteinQuery(5, null);
       } catch (err) {
         expect(err.message).to.equal(noComparatorMsg);
       }
@@ -45,14 +45,14 @@ describe('macronutrient queries', () => {
     });
     it('fails without a percent', () => {
       try {
-        carbQuery(undefined, '>');
+        carbQuery(null, '>');
       } catch (err) {
         expect(err.message).to.equal(noPercentMsg);
       }
     });
     it('fails without a comparator', () => {
       try {
-        carbQuery(5, undefined);
+        carbQuery(5, null);
       } catch (err) {
         expect(err.message).to.equal(noComparatorMsg);
       }
@@ -75,14 +75,14 @@ describe('macronutrient queries', () => {
     });
     it('fails without a percent', () => {
       try {
-        fatQuery(undefined, '>');
+        fatQuery(null, '>');
       } catch (err) {
         expect(err.message).to.equal(noPercentMsg);
       }
     });
     it('fails without a comparator', () => {
       try {
-        fatQuery(5, undefined);
+        fatQuery(5, null);
       } catch (err) {
         expect(err.message).to.equal(noComparatorMsg);
       }

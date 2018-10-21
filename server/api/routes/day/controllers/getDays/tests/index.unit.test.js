@@ -24,7 +24,6 @@ describe('routes/day/getDays', () => {
   });
   it('returns an object', async () => {
     const day = await getDays(user_id);
-    console.log(day);
     expect(day).eql({});
   });
 

@@ -1,7 +1,8 @@
+const { USER_VALIDATION } = include('db/foreignKeys');
 const Joi = require('joi');
 
 const dateSchema = Joi.date();
-const userIdSchema = Joi.number().integer();
+const userIdSchema = USER_VALIDATION;
 
 module.exports = {
   dateSchema,

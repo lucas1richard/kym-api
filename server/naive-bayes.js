@@ -1,3 +1,5 @@
+const pluralize = require('pluralize');
+
 /*
     Expose our naive-bayes generator function
  */
@@ -52,9 +54,16 @@ const defaultTokenizer = function defaultTokenizer(text) {
   // remove punctuation from text - remove anything that isn't a word char or a space
   const rgxPunctuation = /[^(a-zA-ZA-Яa-я_)+\s]/g;
 
-  const sanitized = text.replace(rgxPunctuation, ' ').toLowerCase();
+  const sanitized = text
+    // .replace(/\((.+?)\)/g, '\1')
+    .replace(/\[,.\/,';:"\\\]\[\!\@\#\$\%\^\&\*()/g, '\1')
+    .replace(rgxPunctuation, ' ')
+    .toLowerCase();
 
-  return sanitized.split(/\s+/);
+  return sanitized
+    .split(/\s+/)
+    .filter((token) => token.length >= 4)
+    .map((token) => pluralize.plural(token));
 };
 
 /**

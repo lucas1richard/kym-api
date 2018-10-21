@@ -1,9 +1,10 @@
 // update abbrevs set "photo"='salami.png' where "Main"='Salami';
+const logger = require('./utils/logger');
 const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
 const { promisify } = require('util');
-const bayes = require('./naive-bayes');
+const bayes = require('./NaiveBayes');
 
 const foodGroups = require('./db/data/fd-group');
 
@@ -29,14 +30,16 @@ const readFileAsync = promisify(fs.readFile);
 
 async function execute() {
   let model;
+  let hasFile = false;
   try {
     // First try to get a saved version of the model
     const file = await readFileAsync('./pickled.json', 'utf8');
     model = bayes.fromJson(file);
+    hasFile = true;
   } catch (err) {
     // Couldn't get the model from file system
     model = bayes();
-    await db.sequelize.sync();
+    await db.sequelize.sync({ logging: false });
     const allAbbrevs = await db.Abbrev.findAll();
 
     // Train the newly created model
@@ -51,24 +54,39 @@ async function execute() {
     });
   }
 
+  const terms = [
+    'Ribeye',
+    'steak, round',
+    'usda',
+    'apples',
+    'apple',
+    'apple granny',
+    'apple sauce',
+    'tomatoes',
+    'tomato',
+    'milk',
+    'salads',
+    'salad',
+    'seal',
+    'coffee cream',
+    'chips',
+    'salsa',
+    'rice',
+    'chicken',
+    'olive',
+    'olives',
+  ]
 
-  console.log(chalk.yellow('Ribeye'), groups[model.categorize('Ribeye')]);
-  console.log(chalk.yellow('Steak, ground'), groups[model.categorize('Steak, ground')]);
-  console.log(chalk.yellow('USDA'), groups[model.categorize('USDA')]);
-  console.log(chalk.yellow('Apples'), groups[model.categorize('Apples')]);
-  console.log(chalk.yellow('Tomatoes'), groups[model.categorize('Tomatoes')]);
-  console.log(chalk.yellow('Milk'), groups[model.categorize('Milk')]);
-  console.log(chalk.yellow('Salad'), groups[model.categorize('Salad')]);
-  console.log(chalk.yellow('Seal'), groups[model.categorize('Seal')]);
-  console.log(chalk.yellow('coffee Cream'), groups[model.categorize('coffee Cream')]);
-  console.log(chalk.yellow('Chips'), groups[model.categorize('Chips')]);
-  console.log(chalk.yellow('Salsa'), groups[model.categorize('Salsa')]);
-  console.log(chalk.yellow('Rice'), groups[model.categorize('Rice')]);
-  console.log(chalk.yellow('Chicken'), groups[model.categorize('Chicken')]);
+  terms.forEach((term) => {
+    const groupKey = model.categorize(term);
+    logger.debug(`${chalk.yellow(term)}, [${chalk.magenta(groupKey)}], ${chalk.gray(groups[groupKey])}`);
+  });
 
-  // const pickled = model.toJson();
-
-  // fs.writeFileSync('pickled.json', pickled);
+  if (!hasFile) {
+    const pickled = model.toJson();
+  
+    fs.writeFileSync('pickled.json', pickled);
+  }
 
   process.exit();
 }

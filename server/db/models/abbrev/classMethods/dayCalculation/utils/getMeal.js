@@ -40,8 +40,6 @@ const validateGoal = promisify(validateGoalSync);
 async function getMeal(allMeals, goal, ix) {
   // If there are no goals, return null
   const goalIsValid = await validateGoal(goal);
-  console.log(goal);
-  console.log(goalIsValid);
   if (!goalIsValid) {
     return null;
   }

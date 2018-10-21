@@ -10,7 +10,7 @@ const fitbitInfo = process.env.NODE_ENV === 'production'
     callbackURL: '/api/auth/fitbit/callback'
   };
 
-fitbitInfo.refreshBuffer = new Buffer(`${fitbitInfo.clientID}:${fitbitInfo.clientSecret}`).toString('base64');
+fitbitInfo.refreshBuffer = Buffer.from(`${fitbitInfo.clientID}:${fitbitInfo.clientSecret}`).toString('base64');
 
 const googleInfo = {
   clientID: '996228923588-ma414rr4i6oumg6939tsv45kcn95imv4.apps.googleusercontent.com',

@@ -1,15 +1,6 @@
 const sequelize = require('../../conn');
+const { config } = require('./config');
 
-const { Sequelize } = sequelize;
-
-const FoodGroup = sequelize.define('foodGroup', {
-  GroupID: {
-    type: Sequelize.INTEGER,
-    primaryKey: true
-  },
-  Description: {
-    type: Sequelize.STRING
-  }
-});
+const FoodGroup = sequelize.define('foodGroup', config);
 
 module.exports = FoodGroup;

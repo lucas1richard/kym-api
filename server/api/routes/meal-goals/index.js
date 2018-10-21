@@ -6,7 +6,7 @@ module.exports = router;
 
 router.get('/', async function getMealGoalsRoute(req, res, next) {
   try {
-    const mealGoals = await getMealGoalsController(res.locals.user_id);
+    const mealGoals = await getMealGoalsController(res.locals.uuid);
     res.json(mealGoals);
   } catch (err) {
     next(err);

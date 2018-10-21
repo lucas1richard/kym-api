@@ -1,11 +1,14 @@
+const { USER } = include('db/foreignKeys');
+
 module.exports = makeProgramObject;
 
 /**
  * Create an object to define a program
- * @param {{ units: string, weight: number, user_id: number, goal: 'Lose Weight'|'Maintain'|'Gain Muscle' }} measure
+ * @param {{ units: string, weight: number, uuid: number, goal: 'Lose Weight'|'Maintain'|'Gain Muscle' }} measure
  */
 function makeProgramObject(measure) {
-  const { units, weight, goal, user_id } = measure;
+  console.log(measure);
+  const { units, weight, goal, uuid } = measure;
   const startWeight = weight * 1;
   let endGoal;
   let poundsToLose = 0;
@@ -29,7 +32,7 @@ function makeProgramObject(measure) {
     startDate,
     endDate,
     status: 'In Progress',
-    user_id,
+    [USER]: uuid,
     result: 'TBD'
   };
 }

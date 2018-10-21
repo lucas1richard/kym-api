@@ -1,3 +1,5 @@
+const { USER } = include('db/foreignKeys');
+
 module.exports = {
   type: 'object',
   properties: {
@@ -48,7 +50,7 @@ module.exports = {
       type: 'integer',
       example: 5470
     },
-    user_id: {
+    [USER]: {
       type: 'integer',
       example: 3
     },
@@ -78,8 +80,7 @@ module.exports = {
     Fat: {
       type: 'number',
       format: 'float',
-      example: 23.1,
-      format: 'int32'
+      example: 23.1
     },
     Carbohydrates: {
       type: 'number',

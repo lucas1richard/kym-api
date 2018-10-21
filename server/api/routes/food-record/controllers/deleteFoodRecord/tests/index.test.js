@@ -34,7 +34,7 @@ describe('/routes/food-record/controllers/deleteFoodRecord', () => {
       const body = {};
       await deleteFoodRecord(body);
     } catch (err) {
-      expect(err.isJoi).to.equal(undefined);
+      expect(!!err.isJoi).to.equal(false);
     }
   });
   afterEach(async () => {

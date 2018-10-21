@@ -1,25 +1,9 @@
 const sequelize = require('../../conn');
-const normalized = require('./getterMethods/normalized');
+const getterMethods = require('./getterMethods');
+const { config } = require('./config');
 
-const { Sequelize } = sequelize;
-
-const Weight = sequelize.define('weight', {
-  Seq: {
-    type: Sequelize.INTEGER
-  },
-  Amount: {
-    type: Sequelize.DECIMAL
-  },
-  Description: {
-    type: Sequelize.STRING
-  },
-  Gr_Wgt: {
-    type: Sequelize.DECIMAL
-  }
-}, {
-  getterMethods: {
-    normalized
-  }
+const Weight = sequelize.define('weight', config, {
+  getterMethods
 });
 
 module.exports = Weight;

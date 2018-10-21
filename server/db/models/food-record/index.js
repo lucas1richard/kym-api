@@ -1,9 +1,12 @@
 const sequelize = require('../../conn');
-const Abbrev = require('../abbrev');
+const { config } = require('./config');
+const { defaultScope, scopes } = require('./scopes');
 
-const { Sequelize } = sequelize;
+const {
+  calMacros,
+  updateQuantity
+} = require('./instanceMethods');
 
-const { calMacros, updateQuantity } = require('./instanceMethods');
 const {
   createWithMeal,
   findByDate,
@@ -11,48 +14,9 @@ const {
   makeHistoricalArray
 } = require('./classMethods');
 
-const FoodRecord = sequelize.define('foodRecord', {
-  Date: {
-    type: Sequelize.DATEONLY,
-  },
-  Meal: {
-    type: Sequelize.INTEGER,
-    validate: {
-      min: 1
-    }
-  },
-  Quantity: {
-    type: Sequelize.DECIMAL,
-  },
-  Unit: {
-    type: Sequelize.INTEGER
-  },
-  fromProgram: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true
-  },
-  confirmed: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true
-  }
-}, {
-  defaultScope: {
-    include: [
-      Abbrev,
-    ]
-  },
-  scopes: {
-    micro: {
-      include: [
-        Abbrev.scope('micro', 'weight')
-      ]
-    },
-    description: {
-      include: [
-        Abbrev.scope('all')
-      ]
-    },
-  }
+const FoodRecord = sequelize.define('foodRecord', config, {
+  defaultScope,
+  scopes
 });
 
 FoodRecord.createWithMeal = createWithMeal;

@@ -18,7 +18,7 @@ const getFoodMicro = async (req, res, next) => {
       req.body.meals,
       postWorkout,
       keyword,
-      res.locals.user_id
+      res.locals.uuid
     );
 
     const inclWhere = makeInclWhere(keyword);

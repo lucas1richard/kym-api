@@ -1,6 +1,7 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const AppError = include('configure/appError');
 const { UserMeasurement } = include('db');
+const { USER } = include('db/foreignKeys');
 const { bodySchema } = require('./validation');
 
 const deleteMeasurements = async (req, res, next) => {
@@ -8,12 +9,12 @@ const deleteMeasurements = async (req, res, next) => {
     await bodySchema.validate(req.body);
 
     const { id } = req.body;
-    const { user_id } = res.locals;
+    const { uuid } = res.locals;
 
     const measurement = await UserMeasurement.findOne({
       where: {
         id,
-        user_id
+        [USER]: uuid
       }
     });
 

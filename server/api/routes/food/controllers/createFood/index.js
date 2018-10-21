@@ -22,7 +22,7 @@ const createFood = async (req, res, next) => {
 
     // Create a new abbrev
     const newAbbrev = await Abbrev.create(
-      cleanAbbrev(req.body, res.locals.user_id),
+      cleanAbbrev(req.body, res.locals.uuid),
       { transaction }
     );
 

@@ -13,7 +13,7 @@ const addFavoriteFood = async (req, res, next) => {
     } = req.body;
 
     const abbrev = await User.addFavoriteFood(
-      res.locals.user_id,
+      res.locals.uuid,
       abbrevId,
       meal
     );

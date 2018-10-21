@@ -1,5 +1,4 @@
 const winston = require('winston');
-const chalk = require('chalk');
 
 const logger = winston.createLogger({
   level: 'silly',
@@ -25,47 +24,6 @@ if (process.env.NODE_ENV !== 'production') {
       winston.format.colorize(),
       winston.format.simple()
     ),
-    // colorize: true,
-    // prettyPrint: true,
-    // format: function(options) {
-    //   const message = "";
-
-    //   if (options.message !== undefined) {
-    //     message = options.message;
-    //   }
-
-    //   const meta = "";
-
-    //   if (options.meta && Object.keys(options.meta).length) {
-    //     meta = `\n\t${JSON.stringify(options.meta)}`;
-    //   }
-
-    //   const level = options.level.toUpperCase();
-    //   switch (level) {
-    //     case "INFO":
-    //       level = chalk.cyan(level);
-    //       break;
-
-    //     case "WARN":
-    //       level = chalk.yellow(level);
-    //       break;
-
-    //     case "ERROR":
-    //       level = chalk.red(level);
-    //       break;
-
-    //     default:
-    //       break;
-    //   }
-
-    //   var output = [
-    //     `[${options.timestamp()}][${level}]`,
-    //     message,
-    //     meta
-    //   ];
-
-    //   return output.join(" ");
-    // }
   }));
 }
 

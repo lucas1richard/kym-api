@@ -13,7 +13,7 @@
  *   updatedAt: '2017-10-23T20:48:33.466Z',
  *   mealId: 619,
  *   abbrev_id: 5470,
- *   user_id: 3,
+ *   user_uuid: 3,
  *   meal: {
  *     id: 619,
  *     date: '2017-11-17T05:00:00.000Z',
@@ -22,7 +22,7 @@
  *     postWorkout: false,
  *     createdAt: '2017-11-18T03:36:26.984Z',
  *     updatedAt: '2017-11-18T03:36:26.984Z',
- *     user_id: 3
+ *     user_uuid: 3
  *   },
  *   abbrev: {
  *     longname: 'Avocados, raw, Florida',

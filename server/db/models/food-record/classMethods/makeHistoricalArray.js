@@ -1,21 +1,23 @@
+const { USER } = include('db/foreignKeys');
+
 module.exports = makeHistoricalArray;
 
 /**
  * Make a list of meals that the user has eaten in the past
- * @param {number} user_id
+ * @param {number} uuid
  * @return {Promise}
  * @this food-record
  */
-async function makeHistoricalArray(user_id) {
+async function makeHistoricalArray(uuid) {
   let record = await this.findAll({
-    where: { user_id },
+    where: { [USER]: uuid },
     order: ['Meal', 'Date']
   });
 
   if (record.length < 60) {
     record = await this.findAll({
       where: {
-        user_id: 1
+        [USER]: 1
       },
       order: ['Meal', 'Date']
     });
@@ -46,15 +48,15 @@ async function makeHistoricalArray(user_id) {
   });
   return filteredRecord;
 }
-// function makeHistoricalArray(user_id) {
+// function makeHistoricalArray(uuid) {
 //   return this.findAll({
-//     where: { user_id },
+//     where: { uuid },
 //     order: ['Meal', 'Date']
 //   })
 //     .then(record => (record.length > 60
 //       ? record
 //       : this.findAll({
-//         where: { user_id: 1 },
+//         where: { uuid: 1 },
 //         order: ['Meal', 'Date']
 //       }))
 //     )

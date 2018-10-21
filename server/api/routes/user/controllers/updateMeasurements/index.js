@@ -1,13 +1,13 @@
 const { UserMeasurement } = include('db');
 const { bodySchema } = require('./validation');
 
-const updateMeasurements = async (body, user_id) => {
+const updateMeasurements = async (body, uuid) => {
   await bodySchema.validate(body);
   const measurement = await UserMeasurement.findById(body.id);
   Object.assign(measurement, { ...body });
   await measurement.save();
 
-  const allMeasurements = await UserMeasurement.findAllByUserId(user_id);
+  const allMeasurements = await UserMeasurement.findAllByUserId(uuid);
   return allMeasurements;
 };
 

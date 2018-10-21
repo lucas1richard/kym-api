@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 const axios = require('axios');
 const Program = require('../../program');
 
@@ -5,19 +6,19 @@ module.exports = requestCalories;
 
 /**
  * Fetch the user's calories from the Fitbit API
- * @param {number} user_id identifies the user
+ * @param {number} uuid identifies the user
  * @param {string} startDate get calories starting from this date
  * @param {string} endDate get calories ending on this date
  * @this user
  * @async
  */
 /* istanbul ignore next */
-async function requestCalories(user_id, startDate, endDate) {
+async function requestCalories(uuid, startDate, endDate) {
   let refreshToken;
   try {
-    const user = await this.findOne({ where: { id: user_id } });
+    const user = await this.findOne({ where: { uuid } });
     const program = await Program.findOne({
-      where: { user_id },
+      where: { [USER]: uuid },
       order: [['createdAt', 'DESC']]
     });
     const token = user.fitbitToken;

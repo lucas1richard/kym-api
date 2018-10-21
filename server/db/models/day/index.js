@@ -1,16 +1,6 @@
 const sequelize = require('../../conn');
+const { config } = require('./config');
 
-const { Sequelize } = sequelize;
-
-const Day = sequelize.define('day', {
-  dayType: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false
-  },
-  date: {
-    type: Sequelize.DATEONLY,
-    allowNull: false
-  }
-});
+const Day = sequelize.define('day', config);
 
 module.exports = Day;

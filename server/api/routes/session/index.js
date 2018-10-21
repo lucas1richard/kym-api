@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const getUserFromToken = require('./controllers/getUserFromToken');
 const signIn = require('./controllers/signIn');
+const logger = include('utils/logger');
 
 module.exports = router;
 
@@ -25,15 +26,14 @@ router.post('/', async function postSession(req, res, next) {
         res.locals.jwtSecret
       );
 
-      console.log({ token, username, password });
 
       res.send({ token });
     } catch (error) {
-      console.log(error);
+      logger.debug(error);
       res.status(401).send(error);
     }
   } catch (err) {
-    console.log(err);
+    logger.debug(err);
     next(err);
   }
 });

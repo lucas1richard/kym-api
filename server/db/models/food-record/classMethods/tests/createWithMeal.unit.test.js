@@ -32,7 +32,7 @@ describe('db/models/food-record/classMethods', () => {
         const record = await createWithMeal({ abbrev_id, date, meal, quantity, unit, user_id, confirmed });
         expect(record).to.be.ok; // eslint-disable-line
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     });
   });

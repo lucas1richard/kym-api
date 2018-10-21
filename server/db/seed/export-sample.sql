@@ -34,10 +34,10 @@ with t(
   updatedAt,
   mealId,
   abbrev_id,
-  user_id
+  user_uuid
 ) as (
   select
     *
-  from "foodRecords" where "user_id"=1
+  from "foodRecords" where "user_uuid"=1
 )
 select json_agg(t) from t \g records_data_dump.json

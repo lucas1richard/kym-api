@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { USER, USER_VALIDATION } = include('db/foreignKeys');
 
 const bodySchema = Joi.object().keys({
   age: Joi.string().required(),
@@ -13,7 +14,7 @@ const bodySchema = Joi.object().keys({
   lifestyle: Joi.string().valid(['Normal', 'Active', 'Sedentary']),
   units: Joi.string().valid(['imperial', 'metric']),
   updatedAt: Joi.date().required(),
-  user_id: Joi.number().integer().required(),
+  [USER]: USER_VALIDATION,
   weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required()
 });
 

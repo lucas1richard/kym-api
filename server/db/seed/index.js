@@ -5,19 +5,19 @@ global.base_dir = path.resolve(__dirname, '..', '..');
 global.abs_path = (pth) => global.base_dir + pth;
 // eslint-disable-next-line import/no-dynamic-require
 global.include = (file) => require(global.abs_path(`/${file}`));
-
+const logger = include('utils/logger');
 const db = require('../index');
 const chalk = require('chalk');
 
 /* istanbul ignore next */
-console.log(chalk.yellow.inverse.bold(' Begin Database seed '));
+logger.silly(chalk.yellow.inverse.bold(' Begin Database seed '));
 /* istanbul ignore next */
-console.log('---------------------');
-// console.log(chalk.magenta(' - Formatting records/meals'));
+logger.silly('---------------------');
+// logger.silly(chalk.magenta(' - Formatting records/meals'));
 // const record = assignMeal(require('./data/food-record'));
 
-// console.log(chalk.blue.bold(' -> Records/Meals formatted'));
-// console.log('---------------------------');
+// logger.silly(chalk.blue.bold(' -> Records/Meals formatted'));
+// logger.silly('---------------------------');
 
 /* istanbul ignore next */
 db.sequelize.sync({ force: true })
@@ -66,14 +66,14 @@ db.sequelize.sync({ force: true })
   // } )
   .then(() => {
     seeded('Weight');
-    console.log(chalk.green.inverse.bold(' Seeded OK '));
+    logger.silly(chalk.green.inverse.bold(' Seeded OK '));
   })
   .then(() => db.sequelize.query('ALTER SEQUENCE abbrevs_id_seq RESTART WITH 8804'))
   .then(() => db.sequelize.query('ALTER SEQUENCE "abbrevMicros_id_seq" RESTART WITH 8463'))
   .then(() => db.sequelize.query('ALTER SEQUENCE "foodDes_id_seq" RESTART WITH 8650'))
   .then(() => db.sequelize.query('ALTER SEQUENCE "weights_id_seq" RESTART WITH 15242'))
   .then(() => process.exit())
-  .catch((er) => console.log(er.stack));
+  .catch((er) => logger.silly(er.stack));
 
 
 /* istanbul ignore next */
@@ -84,12 +84,12 @@ function seedInfo(justseeded, nexttoseed) {
 /* istanbul ignore next */
 function seeded(nexttoseed) {
   const msg = ` -> ${nexttoseed} seeded`;
-  console.log(chalk.blue.bold(msg));
-  console.log(msg.replace(/./g, '-'));
+  logger.silly(chalk.blue.bold(msg));
+  logger.silly(msg.replace(/./g, '-'));
 }
 /* istanbul ignore next */
 function seeding(seed) {
-  console.log(chalk.magenta(` - Seeding ${seed}`));
+  logger.silly(chalk.magenta(` - Seeding ${seed}`));
 }
 /* istanbul ignore next */
 // function assignMeal(records) {
@@ -111,7 +111,7 @@ function seeding(seed) {
 //       mealsArr.push({
 //         date: new Date(date).toDateString(),
 //         meal: mealIndex,
-//         user_id: 1,
+//         user_uuid: 1,
 //         public: mealsObj[date][mealIndex].length >= 3,
 //         postWorkout: mealIndex === 4
 //       });

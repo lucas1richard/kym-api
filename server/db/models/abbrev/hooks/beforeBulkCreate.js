@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 /* eslint-disable no-param-reassign */
 
 function beforeBulkCreate(abbrevs) {
@@ -9,10 +10,10 @@ function beforeBulkCreate(abbrevs) {
       abbrev.GmWt_Desc2 = `0${abbrev.GmWt_Desc2}`;
     }
     if (abbrev.UserID) {
-      abbrev.user_id = abbrev.UserID;
+      abbrev[USER] = abbrev.UserID;
     }
-    if (abbrev.user_id === '0') {
-      abbrev.user_id = null;
+    if (abbrev[USER] === '0') {
+      abbrev[USER] = null;
     }
   });
 }

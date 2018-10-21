@@ -16,9 +16,9 @@ function beforeCreate(memo) {
     memo
       .goals[param]
       .forEach((item) => {
-        assert.equal(typeof item, 'object', 'Each goal must be a JSON object');
+        assert.strictEqual(typeof item, 'object', 'Each goal must be a JSON object');
         ['protein', 'carbs', 'fat'].forEach((gl) => {
-          assert.equal(typeof item[gl], 'number', `There must be a value for ${gl}`);
+          assert.strictEqual(typeof item[gl], 'number', `There must be a value for ${gl}`);
         });
       });
   }

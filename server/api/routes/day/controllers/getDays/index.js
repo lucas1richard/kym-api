@@ -1,13 +1,14 @@
+const { USER } = include('db/foreignKeys');
 const { Day } = include('db');
 const moment = require('moment');
 
-async function getDays(user_id) {
-  if (!user_id) {
-    throw new Error('No user_id provided');
+async function getDays(uuid) {
+  if (!uuid) {
+    throw new Error('No uuid provided');
   }
   const days = await Day.findAll({
     where: {
-      user_id
+      [USER]: uuid
     },
     order: [['date', 'DESC']],
     limit: 60

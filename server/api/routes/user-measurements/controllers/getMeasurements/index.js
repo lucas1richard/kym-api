@@ -1,11 +1,12 @@
 const { UserMeasurement } = include('db');
+const { USER } = include('db/foreignKeys');
 
 module.exports = getMeasurements;
 
-async function getMeasurements(user_id) {
+async function getMeasurements(uuid) {
   const measurements = await UserMeasurement.findAll({
     where: {
-      user_id
+      [USER]: uuid
     },
     order: [
       [

@@ -9,7 +9,7 @@ global.abs_path = (pth) => global.base_dir + pth;
 // eslint-disable-next-line import/no-dynamic-require
 global.include = (file) => require(global.abs_path(`/${file}`));
 
-
-console.log('mocha setup complete');
+const logger = include('utils/logger');
+logger.verbose('mocha setup complete');
 
 // Test route controllers independently

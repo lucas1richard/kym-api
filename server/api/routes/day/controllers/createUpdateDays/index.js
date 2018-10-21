@@ -1,13 +1,14 @@
+const { USER } = include('db/foreignKeys');
 const { Day } = include('db');
 const assert = require('assert');
 
-const createUpdateDays = async (user_id, date) => {
-  assert(user_id, 'No user_id provided');
+const createUpdateDays = async (uuid, date) => {
+  assert(uuid, 'No uuid provided');
   assert(date && typeof date === 'string', 'date should be a string');
 
   await Day.findOrCreate({
     where: {
-      user_id,
+      [USER]: uuid,
       date
     },
     defaults: {

@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 const { MealGoals, User } = include('/db');
 const { handleRouteError } = include('utils/handleRouteError');
 const { bodySchema } = require('./validation');
@@ -9,14 +10,14 @@ const createGoals = async (req, res, next) => {
 
     await MealGoals.create({
       goals: req.body,
-      user_id: res.locals.user_id
+      [USER]: res.locals.uuid
     });
 
     const user = await User.scope(
       'measurements',
       'meal-goals',
       'programs'
-    ).findById(res.locals.user_id);
+    ).findById(res.locals.uuid);
 
     res.json(user);
   } catch (err) {

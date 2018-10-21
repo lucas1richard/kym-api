@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 module.exports = createWithMeal;
 const sequelize = require('../../../conn');
 
@@ -5,7 +6,7 @@ const sequelize = require('../../../conn');
  * Create a food record with associated meal
  * @return {Promise}
  */
-function createWithMeal({ abbrev_id, date, meal, quantity, unit, user_id, confirmed }) {
+function createWithMeal({ abbrev_id, date, meal, quantity, unit, uuid, confirmed }) {
   return Promise.all([
     this.create({
       abbrev_id,
@@ -13,12 +14,12 @@ function createWithMeal({ abbrev_id, date, meal, quantity, unit, user_id, confir
       Meal: meal,
       Quantity: quantity,
       Unit: unit,
-      user_id,
+      [USER]: uuid,
       confirmed
     }),
     sequelize.models.meal.findOrCreate({
       where: {
-        user_id,
+        [USER]: uuid,
         date,
         meal
       }

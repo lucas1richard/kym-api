@@ -1,11 +1,15 @@
-const { FoodRecord, sequelize } = include('db');
+const { USER } = include('db/foreignKeys');
+const {
+  FoodRecord,
+  sequelize
+} = include('db');
 
 const { Op } = sequelize;
 
 const getList = async (req, res, next) => {
   try {
     const { date } = req.query;
-    const { user_id } = res.locals;
+    const { uuid } = res.locals;
 
     const currentDate = new Date(date);
     const laterDate = new Date(currentDate.getTime() + (86400000 * 6));
@@ -16,7 +20,7 @@ const getList = async (req, res, next) => {
           [Op.gte]: currentDate,
           [Op.lte]: laterDate
         },
-        user_id
+        [USER]:uuid
       }
     });
 

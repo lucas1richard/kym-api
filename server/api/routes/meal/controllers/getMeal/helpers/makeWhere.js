@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 const { sequelize } = include('db');
 
 const { Op } = sequelize;
@@ -6,12 +7,12 @@ const { Op } = sequelize;
  * Build where query object
  * @param {Array<number>} meals
  * @param {boolean} postWorkout
- * @param {number} user_id
+ * @param {number} uuid
  */
-function makeWhere(meals, postWorkout, user_id) {
+function makeWhere(meals, postWorkout, uuid) {
   const where = {
-    user_id: {
-      [Op.ne]: user_id
+    [USER]: {
+      [Op.ne]: uuid
     },
     public: true
   };

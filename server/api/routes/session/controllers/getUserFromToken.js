@@ -9,17 +9,15 @@ const getUserFromToken = async (req, res, next) => {
       res.locals.jwtSecret
     );
 
-    const user = await User.findById(token.id || token.token);
+    const user = await User.findById(token.uuid);
 
     if (!user) {
       throw new AppError(401, {
         usermessage: 'Could not log you in'
       }, true);
     }
-    console.log(user);
     res.send(user);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
