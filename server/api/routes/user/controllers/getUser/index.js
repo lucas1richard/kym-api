@@ -21,7 +21,9 @@ const getUser = async (req, res, next) => {
       }, true);
     }
 
-    res.json(user);
+    const sanitizedUser = await User.sanitizeUser(user);
+    
+    res.json(sanitizedUser);
   } catch (err) {
     next(err);
   }

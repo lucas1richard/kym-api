@@ -15,12 +15,16 @@ const getFoodRecordsByDate = async (req, res, next) => {
     await userIdSchema.validate(res.locals.uuid);
 
     // Find all micronutrients for the provided date
-    const records = await FoodRecord.findMicroByDate(
+    const rawRecords = await FoodRecord.findMicroByDate(
       req.params.date,
       res.locals.uuid
     );
 
-    res.json(records.map((record) => record.calMacros()));
+    const records = await Promise.all(rawRecords.map((record) => {
+      return record.calMacros();
+    }));
+    
+    res.json(records);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t get the records');
     next(err);

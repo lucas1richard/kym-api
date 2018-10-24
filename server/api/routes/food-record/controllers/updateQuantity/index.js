@@ -17,9 +17,11 @@ const updateQuantity = async (req, res, next) => {
     });
 
     // Find the record again and send back with macros
-    const newRecord = await FoodRecord.findById(id);
+    const rawNewRecord = await FoodRecord.findById(id);
 
-    res.json(newRecord.calMacros());
+    const newRecord = await rawNewRecord.calMacros();
+
+    res.json(newRecord);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t update the record');
     next(err);

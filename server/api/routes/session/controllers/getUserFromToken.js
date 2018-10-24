@@ -11,12 +11,14 @@ const getUserFromToken = async (req, res, next) => {
 
     const user = await User.findById(token.uuid);
 
+    const sanitizedUser = await User.sanitizeUser(user);
+
     if (!user) {
       throw new AppError(401, {
         usermessage: 'Could not log you in'
       }, true);
     }
-    res.send(user);
+    res.send(sanitizedUser);
   } catch (err) {
     next(err);
   }

@@ -1,6 +1,5 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const { FoodRecord } = include('db');
-const { USER } = include('db/foreignKeys');
 const { bodySchema } = require('./validation');
 
 /**
@@ -19,7 +18,7 @@ const addFoodRecord = async (req, res, next) => {
     const createRecordArray = req.body.map(function addRecord(body) {
       return FoodRecord.createWithMeal({
         ...body,
-        [USER]: uuid
+        uuid
       });
     });
 

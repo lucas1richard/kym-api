@@ -21,13 +21,15 @@ const updateRecordStatus = async (req, res, next) => {
     }));
 
     // Get the updated records again
-    const savedRecords = await Promise.all(ids.map((id) => {
+    const rawSavedRecords = await Promise.all(ids.map((id) => {
       return FoodRecord.findById(id);
     }));
 
-    res.json(savedRecords.map((record) => {
+    const savedRecords = await Promise.all(rawSavedRecords.map((record) => {
       return record.calMacros();
     }));
+
+    res.json(savedRecords);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t update the record status');
     next(err);

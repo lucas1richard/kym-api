@@ -14,7 +14,7 @@ const getList = async (req, res, next) => {
     const currentDate = new Date(date);
     const laterDate = new Date(currentDate.getTime() + (86400000 * 6));
 
-    const records = await FoodRecord.findAll({
+    const rawRecords = await FoodRecord.findAll({
       where: {
         Date: {
           [Op.gte]: currentDate,
@@ -24,9 +24,11 @@ const getList = async (req, res, next) => {
       }
     });
 
-    res.json(records.map((record) => {
+    const records = await Promise.all(rawRecords.map((record) => {
       return record.calMacros();
     }));
+
+    res.json(records);
   } catch (err) {
     next(err);
   }
