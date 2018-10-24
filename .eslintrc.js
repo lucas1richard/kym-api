@@ -1,21 +1,14 @@
 const fs = require('fs');
 
-// const prettierOptions = JSON.parse(fs.readFileSync('./.prettierrc', 'utf8'));
-
 module.exports = {
   parser: 'babel-eslint',
   globals: {
-    __PROD_API__: true,
     __DEV__: true,
-    SyntheticEvent: true,
     Raven: true,
-    include: true,
-    jest: true
+    include: true
   },
   env: {
-    browser: true,
     node: true,
-    jest: true,
     es6: true,
     mocha: true
   },
@@ -23,7 +16,7 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: 'module'
   },
-  extends: ["eslint:recommended", "plugin:node/recommended"],
+  extends: ['eslint:recommended', 'plugin:node/recommended'],
   rules: {
     "node/exports-style": ["error", "module.exports"],
     "node/prefer-global/buffer": ["error", "always"],
@@ -60,6 +53,8 @@ module.exports = {
     'newline-per-chained-call': 0,
     'no-confusing-arrow': 0,
     'no-console': 1,
+    'semi': ['error', 'always'],
+    'quotes': ['error', 'single'],
     'no-use-before-define': 0,
     'prefer-template': 2,
     'require-yield': 0,
