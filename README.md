@@ -13,14 +13,14 @@
 ## Roadmap
 
 - [x] Sentry error reporting
-- [] Email notifications
-- [] Machine learning categorize:
+- [ ] Email notifications
+- [ ] Machine learning categorize:
   - Snack
   - Post-workout
   - Breakfast
   - Lunch/Dinner
 - [x] Machine learning preference
-- [] Use machine learning preference to generate combinations meal
+- [ ] Use machine learning preference to generate combinations meal
 
 <a name="about-the-setup" />
 
