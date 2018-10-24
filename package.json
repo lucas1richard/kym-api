@@ -15,6 +15,7 @@
   "scripts": {
     "db:sync": "node ./server/db/sync",
     "db:sync:force": "FORCE_DB_SYNC=true node ./server/db/sync",
+    "db:seed": "node ./server/db/seed",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "heroku-postbuild": "npm run build",
