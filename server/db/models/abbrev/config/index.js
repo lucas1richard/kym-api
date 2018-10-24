@@ -1,3 +1,4 @@
+const { USER } = include('db/foreignKeys');
 const sequelize = require('../../../conn');
 const { Sequelize } = sequelize;
 
@@ -33,8 +34,8 @@ const config = {
   GmWt_Desc2: {
     type: Sequelize.STRING
   },
-  UserID: {
-    type: Sequelize.INTEGER
+  [USER]: {
+    type: Sequelize.UUID
   },
   photo: {
     type: Sequelize.STRING

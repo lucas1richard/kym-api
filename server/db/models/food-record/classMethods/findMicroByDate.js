@@ -1,6 +1,7 @@
 const { USER } = include('db/foreignKeys');
 const sequelize = include('db/conn');
 const assert = require('assert');
+const { foodRecordKeys } = require('../config');
 
 module.exports = findByDate;
 
@@ -18,9 +19,9 @@ function findByDate(date, uuid) {
 
   return this.scope('micro').findAll({
     where: {
-      Date: normDate,
+      [foodRecordKeys.DATE]: normDate,
       [USER]: uuid,
-      confirmed: true
+      [foodRecordKeys.CONFIRMED]: true
     },
     include: [
       sequelize.models.meal

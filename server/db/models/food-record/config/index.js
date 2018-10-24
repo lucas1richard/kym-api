@@ -2,32 +2,42 @@ const sequelize = require('../../../conn');
 
 const { Sequelize } = sequelize;
 
+const foodRecordKeys = {
+  DATE: 'Date',
+  MEAL: 'Meal',
+  QUANTITY: 'Quantity',
+  UNIT: 'Unit',
+  FROM_PROGRAM: 'fromProgram',
+  CONFIRMED: 'confirmed',
+};
+
 const config = {
-  Date: {
+  [foodRecordKeys.DATE]: {
     type: Sequelize.DATEONLY,
   },
-  Meal: {
+  [foodRecordKeys.MEAL]: {
     type: Sequelize.INTEGER,
     validate: {
       min: 1
     }
   },
-  Quantity: {
+  [foodRecordKeys.QUANTITY]: {
     type: Sequelize.DECIMAL,
   },
-  Unit: {
+  [foodRecordKeys.UNIT]: {
     type: Sequelize.INTEGER
   },
-  fromProgram: {
+  [foodRecordKeys.FROM_PROGRAM]: {
     type: Sequelize.BOOLEAN,
     defaultValue: true
   },
-  confirmed: {
+  [foodRecordKeys.CONFIRMED]: {
     type: Sequelize.BOOLEAN,
     defaultValue: true
   }
 };
 
 module.exports = {
-  config
+  config,
+  foodRecordKeys
 };

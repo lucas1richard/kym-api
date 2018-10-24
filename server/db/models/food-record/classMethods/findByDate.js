@@ -1,5 +1,6 @@
 const { USER } = include('db/foreignKeys');
 const sequelize = include('db/conn');
+const { foodRecordKeys } = require('../config');
 const assert = require('assert');
 
 module.exports = findByDate;
@@ -14,11 +15,9 @@ function findByDate(date, uuid) {
   assert.strictEqual(typeof date, 'string', 'date should be a string');
   assert(!!uuid, 'No uuid specified');
 
-  const normDate = new Date(date);
-
   return this.findAll({
     where: {
-      Date: normDate,
+      [foodRecordKeys.DATE]: date,
       [USER]: uuid
     },
     include: [sequelize.models.meal]
