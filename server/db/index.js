@@ -12,6 +12,7 @@ const MealGoals = require('./models/meal-goals');
 const FoodGroup = require('./models/food-group');
 const Meal = require('./models/meal');
 const Program = require('./models/program');
+const FoodPreferences = require('./models/food-preferences');
 const Preferences = require('./models/preferences');
 const UserRecordFavorites = require('./models/user-record-favorites');
 const {
@@ -65,6 +66,12 @@ Abbrev.belongsToMany(User, throughUserRecordFavorites);
 UserMeasurement.belongsTo(User, userId);
 User.hasMany(UserMeasurement, userId);
 
+FoodPreferences.belongsTo(User, userId);
+User.hasMany(FoodPreferences, userId);
+
+FoodPreferences.belongsTo(Abbrev, abbrevId);
+Abbrev.hasMany(FoodPreferences, abbrevId);
+
 Weight.belongsTo(Abbrev, abbrevId);
 Abbrev.hasMany(Weight, abbrevId);
 
@@ -75,6 +82,7 @@ module.exports = {
   Day,
   FoodDesc,
   Weight,
+  FoodPreferences,
   FoodRecord,
   Meal,
   User,
