@@ -45,10 +45,10 @@ if (cluster.isMaster) {
       cluster.on('exit', (worker/* , code, signal */) => {
         winston.info(`worker ${worker.process.pid} died`);
       });
-    })
-
+    });
 } else {
   winston.info(`Worker ${process.pid} started`);
+  // conn.sync().then(({ logging: false }) => {
   app.listen(port, host, async (err) => {
     if (err) {
       return logger.error(err.message);
@@ -65,15 +65,16 @@ if (cluster.isMaster) {
       if (cluster.isMaster) {
         logger.appStarted(port, prettyHost, url);
       } else {
-        winston.info(`Worker ${process.pid} listening on ${prettyHost}`)
+        winston.info(`Worker ${process.pid} listening on ${prettyHost}`);
       }
     } else {
       if (cluster.isMaster) {
         logger.appStarted(port, prettyHost);
       } else {
-        winston.info(`Worker ${process.pid} listening on ${prettyHost}:${port}`)
+        winston.info(`Worker ${process.pid} listening on ${prettyHost}:${port}`);
       }
     }
   });
+  // });
 }
 
