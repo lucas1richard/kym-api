@@ -1,39 +1,57 @@
-const { USER } = include('db/foreignKeys');
-module.exports = createWithMeal;
+const { USER, ABBREV } = include('db/foreignKeys');
+const { foodRecordKeys } = require('../config');
 const sequelize = require('../../../conn');
+
+module.exports = createWithMeal;
 
 /**
  * Create a food record with associated meal
  * @return {Promise}
  */
-function createWithMeal({ abbrev_id, date, meal, quantity, unit, uuid, confirmed }) {
-  return Promise.all([
-    this.create({
-      abbrev_id,
-      Date: date,
-      Meal: meal,
-      Quantity: quantity,
-      Unit: unit,
+async function createWithMeal(instance) {
+  const {
+    [ABBREV]: abbrev_id,
+    date,
+    meal,
+    quantity,
+    unit,
+    uuid,
+    confirmed
+  } = instance;
+
+  const createRecordConfig = {
+    [ABBREV]: abbrev_id,
+    [USER]: uuid,
+    [foodRecordKeys.DATE]: date,
+    [foodRecordKeys.MEAL]: meal,
+    [foodRecordKeys.QUANTITY]: quantity,
+    [foodRecordKeys.UNIT]: unit,
+    [foodRecordKeys.CONFIRMED]: confirmed
+  };
+
+  const findConfig = {
+    where: {
       [USER]: uuid,
-      confirmed
+      date,
+      meal
+    }
+  };
+  
+  const [food, [_meal]] = await Promise.all([
+    this.create(createRecordConfig),
+    sequelize.models.meal.findOrCreate(findConfig)
+  ]);
+  const [rawRecord] = await Promise.all([
+    this.findById(food.id, {
+      include: [sequelize.models.meal]
     }),
-    sequelize.models.meal.findOrCreate({
-      where: {
-        [USER]: uuid,
-        date,
-        meal
-      }
-    })
-  ])
-    .then(([food, _meal]) => Promise.all([
-      this.findById(food.id, {
-        include: [sequelize.models.meal]
-      }),
-      _meal[0].addFoodRecord(food)
-    ]))
-    .then(([record, _meal]) => {
-      _meal.public = false; // eslint-disable-line no-param-reassign
-      _meal.save();
-      return record.calMacros();
-    });
+    _meal.addFoodRecord(food)
+  ]);
+
+  _meal.public = false;
+
+  await _meal.save();
+  const record = await rawRecord.calMacros();
+
+  return record;
 }
