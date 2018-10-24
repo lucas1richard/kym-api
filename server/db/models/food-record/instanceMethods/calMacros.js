@@ -1,22 +1,26 @@
-const assert = require('assert');
-
-module.exports = calMacros;
+const { promisify } = require('util');
 
 /**
  * @return {{ id: number, Quantity: number, Date: Date, Unit: string, Seq: string, Gr: number, Calories: number, Protein: number, Fat: number, Carbohydrates: number }}
  * @this food-record
  */
-function calMacros() {
+function calMacrosSync(cb) {
   /** The raw data for the record */
   const { abbrev } = this;
 
-  assert(!!abbrev, 'No abbrev parameter found');
-  assert(!!abbrev.weights, 'No weights parameter found on abbrev parameter');
+  if (!abbrev) {
+    return cb(new Error('No abbrev parameter found'));
+  }
+  if (!abbrev.weights) {
+    return cb(new Error('No weights parameter found on abbrev parameter'));
+  }
 
   /** The weight which corresponds to the unit parameter */
   const weight = abbrev.weights.filter((wght) => wght.Seq * 1 === this.Unit * 1)[0];
 
-  assert(!!weight, 'No weight corresponds to the Unit parameter');
+  if (!weight) {
+    return cb(new Error('No weight corresponds to the Unit parameter'));
+  }
 
   /** A combination of the record and it's properties */
   const record = Object.assign({}, this.get(), abbrev.dataValues, {
@@ -33,9 +37,13 @@ function calMacros() {
     record[param] = Math.round(this.abbrev[param] * (record.Gr / 100) * 10) / 10;
   });
 
-  return record;
+  return cb(null, record);
 }
 
 function weightInGrams(weight, quantity) {
   return Math.round((weight.Gr_Wgt / weight.Amount) * parseFloat(quantity));
 }
+
+const calMacros = promisify(calMacrosSync);
+
+module.exports = calMacros;
