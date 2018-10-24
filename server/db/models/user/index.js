@@ -6,6 +6,7 @@ const {
   scopes
 } = require('./scopes');
 const { hooks } = require('./hooks');
+const getterMethods = require('./getterMethods');
 
 const {
   addFavoriteFood,
@@ -14,13 +15,15 @@ const {
   findByPassword,
   setupFitbit,
   requestCalories,
-  requestFoodLog
+  requestFoodLog,
+  sanitizeUser
 } = require('./classMethods');
 
 
 const User = sequelize.define('user', config, {
   defaultScope,
   scopes,
+  getterMethods,
   hooks
 });
 
@@ -31,5 +34,6 @@ User.findByPassword = findByPassword;
 User.setupFitbit = setupFitbit;
 User.requestCalories = requestCalories;
 User.requestFoodLog = requestFoodLog;
+User.sanitizeUser = sanitizeUser;
 
 module.exports = User;

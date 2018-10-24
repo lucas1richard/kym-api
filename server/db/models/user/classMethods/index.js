@@ -5,6 +5,7 @@ const requestFoodLog = require('./requestFoodLog');
 const exRefreshToken = require('./exRefreshToken');
 const addFavoriteFood = require('./addFavoriteFood');
 const removeFavoriteFood = require('./removeFavoriteFood');
+const sanitizeUser = require('./sanitizeUser');
 
 module.exports = {
   addFavoriteFood,
@@ -13,5 +14,6 @@ module.exports = {
   findByPassword,
   setupFitbit,
   requestCalories,
-  requestFoodLog
+  requestFoodLog,
+  sanitizeUser
 };
