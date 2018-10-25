@@ -32,6 +32,7 @@ const config = {
     }
   },
   password: stringType(),
+  salt: stringType(),
   birthdate: {
     type: Sequelize.DATEONLY
   },

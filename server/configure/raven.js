@@ -2,7 +2,7 @@ const Raven = require('raven');
 
 function configureRaven(app) {
   if (process.env.NODE_ENV === 'production') {
-    const DSN = 'https://f3ce03f31c85417db55bee6dfeaf2533@sentry.io/1278573';
+    const DSN = process.env.RAVEN_DSN;
     Raven.config(DSN).install();
     
     // The request handler must be the first middleware on the app

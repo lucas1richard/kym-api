@@ -26,12 +26,12 @@
 
 ## About the Setup
 
-**Domain registration**
+### Domain registration
 
 * The domain knowyourmacros.com is registered on DYNDNS
   * Richard Lucas registered the domain and has the username and password
 
-**Deploy**
+ ### Deploy
 
 * The api is deployed on heroku. The heroku app name is
   * Richard Lucas instanciated the heroku app and has the username and password

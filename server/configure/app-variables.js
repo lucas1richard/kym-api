@@ -3,7 +3,7 @@ const path = require('path');
 const rootPath = path.join(__dirname, '../../');
 const serverRoot = path.join(__dirname, '../');
 
-const secret = process.env.SECRET || '1701-Flex-NY';
+const secret = process.env.JWT_SECRET;
 const oauth = require('./oauthInfo');
 
 /**

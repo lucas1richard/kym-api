@@ -44,7 +44,7 @@ const openRoutes = [
 router.use(async function authMiddleware(req, res, next) {
   try {
     res.locals = {
-      jwtSecret: process.env.SECRET || '1701-Flex-NY'
+      jwtSecret: process.env.JWT_SECRET
     };
 
     /**
@@ -125,7 +125,7 @@ async function checkSecureRoute(token) {
     throw Error('You must have an account and be logged in');
   }
 
-  const secret = process.env.SECRET || '1701-Flex-NY';
+  const secret = process.env.JWT_SECRET;
   const decoded = jwt.decode(token, secret);
 
   logger.verbose(`decoded: ${JSON.stringify(decoded)}`);

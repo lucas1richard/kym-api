@@ -5,15 +5,16 @@ global.abs_path = (pth) => global.base_dir + pth;
 global.include = (file) => require(global.abs_path(`/${file}`));
 
 // require('newrelic');
+require('dotenv').config();
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
+// const email = require('./utils/email');
 const winston = include('utils/logger');
 const logger = require('./logger');
 const argv = require('./argv');
 const port = require('./port');
 const conn = require('./db/conn');
 const app = require('./app');
-
 
 
 // const setup = require('./middlewares/frontendMiddleware');
@@ -32,6 +33,15 @@ const env = process.env.NODE_ENV;
 const option = env === 'test' ? { force: true } : { logging: false };
 
 if (cluster.isMaster) {
+  // email.sendWithTemplate('welcome', { name: 'Richard' }, {
+  //   content: {
+  //     from: `testing@${process.env.SPARKPOST_SANDBOX_DOMAIN}`,
+  //     subject: 'Welcome!',
+  //   },
+  //   recipients: [
+  //     { address: 'lucas1richard@gmail.com' }
+  //   ]
+  // });
   winston.silly(`numCPUs: ${numCPUs}`);
   winston.info(`Master ${process.pid} is running`);
 

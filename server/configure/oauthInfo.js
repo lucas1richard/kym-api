@@ -1,14 +1,20 @@
-const fitbitInfo = process.env.NODE_ENV === 'production'
-  ? {
-    clientID: '228KG4',
-    clientSecret: '472cb657341079a06f73ae8c96ac0e2c',
-    callbackURL: '/api/auth/fitbit/callback'
-  }
-  : {
-    clientID: '228PQF',
-    clientSecret: 'b2949530bb879d121ce359211eb283de',
-    callbackURL: '/api/auth/fitbit/callback'
-  };
+// const fitbitInfo = process.env.NODE_ENV === 'production'
+//   ? {
+//     clientID: '228KG4',
+//     clientSecret: '472cb657341079a06f73ae8c96ac0e2c',
+//     callbackURL: '/api/auth/fitbit/callback'
+//   }
+//   : {
+//     clientID: '228PQF',
+//     clientSecret: 'b2949530bb879d121ce359211eb283de',
+//     callbackURL: '/api/auth/fitbit/callback'
+//   };
+
+const fitbitInfo = {
+  clientID: process.env.FITBIT_CLIENT_ID,
+  clientSecret: process.env.FITBIT_CLIENT_SECRET,
+  callbackURL: process.env.FITBIT_CALLBACK_URL
+};
 
 fitbitInfo.refreshBuffer = Buffer.from(`${fitbitInfo.clientID}:${fitbitInfo.clientSecret}`).toString('base64');
 

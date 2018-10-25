@@ -12,3 +12,6 @@ npm-debug.log
 # dont send old logging info
 combined.log
 error.log
+
+# sensitive stuff
+.env

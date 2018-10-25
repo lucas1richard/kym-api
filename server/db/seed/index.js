@@ -1,4 +1,5 @@
 // update abbrevs set "photo"='salami.png' where "Main"='Salami';
+require('dotenv').config();
 const path = require('path');
 
 global.base_dir = path.resolve(__dirname, '..', '..');
