@@ -30,7 +30,7 @@ const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
 
 const env = process.env.NODE_ENV;
-const option = env === 'test' ? { force: true, logging: false } : { force: true };
+const option = env === 'test' ? { force: true, logging: false } : { logging: false };
 
 if (cluster.isMaster) {
   // email.sendWithTemplate('welcome', { name: 'Richard' }, {
