@@ -18,7 +18,7 @@
     "db:seed": "node ./server/db/seed",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "npm run heroku-postbuild-seed",
     "heroku-postbuild-seed": "node ./server/db/seed/seedFilteredMeals && npm run build",
     "analyze": "node ./internals/scripts/analyze.js",
     "extract-intl": "node ./internals/scripts/extract-intl.js",
