@@ -4,11 +4,8 @@ global.abs_path = (pth) => global.base_dir + pth;
 // eslint-disable-next-line import/no-dynamic-require
 global.include = (file) => require(global.abs_path(`/${file}`));
 
-// require('newrelic');
 require('dotenv').config();
 const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
-// const email = require('./utils/email');
 const winston = include('utils/logger');
 const logger = require('./logger');
 const argv = require('./argv');
@@ -16,8 +13,7 @@ const port = require('./port');
 const conn = require('./db/conn');
 const app = require('./app');
 
-
-// const setup = require('./middlewares/frontendMiddleware');
+const WORKERS = process.env.WEB_CONCURRENCY || 1;
 
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
@@ -33,32 +29,23 @@ const env = process.env.NODE_ENV;
 const option = env === 'test' ? { force: true, logging: false } : { logging: false };
 
 if (cluster.isMaster) {
-  // email.sendWithTemplate('welcome', { name: 'Richard' }, {
-  //   content: {
-  //     from: `testing@${process.env.SPARKPOST_SANDBOX_DOMAIN}`,
-  //     subject: 'Welcome!',
-  //   },
-  //   recipients: [
-  //     { address: 'lucas1richard@gmail.com' }
-  //   ]
-  // });
-  winston.silly(`numCPUs: ${numCPUs}`);
+  winston.silly(`numWorkers: ${WORKERS}`);
   winston.info(`Master ${process.pid} is running`);
 
   conn.sync(option)
     .then(() => {
-      // Fork workers.
-      for (let i = 0; i < numCPUs; i++) {
+      for (let i = 0; i < WORKERS; i++) {
         cluster.fork();
       }
     
       cluster.on('exit', (worker/* , code, signal */) => {
         winston.info(`worker ${worker.process.pid} died`);
+        winston.info('forking a new worker');
+        cluster.fork();
       });
     });
 } else {
   winston.info(`Worker ${process.pid} started`);
-  // conn.sync().then(({ logging: false }) => {
   app.listen(port, host, async (err) => {
     if (err) {
       return logger.error(err.message);
@@ -85,6 +72,5 @@ if (cluster.isMaster) {
       }
     }
   });
-  // });
 }
 
