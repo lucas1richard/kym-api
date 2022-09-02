@@ -1,12 +1,12 @@
-const { USER } = include('db/foreignKeys');
-const { UserMeasurement } = include('db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { UserMeasurement } = connectDatabase();
 
 module.exports = createMeasurements;
 
 async function createMeasurements(uuid) {
   const measurements = await UserMeasurement.findAll({
     where: {
-      [USER]: uuid
+      [foreignKeys.USER]: uuid
     },
     order: [
       [

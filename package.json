@@ -39,7 +39,7 @@
     "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
-    "test:server": "NODE_ENV=test nyc mocha --timeout=4000 --recursive --exit ./server/**/*.test.js && npm run nyc-coverage",
+    "test:server": "NODE_ENV=test TEST_DATABASE_URL=postgresql://richard:Getitdone1@localhost/kym-test mocha --timeout=4000 --recursive --exit ./server/**/*.test.js",
     "nyc-coverage": "nyc report --reporter=html",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write"

@@ -1,6 +1,8 @@
-const { USER } = include('db/foreignKeys');
-const { Day } = include('db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
 const moment = require('moment');
+
+const { USER } = foreignKeys;
+const { Day } = connectDatabase();
 
 async function getDays(uuid) {
   if (!uuid) {

@@ -1,10 +1,11 @@
 const { handleRouteError } = include('utils/handleRouteError');
+const { connectDatabase } = require('@kym/db');
 const {
   Abbrev,
   FoodDesc,
   Weight,
   sequelize
-} = include('db');
+} = connectDatabase();
 const {
   foodnameSchema,
   offsetSchema

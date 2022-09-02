@@ -1,4 +1,5 @@
-const { Abbrev } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Abbrev } = connectDatabase();
 const { handleRouteError } = include('utils/handleRouteError');
 const { idSchema } = require('./validation');
 

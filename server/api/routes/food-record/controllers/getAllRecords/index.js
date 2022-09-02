@@ -1,4 +1,5 @@
-const { FoodRecord } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { FoodRecord } = connectDatabase();
 const { handleRouteError } = include('utils/handleRouteError');
 
 const getFoodRecordsByDate = async (req, res, next) => {

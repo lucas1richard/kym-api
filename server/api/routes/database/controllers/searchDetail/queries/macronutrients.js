@@ -1,8 +1,9 @@
-const { sequelize } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { sequelize } = connectDatabase();
 
-const carbs = '"abbrev"."Carbohydrates"';
-const fat = '"abbrev"."Fat"';
-const protein = '"abbrev"."Protein"';
+const carbs = '"abbrev"."carbohydrates"';
+const fat = '"abbrev"."fat"';
+const protein = '"abbrev"."protein"';
 
 const noPercentError = new Error('The percent must be a number');
 const noComparatorError = new Error('The comparator must be one of \'<\', \'>\', \'<=\', \'>=\', \'=\'');

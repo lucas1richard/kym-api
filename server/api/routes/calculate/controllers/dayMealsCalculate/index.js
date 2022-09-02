@@ -1,4 +1,5 @@
-const { Abbrev } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Abbrev } = connectDatabase();
 
 const uuidv1 = require('uuid/v1');
 const { bodySchema } = require('./validation');

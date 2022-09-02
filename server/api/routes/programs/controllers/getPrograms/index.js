@@ -1,11 +1,11 @@
-const { USER } = include('db/foreignKeys');
-const { Program } = include('db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { Program } = connectDatabase();
 
 const getPrograms = async (req, res, next) => {
   try {
     const program = await Program.findAll({
       where: {
-        [USER]: res.locals.uuid
+        [foreignKeys.USER]: res.locals.uuid
       }
     });
 

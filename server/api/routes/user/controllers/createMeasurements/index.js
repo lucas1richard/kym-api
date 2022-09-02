@@ -1,5 +1,5 @@
-const { USER } = include('db/foreignKeys');
-const { UserMeasurement } = include('db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { UserMeasurement } = connectDatabase();
 const moment = require('moment');
 const { bodySchema } = require('./validation');
 
@@ -22,7 +22,7 @@ const createMeasurements = async (body, uuid) => {
             endDate
           ]
         },
-        [USER]: uuid
+        [foreignKeys.USER]: uuid
       }
     });
   }
@@ -35,7 +35,7 @@ const createMeasurements = async (body, uuid) => {
 
     await currentDayMeas.save();
   } else {
-    await UserMeasurement.create(Object.assign(body, { [USER]: uuid }));
+    await UserMeasurement.create(Object.assign(body, { [foreignKeys.USER]: uuid }));
   }
 
   const allMeasurements = await UserMeasurement.findAllByUserId(uuid);

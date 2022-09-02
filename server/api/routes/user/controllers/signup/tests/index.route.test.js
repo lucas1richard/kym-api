@@ -1,5 +1,6 @@
 const app = include('app');
-const { User } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User } = connectDatabase();
 const { assert } = require('chai');
 const supertest = require('supertest');
 

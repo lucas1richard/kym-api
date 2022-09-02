@@ -1,4 +1,5 @@
-const { Abbrev } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Abbrev } = connectDatabase();
 const abbrevs = include('test-data/abbrev');
 const app = include('app');
 const supertest = require('supertest');

@@ -1,7 +1,5 @@
-const {
-  Abbrev,
-  sequelize
-} = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Abbrev, sequelize } = connectDatabase();
 
 async function getRandomFood() {
   const randomFood = await Abbrev.findOne({ order: sequelize.random() });

@@ -1,8 +1,9 @@
 const app = include('app');
-const { User, UserFavorites, Abbrev } = include('db');
+const { connectDatabase } = require('@kym/db');
 const users = include('test-data/users');
 const favorites = include('test-data/favorites');
 const abbrevs = include('test-data/abbrev');
+const { User, UserRecordFavorites, Abbrev } = connectDatabase();
 // const { assert } = require('chai');
 const supertest = require('supertest');
 
@@ -15,8 +16,8 @@ describe('favorites/controllers/removeFood', () => {
     await User.bulkCreate(users);
     await Abbrev.destroy({ where: {}, force: true });
     await Abbrev.bulkCreate(abbrevs);
-    await UserFavorites.destroy({ where: {}, force: true });
-    await UserFavorites.bulkCreate(favorites);
+    await UserRecordFavorites.destroy({ where: {}, force: true });
+    await UserRecordFavorites.bulkCreate(favorites);
     body = {
       abbrevId: 2514,
       meal: 3
@@ -24,7 +25,7 @@ describe('favorites/controllers/removeFood', () => {
   });
   after(async () => {
     await User.destroy({ where: {}, force: true });
-    await UserFavorites.destroy({ where: {}, force: true });
+    await UserRecordFavorites.destroy({ where: {}, force: true });
     await Abbrev.destroy({ where: {}, force: true });
   });
   it('removes a favorite successfully', (done) => {

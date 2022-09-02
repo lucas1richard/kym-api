@@ -1,4 +1,4 @@
-const { USER } = include('db/foreignKeys');
+const { foreignKeys } = require('@kym/db');
 
 module.exports = {
   type: 'object',
@@ -43,7 +43,7 @@ module.exports = {
       type: 'string',
       example: '2017-10-24T18:47:05.321Z'
     },
-    [USER]: {
+    [foreignKeys.USER]: {
       type: 'integer',
       example: 3
     }

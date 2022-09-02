@@ -1,4 +1,4 @@
-const { USER } = include('db/foreignKeys');
+const { foreignKeys } = require('@kym/db');
 
 function cleanBody(body, uuid) {
   const {
@@ -22,7 +22,7 @@ function cleanBody(body, uuid) {
     Carbohydrates: convertToPer100(carbohydrates, servingWeight),
     GmWt_1: servingWeight,
     GmWt_Desc1: `${servingSize} ${servingDescription}`,
-    [USER]: uuid,
+    [foreignKeys.USER]: uuid,
     photo: null
   };
 }

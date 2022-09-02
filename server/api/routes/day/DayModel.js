@@ -1,8 +1,9 @@
-const { USER } = include('db/foreignKeys');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { USER } = foreignKeys;
 const {
   Day,
   sequelize
-} = include('db');
+} = connectDatabase();
 const assert = require('assert');
 const moment = require('moment');
 

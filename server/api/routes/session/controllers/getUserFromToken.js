@@ -1,4 +1,5 @@
-const { User } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User } = connectDatabase();
 const AppError = include('configure/appError');
 const jwt = require('jwt-simple');
 

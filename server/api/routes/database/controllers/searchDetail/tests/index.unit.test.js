@@ -1,4 +1,5 @@
-const { Abbrev, FoodDesc, FoodGroup } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Abbrev, FoodDesc, FoodGroup } = connectDatabase();
 const abbrevs = include('test-data/abbrev');
 const foodDes = include('test-data/food-des');
 const foodGrp = include('test-data/fd-group');

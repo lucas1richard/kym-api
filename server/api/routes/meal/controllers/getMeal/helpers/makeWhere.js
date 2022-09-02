@@ -1,5 +1,5 @@
-const { USER } = include('db/foreignKeys');
-const { sequelize } = include('db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { sequelize } = connectDatabase();
 
 const { Op } = sequelize;
 
@@ -11,7 +11,7 @@ const { Op } = sequelize;
  */
 function makeWhere(meals, postWorkout, uuid) {
   const where = {
-    [USER]: {
+    [foreignKeys.USER]: {
       [Op.ne]: uuid
     },
     public: true

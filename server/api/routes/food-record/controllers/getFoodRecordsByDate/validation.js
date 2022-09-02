@@ -1,8 +1,8 @@
-const { USER_VALIDATION } = include('db/foreignKeys');
+const { foreignKeys } = require('@kym/db');
 const Joi = require('joi');
 
 const dateSchema = Joi.date();
-const userIdSchema = USER_VALIDATION;
+const userIdSchema = foreignKeys.USER_VALIDATION;
 
 module.exports = {
   dateSchema,

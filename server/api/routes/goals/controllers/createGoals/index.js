@@ -1,5 +1,5 @@
-const { USER } = include('db/foreignKeys');
-const { MealGoals, User } = include('/db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { MealGoals, User } = connectDatabase();
 const { handleRouteError } = include('utils/handleRouteError');
 const { bodySchema } = require('./validation');
 
@@ -10,7 +10,7 @@ const createGoals = async (req, res, next) => {
 
     await MealGoals.create({
       goals: req.body,
-      [USER]: res.locals.uuid
+      [foreignKeys.USER]: res.locals.uuid
     });
 
     const user = await User.scope(

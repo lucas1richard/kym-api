@@ -1,5 +1,6 @@
 const app = include('app');
-const { UserMeasurement, User } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User, UserMeasurement } = connectDatabase();
 const testMeasurements = include('test-data/user-measurements');
 const testUsers = include('test-data/users');
 const { assert } = require('chai');

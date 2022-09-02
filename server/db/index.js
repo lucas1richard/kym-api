@@ -1,4 +1,4 @@
-const { default: connectDatabase } = require('@kym/db');
+const { connectDatabase } = require('@kym/db');
 
 const db = connectDatabase();
 

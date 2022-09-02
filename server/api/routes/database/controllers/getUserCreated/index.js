@@ -1,6 +1,8 @@
-const { USER } = include('db/foreignKeys');
+const { connectDatabase, foreignKeys } = require('@kym/db');
 const { handleRouteError } = include('utils/handleRouteError');
-const { Abbrev } = include('db');
+
+const { Abbrev } = connectDatabase();
+const { USER } = foreignKeys;
 
 const getUserCreated = async (req, res, next) => {
   try {
@@ -12,7 +14,7 @@ const getUserCreated = async (req, res, next) => {
 
     const abbrevs = await Abbrev.findAll({
       where: { [USER]: uuid },
-      order: ['Main', 'Sub']
+      order: ['main', 'sub']
     });
 
     res.json(abbrevs);

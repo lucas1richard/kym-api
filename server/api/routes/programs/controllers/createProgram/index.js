@@ -1,4 +1,5 @@
-const { Program } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Program } = connectDatabase();
 const { handleRouteError } = include('utils/handleRouteError');
 const { bodySchema } = require('./validation');
 

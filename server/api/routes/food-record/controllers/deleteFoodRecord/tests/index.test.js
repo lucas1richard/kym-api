@@ -1,4 +1,5 @@
-const { FoodRecord, Meal, Abbrev, User } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { FoodRecord, Meal, Abbrev, User } = connectDatabase();
 const records = include('test-data/food-record');
 const meals = include('test-data/meals');
 const users = include('test-data/users');

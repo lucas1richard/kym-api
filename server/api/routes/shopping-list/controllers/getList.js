@@ -1,8 +1,8 @@
-const { USER } = include('db/foreignKeys');
+const { connectDatabase, foreignKeys } = require('@kym/db');
 const {
   FoodRecord,
   sequelize
-} = include('db');
+} = connectDatabase();
 
 const { Op } = sequelize;
 
@@ -20,7 +20,7 @@ const getList = async (req, res, next) => {
           [Op.gte]: currentDate,
           [Op.lte]: laterDate
         },
-        [USER]:uuid
+        [foreignKeys.USER]:uuid
       }
     });
 

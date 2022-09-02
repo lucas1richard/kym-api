@@ -1,7 +1,9 @@
+const { connectDatabase } = require('@kym/db');
 const { handleRouteError } = include('utils/handleRouteError');
-const { FoodDesc } = include('db');
 const AppError = include('configure/appError');
 const { querySchema } = require('./validation');
+
+const { FoodDesc } = connectDatabase();
 
 const getBestGroup = async (req, res, next) => {
   try {

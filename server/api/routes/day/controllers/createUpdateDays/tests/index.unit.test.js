@@ -1,4 +1,5 @@
-const { User, Day } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User, Day } = connectDatabase();
 const users = include('test-data/users');
 const createUpdateDays = require('../');
 const { expect } = require('chai');

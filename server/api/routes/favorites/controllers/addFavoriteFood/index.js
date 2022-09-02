@@ -1,5 +1,6 @@
-const { handleRouteError } = include('utils/handleRouteError');
-const { User } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User } = connectDatabase();
+
 const { bodySchema } = require('./validation');
 
 const addFavoriteFood = async (req, res, next) => {

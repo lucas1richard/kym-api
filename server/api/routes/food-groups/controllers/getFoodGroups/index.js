@@ -1,4 +1,5 @@
-const { FoodGroup } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { FoodGroup } = connectDatabase();
 
 const getFoodGroups = async () => {
   const groups = await FoodGroup.findAll();

@@ -1,4 +1,5 @@
-const { Abbrev } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Abbrev } = connectDatabase();
 const abbrev = include('test-data/abbrev');
 const sinon = require('sinon');
 const autocomplete = require('../');

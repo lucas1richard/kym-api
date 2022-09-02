@@ -1,8 +1,9 @@
-const { Abbrev, sequelize } = include('db');
-// const AppError = include('configure/appError');
+const { connectDatabase } = require('@kym/db');
 const makeFoodQuery = require('./queries/food');
 const makePercentQuery = require('./queries/percent');
 const { bodySchema } = require('./validation');
+
+const { Abbrev, sequelize } = connectDatabase();
 
 const { Op } = sequelize;
 

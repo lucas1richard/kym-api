@@ -1,4 +1,5 @@
-const { Abbrev } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { Abbrev } = connectDatabase();
 const { querySchema } = require('./validation');
 
 const singleMealCalculate = async (query) => {

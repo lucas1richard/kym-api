@@ -1,5 +1,5 @@
-const { Meal } = include('db');
-const { USER } = include('db/foreignKeys');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { Meal } = connectDatabase();
 
 const makeMealPublic = async (req, res, next) => {
   try {
@@ -9,7 +9,7 @@ const makeMealPublic = async (req, res, next) => {
     const meal = await Meal.findOne({
       where: {
         id,
-        [USER]: uuid
+        [foreignKeys.USER]: uuid
       }
     });
 

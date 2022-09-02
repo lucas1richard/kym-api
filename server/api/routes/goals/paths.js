@@ -1,4 +1,4 @@
-const { USER } = include('db/foreignKeys');
+const { foreignKeys } = require('@kym/db');
 const swaggerPaths = include('swagger/swaggerPaths');
 
 swaggerPaths.addPath('/goals/meals', {
@@ -53,7 +53,7 @@ swaggerPaths.addPath('/goals/meals', {
                 }
               }
             },
-            [USER]: {
+            [foreignKeys.USER]: {
               type: 'integer',
               example: 3
             },

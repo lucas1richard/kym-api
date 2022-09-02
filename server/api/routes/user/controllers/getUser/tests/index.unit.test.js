@@ -1,4 +1,5 @@
-const { User } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User } = connectDatabase();
 const users = include('test-data/users');
 const sinon = require('sinon');
 const getUser = require('../');

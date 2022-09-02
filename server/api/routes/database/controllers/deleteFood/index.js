@@ -1,8 +1,10 @@
-const { USER } = include('db/foreignKeys');
+const { connectDatabase, foreignKeys } = require('@kym/db');
 const { handleRouteError } = include('utils/handleRouteError');
-const { Abbrev } = include('db');
 const AppError = include('configure/appError');
 const bodySchema = require('./validation');
+
+const { Abbrev } = connectDatabase();
+const { USER } = foreignKeys;
 
 const deleteFood = async (req, res, next) => {
   try {

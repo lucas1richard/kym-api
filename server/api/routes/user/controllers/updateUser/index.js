@@ -1,4 +1,5 @@
-const { User } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User } = connectDatabase();
 const { bodySchema } = require('./validation');
 
 const updateUser = async (body, uuid) => {

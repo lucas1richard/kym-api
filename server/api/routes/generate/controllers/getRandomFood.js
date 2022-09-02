@@ -1,4 +1,5 @@
-const { FoodDesc, Abbrev } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { FoodDesc, Abbrev } = connectDatabase();
 
 const getRandomFood = async (req, res, next) => {
   try {

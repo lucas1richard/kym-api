@@ -1,6 +1,8 @@
-const { USER } = include('db/foreignKeys');
-const { Day, sequelize } = include('db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
 const assert = require('assert');
+
+const { USER } = foreignKeys;
+const { Day, sequelize } = connectDatabase();
 
 const { Op } = sequelize;
 

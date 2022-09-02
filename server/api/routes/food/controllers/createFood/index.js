@@ -1,4 +1,4 @@
-const { default: connectDatabase } = require('@kym/db');
+const { connectDatabase } = require('@kym/db');
 const { handleRouteError } = include('utils/handleRouteError');
 const { bodySchema } = require('./validation');
 const cleanAbbrev = require('./cleaners/cleanAbbrev');

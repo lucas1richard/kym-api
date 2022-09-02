@@ -1,5 +1,6 @@
 const app = include('app');
-const { User, Day } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User, Day } = connectDatabase();
 const users = include('test-data/users');
 const days = include('test-data/days');
 const supertest = require('supertest');

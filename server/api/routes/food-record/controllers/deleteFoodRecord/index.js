@@ -1,8 +1,7 @@
-const {
-  Meal,
-  FoodRecord
-} = include('db');
+const { connectDatabase } = require('@kym/db');
 const { bodySchema } = require('./validation');
+
+const { Meal, FoodRecord } = connectDatabase();
 
 /**
  * Delete a food record

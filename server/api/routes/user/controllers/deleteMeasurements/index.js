@@ -1,7 +1,7 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const AppError = include('configure/appError');
-const { UserMeasurement } = include('db');
-const { USER } = include('db/foreignKeys');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { UserMeasurement } = connectDatabase();
 const { bodySchema } = require('./validation');
 
 const deleteMeasurements = async (req, res, next) => {
@@ -14,7 +14,7 @@ const deleteMeasurements = async (req, res, next) => {
     const measurement = await UserMeasurement.findOne({
       where: {
         id,
-        [USER]: uuid
+        [foreignKeys.USER]: uuid
       }
     });
 

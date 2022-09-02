@@ -1,11 +1,11 @@
-const { FoodPreferences } = include('db');
-const { USER, ABBREV } = include('db/foreignKeys');
+const { connectDatabase, foreignKeys } = require('@kym/db');
+const { FoodPreferences } = connectDatabase();
 
 async function addPreference(uuid, abbrevId, pref) {
   const [preference] = await FoodPreferences.findOrCreate({
     where: {
-      [USER]: uuid,
-      [ABBREV]: abbrevId,
+      [foreignKeys.USER]: uuid,
+      [foreignKeys.ABBREV]: abbrevId,
       preference: pref
     }
   });

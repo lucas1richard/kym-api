@@ -1,4 +1,5 @@
-const { sequelize } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { sequelize } = connectDatabase();
 const { expect } = require('chai');
 const { proteinQuery, carbQuery, fatQuery, carbs, fat, protein } = require('../macronutrients');
 

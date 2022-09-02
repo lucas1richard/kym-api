@@ -1,13 +1,13 @@
 const chalk = require('chalk');
 const { handleRouteError } = include('utils/handleRouteError');
 const AppError = include('configure/appError');
+const { connectDatabase, foreignKeys } = require('@kym/db');
 const {
   sequelize,
   User,
   UserMeasurement,
   Program
-} = include('db');
-const { USER } = include('db/foreignKeys');
+} = connectDatabase();
 const moment = require('moment');
 const jwt = require('jwt-simple');
 const {
@@ -48,7 +48,7 @@ const signup = async (req, res, next) => {
         
         const programObj = Program.makeProgramObject(config);
 
-        delete programObj[USER];
+        delete programObj[foreignKeys.USER];
 
         const age = moment().diff(birthdate, 'years');
         transaction = await sequelize.transaction();

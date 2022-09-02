@@ -1,6 +1,8 @@
-const { USER } = include('db/foreignKeys');
-const { Day } = include('db');
+const { connectDatabase, foreignKeys } = require('@kym/db');
 const assert = require('assert');
+
+const { USER } = foreignKeys;
+const { Day } = connectDatabase();
 
 const createUpdateDays = async (uuid, date) => {
   assert(uuid, 'No uuid provided');

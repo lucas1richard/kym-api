@@ -1,5 +1,6 @@
 const app = include('app');
-const { User, Day } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { User, Day, destroyAll } = connectDatabase();
 const users = include('test-data/users');
 const days = include('test-data/days');
 const { assert } = require('chai');
@@ -15,7 +16,7 @@ describe('(route) day/controllers/createUpdateDays', () => {
     await Day.bulkCreate(days);
   });
   after(async () => {
-    await User.destroy({ where: {}, force: true });
+    await destroyAll();
   });
   it('creates days', (done) => {
     agent

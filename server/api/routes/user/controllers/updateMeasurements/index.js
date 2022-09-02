@@ -1,4 +1,5 @@
-const { UserMeasurement } = include('db');
+const { connectDatabase } = require('@kym/db');
+const { UserMeasurement } = connectDatabase();
 const { bodySchema } = require('./validation');
 
 const updateMeasurements = async (body, uuid) => {
