@@ -4,7 +4,7 @@
 
 const passport = require('passport');
 const FitbitStrategy = require('passport-fitbit-oauth2').FitbitOAuth2Strategy;
-const User = require('./db/models/user');
+const { User } = require('./db');
 const jwt = require('jwt-simple');
 
 module.exports = (app) => {

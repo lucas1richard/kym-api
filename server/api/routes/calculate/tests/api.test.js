@@ -1,4 +1,3 @@
-// const conn = include('db/conn');
 const { Abbrev } = include('db');
 const abbrevs = include('test-data/abbrev');
 const app = include('app');

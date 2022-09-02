@@ -5,18 +5,13 @@ global.abs_path = (pth) => global.base_dir + pth;
 global.include = (file) => require(global.abs_path(`/${file}`));
 const logger = include('utils/logger');
 const express = require('express');
-var cors = require('cors')
+const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger');
-const setupGoogleOauth = require('./oauth-google');
-const setupFitbitOauth = require('./oauth-fitbit');
 const makeAppVariables = require('./configure/app-variables');
 const configureRaven = require('./configure/raven');
-// const setup = require('./middlewares/frontendMiddleware');
-// const { resolve } = require('path');
-
 
 /**
  * - Make routes for static assets to be loaded
@@ -47,13 +42,13 @@ makeAppVariables(app);
  * Setup passport for Fitbit and Google
  * Setup routes to login/signup with Google and Fitbit oauth
  */
-setupGoogleOauth(app);
-setupFitbitOauth(app);
+// setupGoogleOauth(app);
+// setupFitbitOauth(app);
 
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// // Static assets to be loaded
+// Static assets to be loaded
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(path.join(__dirname, '..', 'node_modules')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -64,7 +59,6 @@ app.use('/api', require('./api'));
 
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   if (process.env.NODE_ENV !== 'test') {
-    console.log(err);
     logger.error(err);
   }
   if (err.isJoi) {

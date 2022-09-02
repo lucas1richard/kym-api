@@ -1,4 +1,4 @@
-const User = include('db/models/user');
+const User = include('db');
 const jwt = require('jwt-simple');
 
 module.exports = signIn;

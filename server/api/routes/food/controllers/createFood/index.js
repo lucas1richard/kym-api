@@ -1,15 +1,17 @@
-const {
-  sequelize,
-  Abbrev,
-  AbbrevMicro,
-  Weight,
-  FoodDesc
-} = include('/db');
+const { default: connectDatabase } = require('@kym/db');
 const { handleRouteError } = include('utils/handleRouteError');
 const { bodySchema } = require('./validation');
 const cleanAbbrev = require('./cleaners/cleanAbbrev');
 const cleanWeight = require('./cleaners/cleanWeight');
 const cleanFoodDesc = require('./cleaners/cleanFoodDesc');
+
+const {
+  sequelize,
+  Abbrev,
+  AbbrevMicro,
+  Weight,
+  FoodDesc,
+} = connectDatabase();
 
 const createFood = async (req, res, next) => {
   let transaction;
@@ -61,6 +63,7 @@ const createFood = async (req, res, next) => {
       abbrevMicro,
       { transaction }
     );
+
     await transaction.commit();
     res.sendStatus(201);
   } catch (err) {
