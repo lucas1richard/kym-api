@@ -51,4 +51,4 @@ module.exports = {
       format: 'int32'
     }
   }
-}
+};

@@ -12,7 +12,7 @@ const getUser = async (req, res, next) => {
       'measurements',
       'meal-goals',
       'programs'
-    ).findById(uuid);
+    ).findByPk(uuid);
 
     // Make sure we have the user. If not, send back a 404
     if (!user) {

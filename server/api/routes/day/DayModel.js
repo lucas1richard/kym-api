@@ -51,7 +51,7 @@ class DayModel {
     });
     return {
       status: 'OK'
-    }
+    };
   }
 
   validateGetDays(uuid) {

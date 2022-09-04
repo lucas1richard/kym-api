@@ -75,7 +75,7 @@ async function execute() {
     'chicken',
     'olive',
     'olives',
-  ]
+  ];
 
   terms.forEach((term) => {
     const groupKey = model.categorize(term);

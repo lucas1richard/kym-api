@@ -1,6 +1,6 @@
 const { connectDatabase } = require('@kym/db');
 const { User, Day } = connectDatabase();
-const users = include('test-data/users');
+const users = include('test-data/users.json');
 const destroyDays = require('../');
 const { expect } = require('chai');
 

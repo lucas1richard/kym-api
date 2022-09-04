@@ -9,8 +9,8 @@ const mealSchema = Joi.object().keys({
 const typeSchema = Joi.array().items(mealSchema).required();
 
 const bodySchema = Joi.object().keys({
-  train: typeSchema,
-  rest: typeSchema
+  TRAIN: typeSchema,
+  REST: typeSchema
 });
 
 module.exports = {

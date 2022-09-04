@@ -2,11 +2,11 @@ const { typeSchema, bodySchema } = require('../validation');
 
 describe('dayMealsCalculate validation', () => {
   describe('typeSchema', () => {
-    it('should be okay with "train"', (done) => {
-      typeSchema.validate('train', done);
+    it('should be okay with "TRAIN"', (done) => {
+      typeSchema.validate('TRAIN', done);
     });
-    it('should be okay with "rest"', (done) => {
-      typeSchema.validate('rest', done);
+    it('should be okay with "REST"', (done) => {
+      typeSchema.validate('REST', done);
     });
     it('should fail otherwise', (done) => {
       typeSchema.validate('something absurd', (err) => {
@@ -19,7 +19,7 @@ describe('dayMealsCalculate validation', () => {
     });
     it('should give a helpful error message', (done) => {
       typeSchema.validate('something absurd', (err) => {
-        if (err.message === 'Type must be either \'train\' or \'rest\'') {
+        if (err.message === 'INVALID_GOAL_TYPE') {
           done();
         } else {
           done(new Error());
@@ -33,7 +33,7 @@ describe('dayMealsCalculate validation', () => {
       bodySchema.validate({}, done);
     });
     it('should require an object with `type` property', (done) => {
-      bodySchema.validate({ type: 'train' }, done);
+      bodySchema.validate({ type: 'TRAIN' }, done);
     });
     it('should fail otherwise', (done) => {
       bodySchema.validate('something absurd', (err) => {

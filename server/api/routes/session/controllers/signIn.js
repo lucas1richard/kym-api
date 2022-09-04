@@ -6,8 +6,10 @@ module.exports = signIn;
 
 async function signIn(email, password) {
   const user = await User.findByPassword({
-    email,
-    password
+    credentials: {
+      email,
+      password
+    },
   });
 
   if (user) {

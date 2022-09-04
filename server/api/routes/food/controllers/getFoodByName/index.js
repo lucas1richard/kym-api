@@ -25,21 +25,21 @@ const getFoodByName = async (req, res, next) => {
     const offset = parseInt(req.query.offset, 10) || 0;
 
     // const count = await Abbrev.scope().count({ where });
-    const rowsToSend = await Abbrev.scope().findAndCountAll({
+    const rowsToSend = await Abbrev.findAndCountAll({
       limit: 50,
       offset: offset * 50,
       distinct: true,
       where: query.makeWhere(),
       order: query.hasName ? sequelize.literal(`
         case
-          when ("abbrev"."Main" ILIKE '${query.firstword}') then 'aaaa'
-          when ("abbrev"."Main" ILIKE '${query.firstword} %') then 'aaaaa'
-          when ("abbrev"."Main" ILIKE '${query.firstword}%') then 'aaaaaa'
-          else "abbrev"."Main"
+          when ("abbrev"."main" ILIKE '${query.firstword}') then 'aaaa'
+          when ("abbrev"."main" ILIKE '${query.firstword} %') then 'aaaaa'
+          when ("abbrev"."main" ILIKE '${query.firstword}%') then 'aaaaaa'
+          else "abbrev"."main"
         end`)
         : [
-          ['Main', 'desc'],
-          ['Sub', 'desc']
+          ['main', 'desc'],
+          ['sub', 'desc']
         ],
       include: [FoodDesc, Weight]
     });

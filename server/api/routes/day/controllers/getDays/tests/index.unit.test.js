@@ -1,13 +1,13 @@
 const { connectDatabase } = require('@kym/db');
 const { User, Day } = connectDatabase();
-const users = include('test-data/users');
+const users = include('test-data/users.json');
 const { getDays, daysReduce } = require('../');
 const { expect } = require('chai');
 
 describe('routes/day/getDays', () => {
   let user_id;
   beforeEach(() => {
-    user_id = 1;
+    user_id = users[0].uuid;
   });
   before(async () => {
     await User.bulkCreate(users);

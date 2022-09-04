@@ -2,10 +2,10 @@ function cleanWeight(body) {
   const { servingDescription, servingWeight, servingSize } = body;
 
   return {
-    Seq: 1,
-    Amount: servingSize,
-    Description: servingDescription,
-    Gr_Wgt: servingWeight
+    seq: 1,
+    amount: servingSize,
+    description: servingDescription,
+    gr_wgt: servingWeight
   };
 }
 

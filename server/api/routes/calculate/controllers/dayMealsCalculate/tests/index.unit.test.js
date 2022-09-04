@@ -1,16 +1,22 @@
+const { connectDatabase } = require('@kym/db');
 const { expect } = require('chai');
+const users = include('test-data/users.json');
+const mealGoals = include('test-data/meal-goals.json');
+const dayMealsCalculation = require('../');
 
-// const db = require('../../../../../db');
+const { User, MealGoals, destroyAll } = connectDatabase();
 
 describe('dayMealsCalculate', () => {
+  before(async () => {
+    await User.bulkCreate(users);
+    await MealGoals.bulkCreate(mealGoals);
+  });
+  after(async () => {
+    await destroyAll();
+  });
+
   it('is okay', async () => {
-    const dayMealsCalculation = require('../');
-    try {
-      const meal = await dayMealsCalculation({ type: 'train' }, 1);
-      expect(meal).to.be.ok;
-    } catch (err) {
-      // console.log(err.message);
-      // expect.fail();
-    }
+    const meal = await dayMealsCalculation({ type: 'TRAIN' }, users[0].uuid);
+    expect(meal).to.be.ok;
   });
 });

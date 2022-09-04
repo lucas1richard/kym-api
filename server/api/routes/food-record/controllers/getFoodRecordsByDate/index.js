@@ -1,10 +1,8 @@
 const { connectDatabase } = require('@kym/db');
-const { FoodRecord } = connectDatabase();
 const { handleRouteError } = include('utils/handleRouteError');
-const {
-  dateSchema,
-  userIdSchema
-} = require('./validation');
+const { dateSchema, userIdSchema, } = require('./validation');
+
+const { FoodRecord, Meal } = connectDatabase();
 
 /**
  * {@link http://localhost:3000/api-docs/#/food-record/get_api_food_record__date_}
@@ -15,10 +13,11 @@ const getFoodRecordsByDate = async (req, res, next) => {
     await dateSchema.validate(req.params.date);
     await userIdSchema.validate(res.locals.uuid);
 
-    const rawRecords = await FoodRecord.findByDate(
-      req.params.date,
-      res.locals.uuid
-    );
+    const rawRecords = await FoodRecord.findByDate({
+      date: req.params.date,
+      uuid: res.locals.uuid,
+      Meal,
+    });
 
     const records = await Promise.all(rawRecords.map((record) => {
       return record.calMacros();

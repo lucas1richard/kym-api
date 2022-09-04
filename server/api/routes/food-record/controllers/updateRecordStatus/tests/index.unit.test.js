@@ -6,11 +6,11 @@ const {
   Abbrev,
   Weight
 } = connectDatabase();
-const abbrevs = include('test-data/abbrev');
-const users = include('test-data/users');
-const weight = include('test-data/weight');
-const meals = include('test-data/meals');
-const foodRecord = include('test-data/food-record');
+const abbrevs = include('test-data/abbrev.json');
+const users = include('test-data/users.json');
+const weight = include('test-data/weight.json');
+const meals = include('test-data/meals.json');
+const foodRecord = include('test-data/food-record.json');
 const sinon = require('sinon');
 const updateRecordStatus = require('../');
 const { expect } = require('chai');

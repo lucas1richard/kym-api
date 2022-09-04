@@ -13,11 +13,11 @@ describe('user/controllers/signup', () => {
     await User.destroy({ where: {}, force: true });
     userMeasurements = {
       gender: 'MALE',
-      goal: 'Lose Fat',
+      goal: 'LOSE_FAT',
       height: '73',
       date: '2018-01-01',
-      lifestyle: 'Normal',
-      units: 'imperial',
+      lifestyle: 'NORMAL',
+      units: 'IMPERIAL',
       weight: '179'
     };
     body = {
@@ -26,6 +26,7 @@ describe('user/controllers/signup', () => {
       firstname: 'Test',
       lastname: 'Test',
       password: '1234',
+      preferredlocale: 'en-US',
       loggedIn: false
     };
   });
@@ -37,6 +38,7 @@ describe('user/controllers/signup', () => {
       .post('/api/user/signup')
       .send(body)
       .expect((res) => {
+        console.log(res.headers);
         assert(!!res.headers.token, 'There should be a token in the headers');
       })
       .expect(201, done);

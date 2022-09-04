@@ -1,6 +1,6 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const { connectDatabase } = require('@kym/db');
-const { User } = connectDatabase();
+const { Abbrev, User } = connectDatabase();
 const { bodySchema } = require('./validation');
 
 const removeFavoriteFood = async (req, res, next) => {
@@ -11,11 +11,12 @@ const removeFavoriteFood = async (req, res, next) => {
     const { abbrevId, meal } = req.body;
 
     // If the record is not associated, this will not cause an error
-    await User.removeFavoriteFood(
-      res.locals.uuid,
+    await User.removeFavoriteFood({
+      uuid: res.locals.uuid,
       abbrevId,
-      meal
-    );
+      meal,
+      Abbrev,
+    });
 
     res.sendStatus(204);
   } catch (err) {

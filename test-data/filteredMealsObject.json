@@ -1,0 +1,433 @@
+{
+  "851": {
+    "longname": "Fish, tilapia, cooked, dry heat",
+    "maxMacro": "protein",
+    "id": 851,
+    "main": "Fish",
+    "sub": "tilapia, cooked, dry heat",
+    "caloriess": "128",
+    "protein": "26.15",
+    "fat": "2.65",
+    "carbohydrates": "0.00",
+    "gmwt_1": "87",
+    "gmwt_desc1": "1 fillet",
+    "gmwt_2": null,
+    "gmwt_desc2": "",
+    "UserID": 0,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "fillet (87 g)"
+      },
+      "id": 752,
+      "seq": 1,
+      "amount": "1.00",
+      "description": "fillet",
+      "gr_wgt": "87.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 851
+    }]
+  },
+  "2514": {
+    "longname": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+    "maxMacro": "protein",
+    "id": 2514,
+    "main": "Chicken",
+    "sub": "broilers or fryers, breast, meat only, cooked, roasted",
+    "caloriess": "165",
+    "protein": "31.02",
+    "fat": "3.57",
+    "carbohydrates": "0.00",
+    "gmwt_1": "140",
+    "gmwt_desc1": "1 cup, chopped or diced",
+    "gmwt_2": "52",
+    "gmwt_desc2": "1 unit,  (yield from 1 lb ready-to-cook chicken)",
+    "UserID": 0,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "cup, chopped or diced (140 g)"
+      },
+      "id": 3884,
+      "seq": 1,
+      "amount": "1.00",
+      "description": "cup, chopped or diced",
+      "gr_wgt": "140.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 2514
+    }, {
+      "normalized": {
+        "val": 2,
+        "txt": "unit (yield from 1 lb ready-to-cook chicken) (52 g)"
+      },
+      "id": 3885,
+      "seq": 2,
+      "amount": "1.00",
+      "description": "unit (yield from 1 lb ready-to-cook chicken)",
+      "gr_wgt": "52.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 2514
+    }, {
+      "normalized": {
+        "val": 3,
+        "txt": "breast, bone and skin removed (172 g)"
+      },
+      "id": 3886,
+      "seq": 3,
+      "amount": "0.50",
+      "description": "breast, bone and skin removed",
+      "gr_wgt": "86.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 2514
+    }]
+  },
+  "3394": {
+    "longname": "Nuts, pecans",
+    "maxMacro": "fat",
+    "id": 3394,
+    "main": "Nuts",
+    "sub": "pecans",
+    "caloriess": "691",
+    "protein": "9.17",
+    "fat": "71.97",
+    "carbohydrates": "13.86",
+    "gmwt_1": "109",
+    "gmwt_desc1": "1 cup, chopped",
+    "gmwt_2": "99",
+    "gmwt_desc2": "1 cup, halves",
+    "UserID": 0,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "cup, chopped (109 g)"
+      },
+      "id": 650,
+      "seq": 1,
+      "amount": "1.00",
+      "description": "cup, chopped",
+      "gr_wgt": "109.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 3394
+    }, {
+      "normalized": {
+        "val": 2,
+        "txt": "cup, halves (99 g)"
+      },
+      "id": 651,
+      "seq": 2,
+      "amount": "1.00",
+      "description": "cup, halves",
+      "gr_wgt": "99.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 3394
+    }, {
+      "normalized": {
+        "val": 3,
+        "txt": "oz (19 halves) (28.4 g)"
+      },
+      "id": 8193,
+      "seq": 3,
+      "amount": "1.00",
+      "description": "oz (19 halves)",
+      "gr_wgt": "28.35",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 3394
+    }]
+  },
+  "5469": {
+    "longname": "Avocados, raw, California",
+    "maxMacro": "fat",
+    "id": 5469,
+    "main": "Avocados",
+    "sub": "raw, California",
+    "caloriess": "167",
+    "protein": "1.96",
+    "fat": "15.41",
+    "carbohydrates": "8.64",
+    "gmwt_1": "230",
+    "gmwt_desc1": "1 cup, pureed",
+    "gmwt_2": "136",
+    "gmwt_desc2": "1 fruit, without skin and seed",
+    "UserID": 0,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "fruit, without skin and seed (136 g)"
+      },
+      "id": 311,
+      "seq": 1,
+      "amount": "1.00",
+      "description": "fruit, without skin and seed",
+      "gr_wgt": "136.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 5469
+    }, {
+      "normalized": {
+        "val": 2,
+        "txt": "cup, pureed (230 g)"
+      },
+      "id": 5723,
+      "seq": 2,
+      "amount": "1.00",
+      "description": "cup, pureed",
+      "gr_wgt": "230.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 5469
+    }, {
+      "normalized": {
+        "val": 3,
+        "txt": "NLEA serving (30 g)"
+      },
+      "id": 5724,
+      "seq": 3,
+      "amount": "1.00",
+      "description": "NLEA serving",
+      "gr_wgt": "30.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 5469
+    }]
+  },
+  "7865": {
+    "longname": "Beef, ground, 90% lean meat / 10% fat, patty, cooked, broiled",
+    "maxMacro": "protein",
+    "id": 7865,
+    "main": "Beef",
+    "sub": "ground, 90% lean meat / 10% fat, patty, cooked, broiled",
+    "caloriess": "217",
+    "protein": "26.11",
+    "fat": "11.73",
+    "carbohydrates": "0.00",
+    "gmwt_1": "85",
+    "gmwt_desc1": "1 serving,  (3 oz)",
+    "gmwt_2": "82",
+    "gmwt_desc2": "1 patty,  (yield from 1/4 lb raw meat)",
+    "UserID": 0,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "oz (28.3 g)"
+      },
+      "id": 14100,
+      "seq": 1,
+      "amount": "3.00",
+      "description": "oz",
+      "gr_wgt": "85.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 7865
+    }]
+  },
+  "8777": {
+    "longname": "Granola, KIND, Oats  Honey with Toasted Coconut",
+    "maxMacro": "carbohydrates",
+    "id": 8777,
+    "main": "Granola",
+    "sub": "KIND, Oats  Honey with Toasted Coconut",
+    "caloriess": "440",
+    "protein": "8.00",
+    "fat": "14.00",
+    "carbohydrates": "72.00",
+    "gmwt_1": "50",
+    "gmwt_desc1": "50 g",
+    "gmwt_2": "0",
+    "gmwt_desc2": "",
+    "UserID": 1,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "g (1 g)"
+      },
+      "id": 15214,
+      "seq": 1,
+      "amount": "50.00",
+      "description": "g",
+      "gr_wgt": "50.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 8777
+    }]
+  },
+  "2683": {
+    "longname": "Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, grilled",
+    "maxMacro": "protein",
+    "id": 2683,
+    "main": "Chicken",
+    "sub": "broiler or fryers, breast, skinless, boneless, meat only, cooked, grilled",
+    "caloriess": "151",
+    "protein": "30.54",
+    "fat": "3.17",
+    "carbohydrates": "0.00",
+    "gmwt_1": "85",
+    "gmwt_desc1": "3 oz",
+    "gmwt_2": "196",
+    "gmwt_desc2": "1 piece",
+    "UserID": 0,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "oz (28.3 g)"
+      },
+      "id": 4410,
+      "seq": 1,
+      "amount": "3.00",
+      "description": "oz",
+      "gr_wgt": "85.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 2683
+    }, {
+      "normalized": {
+        "val": 2,
+        "txt": "piece (196 g)"
+      },
+      "id": 4411,
+      "seq": 2,
+      "amount": "1.00",
+      "description": "piece",
+      "gr_wgt": "196.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 2683
+    }]
+  },
+  "6068": {
+    "longname": "Pineapple, raw, all varieties",
+    "maxMacro": "carbohydrates",
+    "id": 6068,
+    "main": "Pineapple",
+    "sub": "raw, all varieties",
+    "caloriess": "50",
+    "protein": "0.54",
+    "fat": "0.12",
+    "carbohydrates": "13.12",
+    "gmwt_1": "165",
+    "gmwt_desc1": "1 cup, chunks",
+    "gmwt_2": "905",
+    "gmwt_desc2": "1 fruit",
+    "UserID": 0,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "cup, chunks (165 g)"
+      },
+      "id": 359,
+      "seq": 1,
+      "amount": "1.00",
+      "description": "cup, chunks",
+      "gr_wgt": "165.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 6068
+    }, {
+      "normalized": {
+        "val": 2,
+        "txt": "fruit (905 g)"
+      },
+      "id": 360,
+      "seq": 2,
+      "amount": "1.00",
+      "description": "fruit",
+      "gr_wgt": "905.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 6068
+    }, {
+      "normalized": {
+        "val": 3,
+        "txt": "slice (4-2/3 in. dia x 3/4 in. thick) (166 g)"
+      },
+      "id": 361,
+      "seq": 3,
+      "amount": "1.00",
+      "description": "slice (4-2/3 in. dia x 3/4 in. thick)",
+      "gr_wgt": "166.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 6068
+    }, {
+      "normalized": {
+        "val": 4,
+        "txt": "slice (3-1/2 in. dia x 3/4 in. thick) (84 g)"
+      },
+      "id": 6028,
+      "seq": 4,
+      "amount": "1.00",
+      "description": "slice (3-1/2 in. dia x 3/4 in. thick)",
+      "gr_wgt": "84.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 6068
+    }, {
+      "normalized": {
+        "val": 5,
+        "txt": "slice, thin (3-1/2 in. dia x 1/2 in. thick) (56 g)"
+      },
+      "id": 6029,
+      "seq": 5,
+      "amount": "1.00",
+      "description": "slice, thin (3-1/2 in. dia x 1/2 in. thick)",
+      "gr_wgt": "56.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 6068
+    }]
+  },
+  "8774": {
+    "longname": "Hummus, SABRA, Classic",
+    "maxMacro": "fat",
+    "id": 8774,
+    "main": "Hummus",
+    "sub": "SABRA, Classic",
+    "caloriess": "250",
+    "protein": "7.14",
+    "fat": "17.86",
+    "carbohydrates": "14.29",
+    "gmwt_1": "28",
+    "gmwt_desc1": "1 tbsp",
+    "gmwt_2": "0",
+    "gmwt_desc2": "",
+    "UserID": 1,
+    "createdAt": "2017-06-11T15:01:14.116Z",
+    "updatedAt": "2017-06-11T15:01:14.116Z",
+    "weights": [{
+      "normalized": {
+        "val": 1,
+        "txt": "tbsp (14 g)"
+      },
+      "id": 15205,
+      "seq": 1,
+      "amount": "2.00",
+      "description": "tbsp",
+      "gr_wgt": "28.00",
+      "createdAt": "2017-06-11T15:01:37.412Z",
+      "updatedAt": "2017-06-11T15:01:37.412Z",
+      "abbrev_id": 8774
+    }]
+  }
+}

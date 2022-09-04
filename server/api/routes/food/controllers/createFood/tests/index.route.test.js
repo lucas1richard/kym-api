@@ -1,6 +1,6 @@
 const { connectDatabase } = require('@kym/db');
 const { Abbrev, FoodDesc, FoodGroup } = connectDatabase();
-const abbrevs = include('test-data/abbrev');
+const abbrevs = include('test-data/abbrev.json');
 const app = include('/app');
 const supertest = require('supertest');
 // const assert = require('assert');

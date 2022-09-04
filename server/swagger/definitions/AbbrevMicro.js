@@ -186,4 +186,4 @@ module.exports = {
       example: 5470
     }
   }
-}
+};

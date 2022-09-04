@@ -1,0 +1,5 @@
+[
+  { "GroupID": "0500", "Description": "Poultry Products" },
+  { "GroupID": "0900", "Description": "Fruits and Fruit Juices" },
+  { "GroupID": "1100", "Description": "Vegetables and Vegetable Products" }
+]

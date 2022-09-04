@@ -62,7 +62,11 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     logger.error(err);
   }
   if (err.isJoi) {
-    res.status(400).send(err.toSend);
+    const { toSend: { devmessage } } = err;
+    // joi can send an object if only a single validation error, array if multiple validation errors
+    // just set all joi errors to be arrays so we don't have to worry about it
+    const body = Array.isArray(devmessage) ? devmessage : [devmessage];
+    res.status(400).send(body);
   } else {
     res.status(err.commonType || err.status || 500).send(err.message);
   }

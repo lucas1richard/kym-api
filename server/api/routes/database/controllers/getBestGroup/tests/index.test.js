@@ -1,8 +1,8 @@
 const { connectDatabase } = require('@kym/db');
 const { Abbrev, FoodDesc, FoodGroup } = connectDatabase();
-const abbrevs = include('test-data/abbrev');
-const foodDes = include('test-data/food-des');
-const foodGrp = include('test-data/fd-group');
+const abbrevs = include('test-data/abbrev.json');
+const foodDes = include('test-data/food-des.json');
+const foodGrp = include('test-data/fd-group.json');
 const sinon = require('sinon');
 const getBestGroup = require('../');
 const { expect } = require('chai');

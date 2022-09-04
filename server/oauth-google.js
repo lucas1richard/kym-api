@@ -4,7 +4,8 @@
 
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const User = require('./db/models/user');
+const { connectDatabase } = require('@kym/db');
+const { User } = connectDatabase();
 const jwt = require('jwt-simple');
 
 module.exports = (app) => {

@@ -1,4 +1,6 @@
-const { sequelize } = require('@kym/db');
+const { connectDatabase } = require('@kym/db');
+
+const { sequelize } = connectDatabase();
 
 module.exports = autocomplete;
 

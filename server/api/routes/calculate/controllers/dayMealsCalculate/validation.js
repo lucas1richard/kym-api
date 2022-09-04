@@ -2,8 +2,8 @@ const Joi = require('joi');
 
 const typeSchema = Joi
   .string()
-  .valid(['rest', 'train'])
-  .error(() => 'Type must be either \'train\' or \'rest\'');
+  .valid(['REST', 'TRAIN'])
+  .error(() => 'INVALID_GOAL_TYPE');
 
 const bodySchema = Joi.object().keys({
   type: typeSchema

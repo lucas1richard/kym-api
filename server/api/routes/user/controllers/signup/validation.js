@@ -2,11 +2,11 @@ const Joi = require('joi');
 
 const userMeasurementsSchema = Joi.object().keys({
   gender: Joi.string().valid(['MALE', 'FEMALE']).required(),
-  goal: Joi.string().valid(['Lose Fat', 'Maintain', 'Gain Muscle']).required(),
+  goal: Joi.string().valid(['LOSE_FAT', 'MAINTAIN', 'GAIN_MUSCLE']).required(),
   height: Joi.number().required(),
   date: Joi.date().required(),
-  lifestyle: Joi.string().valid(['Normal', 'Active', 'Sedentary']).required(),
-  units: Joi.string().valid(['imperial', 'metric']).required(),
+  lifestyle: Joi.string().valid(['NORMAL', 'ACTIVE', 'SEDENTARY']).required(),
+  units: Joi.string().valid(['IMPERIAL', 'METRIC']).required(),
   weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required()
 });
 

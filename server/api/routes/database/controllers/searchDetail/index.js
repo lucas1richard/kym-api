@@ -25,7 +25,7 @@ const searchDetail = async (req, res, next) => {
     const where = Object.assign({}, foodQuery, makePercentQuery(req.body)
     );
 
-    const count = await Abbrev.scope().count({ where });
+    const count = await Abbrev.count({ where });
     const rows = await Abbrev.findAll({ where,
       order: food ? sequelize.literal(`
         case

@@ -1,10 +1,11 @@
 const { connectDatabase } = require('@kym/db');
 const { Abbrev } = connectDatabase();
 const { querySchema } = require('./validation');
+const ValidationError = include('configure/ValidationError');
 
 const singleMealCalculate = async (query) => {
-  // Validate
-  querySchema.validate(query);
+  const { error } = querySchema.validate(query, { abortEarly: false });
+  if (error) throw error;
 
   const {
     proteinGoal,
@@ -16,10 +17,10 @@ const singleMealCalculate = async (query) => {
   const goals = {
     proteinGoal,
     carbGoal,
-    fatGoal
+    fatGoal,
   };
 
-  const output = await Abbrev.calculateMacros(goals, id);
+  const output = await Abbrev.calculateMacros({ goals, abbrevIds: id });
 
   return output;
 };

@@ -1,6 +1,6 @@
 const { connectDatabase } = require('@kym/db');
 const { Abbrev } = connectDatabase();
-const abbrev = include('test-data/abbrev');
+const abbrev = include('test-data/abbrev.json');
 const sinon = require('sinon');
 const autocomplete = require('../');
 const { expect } = require('chai');

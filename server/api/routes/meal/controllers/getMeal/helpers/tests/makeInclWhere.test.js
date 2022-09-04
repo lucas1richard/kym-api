@@ -13,9 +13,9 @@ describe('meal/controllers/getMeal/helpers/makeInclWhere', () => {
     expect(makeInclWhere('test')).to.eql({
       [Op.and]: [{
         [Op.or]: [{
-          Main: { $iLike: '%test%' }
+          main: { $iLike: '%test%' }
         }, {
-          Sub: { $iLike: '%test%' }
+          sub: { $iLike: '%test%' }
         }]
       }]
     });
@@ -24,15 +24,15 @@ describe('meal/controllers/getMeal/helpers/makeInclWhere', () => {
     expect(makeInclWhere('test hello')).to.eql({
       [Op.and]: [{
         [Op.or]: [{
-          Main: { $iLike: '%test%' }
+          main: { $iLike: '%test%' }
         }, {
-          Sub: { $iLike: '%test%' }
+          sub: { $iLike: '%test%' }
         }]
       }, {
         [Op.or]: [{
-          Main: { $iLike: '%hello%' }
+          main: { $iLike: '%hello%' }
         }, {
-          Sub: { $iLike: '%hello%' }
+          sub: { $iLike: '%hello%' }
         }]
       }]
     });

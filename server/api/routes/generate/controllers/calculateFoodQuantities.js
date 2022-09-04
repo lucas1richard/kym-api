@@ -6,16 +6,14 @@ const calculateFoodQuantities = async (req, res, next) => {
     const {
       proteinGoal,
       carbGoal,
-      fatGoal
+      fatGoal,
     } = req.query;
 
-    const params = {
+    const result = await Abbrev.fpCalculateMacros({
       proteinGoal,
       carbGoal,
-      fatGoal
-    };
-
-    const result = await Abbrev.fpCalculateMacros(params);
+      fatGoal,
+    });
 
     res.json(result);
   } catch (err) {

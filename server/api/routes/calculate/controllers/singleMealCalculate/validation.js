@@ -1,9 +1,15 @@
 const Joi = require('joi');
+const ValidationError = include('configure/ValidationError');
 
-const proteinGoalSchema = Joi.number().required().error(() => 'The protein goal must be a number');
-const carbGoalSchema = Joi.number().required().error(() => 'The carb goal must be a number');
-const fatGoalSchema = Joi.number().required().error(() => 'The fat goal must be a number');
-const idIndSchema = Joi.number().integer().required().error(() => 'The id must be a number');
+const INVALID_GOAL_PROTEIN = 'INVALID_GOAL_PROTEIN';
+const INVALID_GOAL_CARBOHYDRATES = 'INVALID_GOAL_CARBOHYDRATES';
+const INVALID_GOAL_FAT = 'INVALID_GOAL_FAT';
+const INVALID_GOAL_ID = 'INVALID_GOAL_ID';
+
+const proteinGoalSchema = Joi.number().required().error(() => new ValidationError(INVALID_GOAL_PROTEIN));
+const carbGoalSchema = Joi.number().required().error(() => new ValidationError(INVALID_GOAL_CARBOHYDRATES));
+const fatGoalSchema = Joi.number().required().error(() => new ValidationError(INVALID_GOAL_FAT));
+const idIndSchema = Joi.number().integer().required().error(() => new ValidationError(INVALID_GOAL_ID));
 
 const querySchema = Joi.object().keys({
   proteinGoal: proteinGoalSchema,
@@ -17,5 +23,11 @@ module.exports = {
   carbGoalSchema,
   fatGoalSchema,
   idIndSchema,
-  querySchema
+  querySchema,
+  errorMessages: {
+    INVALID_GOAL_CARBOHYDRATES,
+    INVALID_GOAL_FAT,
+    INVALID_GOAL_PROTEIN,
+    INVALID_GOAL_ID,
+  },
 };

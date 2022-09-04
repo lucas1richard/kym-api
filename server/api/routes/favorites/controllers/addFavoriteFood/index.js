@@ -1,5 +1,6 @@
 const { connectDatabase } = require('@kym/db');
-const { User } = connectDatabase();
+const { handleRouteError } = require('../../../../../utils/handleRouteError');
+const { User, Abbrev } = connectDatabase();
 
 const { bodySchema } = require('./validation');
 
@@ -13,11 +14,12 @@ const addFavoriteFood = async (req, res, next) => {
       meal
     } = req.body;
 
-    const abbrev = await User.addFavoriteFood(
-      res.locals.uuid,
+    const abbrev = await User.addFavoriteFood({
+      uuid: res.locals.uuid,
       abbrevId,
-      meal
-    );
+      meal,
+      Abbrev,
+    });
 
     res.json(abbrev);
   } catch (err) {

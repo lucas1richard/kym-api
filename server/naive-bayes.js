@@ -56,7 +56,7 @@ const defaultTokenizer = function defaultTokenizer(text) {
 
   const sanitized = text
     // .replace(/\((.+?)\)/g, '\1')
-    .replace(/\[,.\/,';:"\\\]\[\!\@\#\$\%\^\&\*()/g, '\1')
+    // .replace(/\[,.\/,';:"\\\]\[\!\@\#\$\%\^\&\*()/g, '\1') // eslint-disable-line
     .replace(rgxPunctuation, ' ')
     .toLowerCase();
 

@@ -128,4 +128,4 @@ swaggerPaths.addPath('/food', {
   }
 }, {
   protected: true
-})
+});

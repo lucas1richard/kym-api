@@ -5,13 +5,14 @@ module.exports = {
   globals: {
     __DEV__: true,
     Raven: true,
-    include: true
+    include: true,
+    testData: true.
   },
-  env: {
-    node: true,
-    es6: true,
-    mocha: true
-  },
+  // env: {
+  //   node: true,
+  //   es6: true,
+  //   mocha: true
+  // },
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module'

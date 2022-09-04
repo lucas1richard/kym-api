@@ -14,14 +14,14 @@ function cleanBody(body, uuid) {
   } = body;
 
   return {
-    Main: main,
-    Sub: sub,
-    Calories: convertToPer100(calories, servingWeight),
-    Protein: convertToPer100(protein, servingWeight),
-    Fat: convertToPer100(fat, servingWeight),
-    Carbohydrates: convertToPer100(carbohydrates, servingWeight),
-    GmWt_1: servingWeight,
-    GmWt_Desc1: `${servingSize} ${servingDescription}`,
+    main,
+    sub,
+    calories: convertToPer100(calories, servingWeight),
+    protein: convertToPer100(protein, servingWeight),
+    fat: convertToPer100(fat, servingWeight),
+    carbohydrates: convertToPer100(carbohydrates, servingWeight),
+    gmwt_1: servingWeight,
+    gmwt_desc1: `${servingSize} ${servingDescription}`,
     [foreignKeys.USER]: uuid,
     photo: null
   };

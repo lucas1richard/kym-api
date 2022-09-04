@@ -1,23 +1,22 @@
 const { connectDatabase } = require('@kym/db');
-const { Abbrev } = connectDatabase();
+const { Abbrev, MealGoals } = connectDatabase();
 
 const uuidv1 = require('uuid/v1');
 const { bodySchema } = require('./validation');
 
 const dayMealsCalculation = async (body, uuid) => {
-  // Validate
-  await bodySchema.validate(body, { allowUnknown: true });
+  const { error } = bodySchema.validate(body, { allowUnknown: true, abortEarly: false });
 
-  const output = await Abbrev.dayCalculation(uuid, body.type);
+  if (error) throw error;
+  
+  const output = await Abbrev.dayCalculation({ uuid, type: body.type, MealGoals });
 
-  const toSend = {
+  return {
     foods: output,
     type: body.type,
     isConfirmed: false,
     uuid: body.uuid || uuidv1()
   };
-
-  return toSend;
 };
 
 module.exports = dayMealsCalculation;

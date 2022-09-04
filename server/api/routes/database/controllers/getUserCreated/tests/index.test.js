@@ -1,7 +1,7 @@
 const { connectDatabase } = require('@kym/db');
 const { Abbrev, User } = connectDatabase();
-const users = include('test-data/users');
-const abbrevs = include('test-data/abbrev');
+const users = include('test-data/users.json');
+const abbrevs = include('test-data/abbrev.json');
 const sinon = require('sinon');
 const getUserCreated = require('../');
 const { expect } = require('chai');

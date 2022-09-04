@@ -1,8 +1,8 @@
 const app = include('app');
 const { connectDatabase } = require('@kym/db');
 const { Abbrev, User } = connectDatabase();
-const users = include('test-data/users');
-const abbrevs = include('test-data/abbrev');
+const users = include('test-data/users.json');
+const abbrevs = include('test-data/abbrev.json');
 const supertest = require('supertest');
 
 const agent = supertest(app);

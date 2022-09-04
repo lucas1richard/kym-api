@@ -1,9 +1,9 @@
 const { connectDatabase } = require('@kym/db');
 const { FoodRecord, Meal, Abbrev, User } = connectDatabase();
-const records = include('test-data/food-record');
-const meals = include('test-data/meals');
-const users = include('test-data/users');
-const abbrevs = include('test-data/abbrev');
+const records = include('test-data/food-record.json');
+const meals = include('test-data/meals.json');
+const users = include('test-data/users.json');
+const abbrevs = include('test-data/abbrev.json');
 const deleteFoodRecord = require('../index');
 const { expect } = require('chai');
 

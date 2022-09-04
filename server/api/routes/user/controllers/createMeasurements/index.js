@@ -38,7 +38,7 @@ const createMeasurements = async (body, uuid) => {
     await UserMeasurement.create(Object.assign(body, { [foreignKeys.USER]: uuid }));
   }
 
-  const allMeasurements = await UserMeasurement.findAllByUserId(uuid);
+  const allMeasurements = await UserMeasurement.findAllByUserId({ uuid });
   return allMeasurements;
 };
 
