@@ -6,7 +6,7 @@ const getPrograms = async (req, res, next) => {
     const program = await Program.findOne({
       where: {
         [foreignKeys.USER]: res.locals.uuid,
-        status: 'In Progress'
+        status: 'IN_PROGRESS'
       }
     });
 

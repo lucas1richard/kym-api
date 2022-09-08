@@ -14,8 +14,8 @@ router.post('/', addFoodRecord);
 
 router.delete('/', async function deleteFoodRecordRoute(req, res, next) {
   try {
-    await deleteFoodRecord(req.body);
-    res.status(204).send('Records deleted');
+    await deleteFoodRecord(req.body, res.locals.uuid);
+    res.status(204); // 204 means "No Content"
   } catch (err) {
     handleRouteError(err, 'Couldn\'t delete the record');
     next(err);

@@ -20,8 +20,8 @@ class Query {
     return {
       [Op.and]: this.splitName.map((fd) => ({
         [Op.or]: [
-          { Main: { [Op.iLike]: `%${fd}%` } },
-          { Sub: { [Op.iLike]: `%${fd}%` } }
+          { main: { [Op.iLike]: `%${fd}%` } },
+          { sub: { [Op.iLike]: `%${fd}%` } }
         ],
       }))
     };

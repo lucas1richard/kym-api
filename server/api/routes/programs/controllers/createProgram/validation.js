@@ -1,10 +1,9 @@
 const Joi = require('joi');
 
 const bodySchema = Joi.object().keys({
-  units: Joi.string().valid(['imperial', 'metric']).required(),
+  units: Joi.string().valid(['IMPERIAL', 'METRIC']).required(),
   weight: Joi.number().required(),
-  goal: Joi.string().valid(['Gain Muscle', 'Lose Fat', 'Maintain']).required(),
-  uuid: Joi.number().integer().required()
+  goal: Joi.string().valid(['GAIN_MUSCLE', 'LOSE_FAT', 'MAINTAIN']).required(),
 });
 
 module.exports = {

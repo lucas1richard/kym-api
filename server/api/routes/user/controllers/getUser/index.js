@@ -1,6 +1,8 @@
 const AppError = include('configure/appError');
 const { connectDatabase } = require('@kym/db');
-const { User } = connectDatabase();
+const {
+  User
+} = connectDatabase();
 
 const getUser = async (req, res, next) => {
   try {
@@ -9,20 +11,20 @@ const getUser = async (req, res, next) => {
       throw new Error('No uuid provided');
     }
     const user = await User.scope(
-      'measurements',
-      'meal-goals',
-      'programs'
+      'withMeasurements',
+      'withMealGoals',
+      'withPrograms'
     ).findByPk(uuid);
 
     // Make sure we have the user. If not, send back a 404
     if (!user) {
       throw new AppError(404, {
-        devmessage: `The user with id '${uuid}' could not be located`,
-        usermessage: 'We couldn\'t log you in'
+        devmessage: 'USER_NOT_FOUND',
+        usermessage: 'USER_NOT_FOUND'
       }, true);
     }
 
-    const sanitizedUser = await User.sanitizeUser(user);
+    const sanitizedUser = await User.sanitize(user);
     
     res.json(sanitizedUser);
   } catch (err) {

@@ -2,9 +2,9 @@ const { connectDatabase } = require('@kym/db');
 const { Abbrev, User, MealGoals, destroyAll } = connectDatabase();
 const app = include('app');
 const supertest = require('supertest');
-const assert = require('assert');
 const { expect } = require('chai');
 const { errorMessages } = require('./controllers/singleMealCalculate/validation');
+const dayMealsCalculation = require('./controllers/dayMealsCalculate');
 
 const agent = supertest.agent(app);
 
@@ -41,14 +41,13 @@ describe('calculate api', () => {
       const res = await agent
         .get('/api/calculate?id[]=2514&id[]=2583&id[]=2768&proteinGoal=20&carbGoal=30') // no fatGoal
         .set('Accept', 'application/json');
-      console.log(res);
       expect(res.statusCode).to.eql(400);
       expect(res.body.devmessage.message).to.eql(errorMessages.INVALID_GOAL_FAT);
     });
   });
   describe('post /api/calculate/day', () => {
     it('id okay', async () => {
-      const meal = await dayMealsCalculation({ type: 'TRAIN' }, users[0].uuid);
+      const meal = await dayMealsCalculation({ type: 'TRAIN' }, testData.users[0].uuid);
       expect(meal).to.be.ok;
     });
   });

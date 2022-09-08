@@ -1,5 +1,5 @@
 require('babel-polyfill');
-
+require('dotenv').config();
 const path = require('path');
 
 global.base_dir = path.resolve(__dirname, '..', 'server');

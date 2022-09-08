@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const { foreignKeys } = require('@kym/db');
 
 const bodySchema = Joi.object().keys({
   id: Joi.number(),
@@ -9,11 +8,10 @@ const bodySchema = Joi.object().keys({
   bodyfat: Joi.number().allow(null).optional(),
   date: Joi.date(),
   gender: Joi.string().valid(['MALE', 'FEMALE']),
-  goal: Joi.string().valid(['Lose Fat', 'Maintain', 'Gain Muscle']),
+  goal: Joi.string().valid(['LOSE_FAT', 'MAINTAIN', 'GAIN_MUSCLE']),
   height: Joi.string().alphanum(),
-  lifestyle: Joi.string().valid(['Normal', 'Active', 'Sedentary']),
-  units: Joi.string().valid(['imperial', 'metric']),
-  [foreignKeys.USER]: foreignKeys.USER_VALIDATION,
+  lifestyle: Joi.string().valid(['NORMAL', 'ACTIVE', 'SEDENTARY']),
+  units: Joi.string().valid(['IMPERIAL', 'METRIC']),
   weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required()
 });
 

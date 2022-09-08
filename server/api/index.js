@@ -50,7 +50,7 @@ router.use(async function authMiddleware(req, res, next) {
     /**
      * If the route is open, move along
      */
-    if (openRoutes.reduce((memo, route) => memo || req.path === route, false)) {
+    if (openRoutes.includes(req.path)) {
       next();
       return;
     }
@@ -65,8 +65,6 @@ router.use(async function authMiddleware(req, res, next) {
     next();
   } catch (err) {
     logger.error(chalk.yellow(err.message));
-    console.log(err);
-    // logger.error(err);
     if (req.method === 'GET') {
       res.sendFile(
         nodepath.join(
@@ -122,7 +120,7 @@ async function checkSecureRoute(token) {
 
   redisClient.expire(key, 86400); // expire in 24 hours
   if (!token || token === '[object Object]') {
-    throw Error('You must have an account and be logged in');
+    throw Error('NO_ACCOUNT_LOGGED_IN');
   }
 
   const secret = process.env.JWT_SECRET;
@@ -135,7 +133,7 @@ async function checkSecureRoute(token) {
   const user = await User.findById(uuid);
 
   if (!user) {
-    throw Error('You must have an account and be logged in');
+    throw Error('NO_ACCOUNT_LOGGED_IN');
   }
 
   redisClient.hmsetAsync(key, { user_id, uuid });

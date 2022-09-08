@@ -1,12 +1,13 @@
+const { connectDatabase } = require('@kym/db');
+const makeWhere = require('./helpers/makeWhere');
+const makeInclWhere = require('./helpers/makeInclWhere');
+
 const {
   Meal,
   FoodRecord,
   Abbrev,
   sequelize
-} = include('/db');
-
-const makeWhere = require('./helpers/makeWhere');
-const makeInclWhere = require('./helpers/makeInclWhere');
+}  = connectDatabase();
 
 const { Op } = sequelize;
 
@@ -36,16 +37,12 @@ const getFoodMicro = async (req, res, next) => {
       limit: 15
     });
 
-    const indMeals = await Meal.findAll({
+    const indMeals = await Meal.scope('withRecords').findAll({
       where: {
         [Op.or]: meals.map((meal) => ({
           id: meal.id
         }))
       },
-      include: [{
-        model: FoodRecord,
-        include: [Abbrev]
-      }]
     });
 
     res.json(indMeals);

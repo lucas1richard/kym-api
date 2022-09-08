@@ -16,7 +16,7 @@ function AppError(commonType, description, isOperational) {
 }
 
 AppError.getMessage = function getMessage(err) {
-  const message = err.details ? err.details[0] : err.message;
+  const message = err.details || err.message;
   return message;
 };
 

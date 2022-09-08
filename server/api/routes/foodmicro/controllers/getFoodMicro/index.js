@@ -2,7 +2,7 @@ const { connectDatabase } = require('@kym/db');
 const { handleRouteError } = include('utils/handleRouteError');
 const { idSchema } = require('./validation');
 
-const { Abbrev, Weight, AbbrevMicro, FoodDesc } = connectDatabase();
+const { Abbrev } = connectDatabase();
 
 const getFoodMicro = async (req, res, next) => {
   try {
@@ -10,13 +10,9 @@ const getFoodMicro = async (req, res, next) => {
     await idSchema.validate(req.params.id);
 
     // Get the record with everything associated
-    const food = await Abbrev.findById(req.params.id, {
-      include: [
-        Weight,
-        AbbrevMicro,
-        FoodDesc,
-      ]
-    });
+    const food = await Abbrev
+      .scope('withAll') // includes Weight, AbbrevMicro, FoodDesc
+      .findByPk(req.params.id);
 
     res.json(food);
   } catch (err) {

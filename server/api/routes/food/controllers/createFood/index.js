@@ -44,7 +44,8 @@ const createFood = async (req, res, next) => {
     await newAbbrev.setAbbrevMicro(abbrevMicro, { transaction });
 
     await transaction.commit();
-    res.sendStatus(201);
+
+    res.status(201).json({ abbrevId: newAbbrev.id });
   } catch (err) {
     if (transaction) await transaction.rollback();
     handleRouteError(err, 'Couldn\'t create the food');

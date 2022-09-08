@@ -4,7 +4,7 @@ const { bodySchema } = require('./validation');
 
 const updateUser = async (body, uuid) => {
   await bodySchema.validate(body, { allowUnknown: true });
-  const user = await User.findByOk(uuid);
+  const user = await User.findByPk(uuid);
 
   const bodyCopy = { ...body };
 
@@ -12,8 +12,8 @@ const updateUser = async (body, uuid) => {
   delete bodyCopy.createdAt;
   delete bodyCopy.updatedAt;
 
-  Object.keys(bodyCopy).forEach((key) => {
-    user[key] = bodyCopy[key];
+  Object.entries(bodyCopy).forEach(([key, val]) => {
+    user[key] = val;
   });
 
   const savedUser = await user.save();

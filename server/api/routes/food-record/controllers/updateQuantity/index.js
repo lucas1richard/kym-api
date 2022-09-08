@@ -1,24 +1,25 @@
 const { connectDatabase } = require('@kym/db');
-const { FoodRecord } = connectDatabase();
+const { USER } = require('@kym/db/dist/foreignKeys');
 const { handleRouteError } = include('utils/handleRouteError');
 const { bodySchema } = require('./validation');
+
+const { FoodRecord } = connectDatabase();
 
 const updateQuantity = async (req, res, next) => {
   try {
     // Validate
     await bodySchema.validate(req.body);
 
-    const { id, seq, quantity } = req.body;
+    const {
+      id, // foodRecord id
+      seq, // the weight unit (`unit`)
+      quantity // the number of `unit`
+    } = req.body;
 
-    // Find the record and update the quantity
-    const record = await FoodRecord.findById(id);
-    await record.updateQuantity({
-      seq,
-      quantity
-    });
+    await FoodRecord.update({ seq, quantity }, { where: { id, [USER]: res.locals.uuid } });
 
     // Find the record again and send back with macros
-    const rawNewRecord = await FoodRecord.findById(id);
+    const rawNewRecord = await FoodRecord.scope('withMacros').findByPk(id);
 
     const newRecord = await rawNewRecord.calMacros();
 

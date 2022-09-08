@@ -4,15 +4,20 @@ const moment = require('moment');
 const { bodySchema } = require('./validation');
 
 const createMeasurements = async (body, uuid) => {
-  await bodySchema.validate(body, {
-    allowUnknown: true
+  const { error } =  bodySchema.validate(body, {
+    // allowUnknown: true,
+    abortEarly: false,
   });
+
+  if (error) throw error;
+
+  const { date = moment().format('YYYY-MM-DD') } = body;
 
   /** Existing record */
   let currentDayMeas;
   if (body.createdAt) {
-    const startDate = new Date(new Date(body.date).setHours(0, 0, 0, 0));
-    const endDate = new Date(moment(body.date).add(1, 'day'));
+    const startDate = new Date(new Date(date).setHours(0, 0, 0, 0));
+    const endDate = new Date(moment(date).add(1, 'day'));
 
     currentDayMeas = await UserMeasurement.find({
       where: {
@@ -31,11 +36,12 @@ const createMeasurements = async (body, uuid) => {
   if (currentDayMeas) {
     Object.keys(body).forEach((key) => {
       currentDayMeas[key] = body[key];
+      currentDayMeas[date] = date;
     });
 
     await currentDayMeas.save();
   } else {
-    await UserMeasurement.create(Object.assign(body, { [foreignKeys.USER]: uuid }));
+    await UserMeasurement.create(Object.assign(body, { date, [foreignKeys.USER]: uuid }));
   }
 
   const allMeasurements = await UserMeasurement.findAllByUserId({ uuid });

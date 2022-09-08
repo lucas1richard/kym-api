@@ -7,7 +7,10 @@ const createProgram = async (req, res, next) => {
   try {
     await bodySchema.validate(req.body);
 
-    const programObj = Program.makeProgramObject(req.body);
+    const programObj = Program.makeProgramObject({
+      ...req.body,
+      uuid: res.locals.uuid,
+    });
     const program = await Program.create(programObj);
 
     res.json(program);

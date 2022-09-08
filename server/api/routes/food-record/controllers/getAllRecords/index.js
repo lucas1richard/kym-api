@@ -4,11 +4,8 @@ const { handleRouteError } = include('utils/handleRouteError');
 
 const getFoodRecordsByDate = async (req, res, next) => {
   try {
-    const rawRecords = await FoodRecord.findAll();
-
-    const records = await Promise.all(rawRecords.map(function makeWithMacros(record) {
-      return record.calMacros();
-    }));
+    const rawRecords = await FoodRecord.scope('withMacros').findAll();
+    const records = await Promise.all(rawRecords.map((record) => record.calMacros()));
     
     res.json(records);
   } catch (err) {

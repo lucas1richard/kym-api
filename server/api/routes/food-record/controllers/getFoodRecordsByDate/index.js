@@ -13,15 +13,13 @@ const getFoodRecordsByDate = async (req, res, next) => {
     await dateSchema.validate(req.params.date);
     await userIdSchema.validate(res.locals.uuid);
 
-    const rawRecords = await FoodRecord.findByDate({
+    const rawRecords = await FoodRecord.scope('withMacros').findByDate({
       date: req.params.date,
       uuid: res.locals.uuid,
       Meal,
     });
 
-    const records = await Promise.all(rawRecords.map((record) => {
-      return record.calMacros();
-    }));
+    const records = await Promise.all(rawRecords.map((record) => record.calMacros()));
     
     res.json(records);
   } catch (err) {

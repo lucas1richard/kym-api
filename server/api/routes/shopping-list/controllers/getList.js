@@ -1,8 +1,5 @@
 const { connectDatabase, foreignKeys } = require('@kym/db');
-const {
-  FoodRecord,
-  sequelize
-} = connectDatabase();
+const { FoodRecord, sequelize } = connectDatabase();
 
 const { Op } = sequelize;
 
@@ -14,19 +11,17 @@ const getList = async (req, res, next) => {
     const currentDate = new Date(date);
     const laterDate = new Date(currentDate.getTime() + (86400000 * 6));
 
-    const rawRecords = await FoodRecord.findAll({
+    const rawRecords = await FoodRecord.scope('withMacros').findAll({
       where: {
-        Date: {
+        date: {
           [Op.gte]: currentDate,
           [Op.lte]: laterDate
         },
-        [foreignKeys.USER]:uuid
-      }
+        [foreignKeys.USER]: uuid
+      },
     });
 
-    const records = await Promise.all(rawRecords.map((record) => {
-      return record.calMacros();
-    }));
+    const records = await Promise.all(rawRecords.map((record) => record.calMacros()));
 
     res.json(records);
   } catch (err) {

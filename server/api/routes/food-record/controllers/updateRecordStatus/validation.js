@@ -6,7 +6,7 @@ const idsSchema = Joi.array().items(
 
 const bodySchema = Joi.object().keys({
   ids: idsSchema,
-  status: Joi.bool().required()
+  confirmed: Joi.bool().required()
 });
 
 module.exports = {

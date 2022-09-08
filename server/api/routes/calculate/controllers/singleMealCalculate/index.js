@@ -1,7 +1,6 @@
 const { connectDatabase } = require('@kym/db');
 const { Abbrev } = connectDatabase();
 const { querySchema } = require('./validation');
-const ValidationError = include('configure/ValidationError');
 
 const singleMealCalculate = async (query) => {
   const { error } = querySchema.validate(query, { abortEarly: false });

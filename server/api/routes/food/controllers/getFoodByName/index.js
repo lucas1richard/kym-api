@@ -1,15 +1,9 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const { connectDatabase } = require('@kym/db');
 const {
-  Abbrev,
-  FoodDesc,
-  Weight,
-  sequelize
+  Abbrev, FoodDesc, Weight, sequelize,
 } = connectDatabase();
-const {
-  foodnameSchema,
-  offsetSchema
-} = require('./validation');
+const { foodnameSchema, offsetSchema } = require('./validation');
 const Query = require('./helpers/Query');
 const redisCounter = require('./redis/counter');
 
@@ -44,7 +38,7 @@ const getFoodByName = async (req, res, next) => {
       include: [FoodDesc, Weight]
     });
 
-    res.json({
+    return res.json({
       // rows: rowsToSend,
       ...rowsToSend,
       query: req.params.foodname,

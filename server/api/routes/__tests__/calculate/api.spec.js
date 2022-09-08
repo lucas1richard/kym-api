@@ -1,8 +1,10 @@
 const { connectDatabase } = require('@kym/db');
-const { Abbrev, destroyAll } = connectDatabase();
+const { expect } = require('chai');
+const supertest = require('supertest');
+
 const abbrevs = include('test-data/abbrev.json');
 const app = include('app');
-const supertest = require('supertest');
+const { Abbrev, destroyAll } = connectDatabase();
 
 const agent = supertest.agent(app);
 

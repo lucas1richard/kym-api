@@ -1,5 +1,4 @@
 const { handleRouteError } = include('utils/handleRouteError');
-const AppError = include('configure/appError');
 const { connectDatabase, foreignKeys } = require('@kym/db');
 const { UserMeasurement } = connectDatabase();
 const { bodySchema } = require('./validation');
@@ -11,23 +10,14 @@ const deleteMeasurements = async (req, res, next) => {
     const { id } = req.body;
     const { uuid } = res.locals;
 
-    const measurement = await UserMeasurement.findOne({
+    await UserMeasurement.destroy({
       where: {
         id,
-        [foreignKeys.USER]: uuid
+        [foreignKeys.USER]: uuid,
       }
     });
 
-    if (measurement) {
-      await measurement.destroy();
-    } else {
-      throw new AppError(404, {
-        devmessage: `The record with id '${id}' could not be located`,
-        usermessage: 'The record could not be located',
-      }, true);
-    }
-
-    res.sendStatus(204);
+    res.status(200).send('SUCCESS');
   } catch (err) {
     handleRouteError(err, 'Couldn\'t delete measurements');
     next(err);

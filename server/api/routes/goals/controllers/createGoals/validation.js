@@ -7,7 +7,7 @@ const mealSchema = Joi.object().keys({
   fat: Joi.number().required()
 });
 
-const typeSchema = Joi.array().items(mealSchema).required();
+const typeSchema = Joi.array().length(6).items(mealSchema).required();
 
 const bodySchema = Joi.object().keys({
   TRAIN: typeSchema,
