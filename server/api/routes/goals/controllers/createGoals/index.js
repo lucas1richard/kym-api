@@ -8,10 +8,9 @@ const {
 
 const createGoals = async (req, res, next) => {
   try {
-    // Validate
     await bodySchema.validate(req.body);
 
-    await MealGoals.findOrCreate({
+    await MealGoals.create({
       goals: req.body,
       [foreignKeys.USER]: res.locals.uuid
     });
@@ -19,7 +18,7 @@ const createGoals = async (req, res, next) => {
     const user = await User.scope(
       'withMeasurements',
       'withMealGoals',
-      'withProgram'
+      'withPrograms'
     ).findByPk(res.locals.uuid);
 
     res.json(user);

@@ -1,11 +1,9 @@
-const { connectDatabase } = require('@kym/db');
+const { connectDatabase, Op } = require('@kym/db');
 const makeFoodQuery = require('./queries/food');
 const makePercentQuery = require('./queries/percent');
 const { bodySchema } = require('./validation');
 
 const { Abbrev, sequelize } = connectDatabase();
-
-const { Op } = sequelize;
 
 const searchDetail = async (req, res, next) => {
   try {

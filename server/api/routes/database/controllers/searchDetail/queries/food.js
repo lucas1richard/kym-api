@@ -1,7 +1,4 @@
-const { connectDatabase } = require('@kym/db');
-const { sequelize } = connectDatabase();
-
-const { Op } = sequelize;
+const { Op } = require('@kym/db');
 
 function makeFoodQuery(food) {
   if (!Array.isArray(food)) {

@@ -108,7 +108,7 @@
     ]
   },
   "dependencies": {
-    "@kym/db": "file:kym-db-0.0.0.tgz",
+    "@kym/db": "file:../kym-db-api",
     "axios": "^0.18.0",
     "babel-plugin-transform-es2015-arrow-functions": "^6",
     "babel-polyfill": "6.26.0",

@@ -10,7 +10,7 @@ const getUserFromToken = async (req, res, next) => {
       res.locals.jwtSecret
     );
 
-    const user = await User.findById(token.uuid);
+    const user = await User.findByPk(token.uuid);
 
     const sanitizedUser = await User.sanitize(user);
 

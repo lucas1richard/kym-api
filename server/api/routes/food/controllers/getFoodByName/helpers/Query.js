@@ -1,6 +1,4 @@
-const { connectDatabase } = require('@kym/db');
-const { sequelize } = connectDatabase();
-const { Op } = sequelize;
+const { Op } = require('@kym/db');
 
 class Query {
   constructor(rawName) {

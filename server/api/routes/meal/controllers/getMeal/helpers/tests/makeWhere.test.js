@@ -1,10 +1,7 @@
-const { connectDatabase } = require('@kym/db');
-const { sequelize } = connectDatabase();
+const { Op } = require('@kym/db');
 const { expect } = require('chai');
 const users = include('test-data/users.json');
 const makeWhere = require('../makeWhere');
-
-const { Op } = sequelize;
 
 describe('meal/controllers/getMeal/helpers/makeWhere', () => {
   let postWorkout;

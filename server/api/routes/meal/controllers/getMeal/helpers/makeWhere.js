@@ -1,7 +1,4 @@
-const { connectDatabase, foreignKeys } = require('@kym/db');
-const { sequelize } = connectDatabase();
-
-const { Op } = sequelize;
+const { Op, foreignKeys } = require('@kym/db');
 
 /**
  * Build where query object

@@ -1,9 +1,6 @@
-const { connectDatabase } = require('@kym/db');
-const { sequelize } = connectDatabase();
+const { Op } = require('@kym/db');
 const { expect } = require('chai');
 const foodQuery = require('../food');
-
-const { Op } = sequelize;
 
 describe('foodQuery', () => {
   it('handles when there\'s no food', () => {

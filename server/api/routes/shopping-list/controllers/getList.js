@@ -1,7 +1,5 @@
-const { connectDatabase, foreignKeys } = require('@kym/db');
-const { FoodRecord, sequelize } = connectDatabase();
-
-const { Op } = sequelize;
+const { connectDatabase, Op, foreignKeys } = require('@kym/db');
+const { FoodRecord } = connectDatabase();
 
 const getList = async (req, res, next) => {
   try {

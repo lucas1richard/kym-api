@@ -1,9 +1,6 @@
-const { connectDatabase } = require('@kym/db');
-const { sequelize } = connectDatabase();
+const { Op } = require('@kym/db');
 const { expect } = require('chai');
 const makeInclWhere = require('../makeInclWhere');
-
-const { Op } = sequelize;
 
 describe('meal/controllers/getMeal/helpers/makeInclWhere', () => {
   it('should return {} when theres no argument', () => {

@@ -1,4 +1,4 @@
-const { connectDatabase } = require('@kym/db');
+const { connectDatabase, Sequelize } = require('@kym/db');
 const { USER } = require('@kym/db/dist/foreignKeys');
 const { bodySchema } = require('./validation');
 
@@ -13,11 +13,18 @@ const deleteFoodRecord = async (body, uuid) => {
 
   const { ids } = body;
 
-  const records = await FoodRecord.findAll({ where: { id: ids, [USER]: uuid } });
-  const mealIds = records.map((record) => record.meal_id);
+  const records = await FoodRecord.findAll({
+    attributes: [
+      [Sequelize.fn('DISTINCT', Sequelize.col('meal_id')) ,'meal_id'],
+    ],
+    where: { id: ids, [USER]: uuid }
+  });
+  const mealIds = records.map((record) => record.meal_id).filter(Boolean);
 
   await FoodRecord.destroy({ where: { id: ids }});
-  await Meal.update({ public: false }, { where: { id: mealIds } });
+  if (mealIds.length > 0) { // support legacy data
+    await Meal.update({ public: false }, { where: { id: mealIds } });
+  }
 
   return ids;
 };

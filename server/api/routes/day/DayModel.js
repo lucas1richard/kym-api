@@ -2,12 +2,10 @@ const { connectDatabase, foreignKeys } = require('@kym/db');
 const { USER } = foreignKeys;
 const {
   Day,
-  sequelize
+  Op,
 } = connectDatabase();
 const assert = require('assert');
 const moment = require('moment');
-
-const { Op } = sequelize;
 
 const noUserId = 'No uuid provided';
 

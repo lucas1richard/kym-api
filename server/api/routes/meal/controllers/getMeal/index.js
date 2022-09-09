@@ -1,4 +1,4 @@
-const { connectDatabase } = require('@kym/db');
+const { connectDatabase, Op } = require('@kym/db');
 const makeWhere = require('./helpers/makeWhere');
 const makeInclWhere = require('./helpers/makeInclWhere');
 
@@ -6,10 +6,7 @@ const {
   Meal,
   FoodRecord,
   Abbrev,
-  sequelize
 }  = connectDatabase();
-
-const { Op } = sequelize;
 
 const getFoodMicro = async (req, res, next) => {
   try {

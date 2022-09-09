@@ -1,10 +1,8 @@
-const { connectDatabase, foreignKeys } = require('@kym/db');
+const { connectDatabase, foreignKeys, Op } = require('@kym/db');
 const assert = require('assert');
 
 const { USER } = foreignKeys;
-const { Day, sequelize } = connectDatabase();
-
-const { Op } = sequelize;
+const { Day } = connectDatabase();
 
 const destroyDays = async (uuid, date) => {
   assert(uuid, 'No uuid provided');
