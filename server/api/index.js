@@ -10,8 +10,10 @@ const router = require('express').Router();
 const nodepath = require('path');
 const jwt = require('jwt-simple');
 const chalk = require('chalk');
-const { User } = require('../db');
+const { connectDatabase } = require('@kym/db');
 const redisClient = require('../configure/redis-client');
+
+const { User } = connectDatabase();
 
 // Routers
 const calculateRouter = require('./routes/calculate');
@@ -130,7 +132,7 @@ async function checkSecureRoute(token) {
 
   const user_id = decoded.id || decoded.token;
   const { uuid } = decoded;
-  const user = await User.findById(uuid);
+  const user = await User.findByPk(uuid);
 
   if (!user) {
     throw Error('NO_ACCOUNT_LOGGED_IN');

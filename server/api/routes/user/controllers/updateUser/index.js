@@ -1,6 +1,7 @@
 const { connectDatabase } = require('@kym/db');
-const { User } = connectDatabase();
 const { bodySchema } = require('./validation');
+
+const { User } = connectDatabase();
 
 const updateUser = async (body, uuid) => {
   await bodySchema.validate(body, { allowUnknown: true });

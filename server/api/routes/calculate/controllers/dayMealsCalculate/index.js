@@ -1,7 +1,7 @@
 const { connectDatabase } = require('@kym/db');
 const { Abbrev, MealGoals } = connectDatabase();
 
-const uuidv1 = require('uuid/v1');
+const { v1: uuidv1 } = require('uuid');
 const { bodySchema } = require('./validation');
 
 const dayMealsCalculation = async (body, uuid) => {
