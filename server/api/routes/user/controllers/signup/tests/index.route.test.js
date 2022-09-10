@@ -38,7 +38,6 @@ describe('user/controllers/signup', () => {
       .post('/api/user/signup')
       .send(body)
       .expect((res) => {
-        console.log(res.headers);
         assert(!!res.headers.token, 'There should be a token in the headers');
       })
       .expect(201, done);

@@ -60,7 +60,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   }
   if (err.isJoi) {
     const { toSend: { devmessage } } = err;
-    if (process.env.NODE_ENV !== 'production') console.log(devmessage);
+    if (process.env.NODE_ENV !== 'production') logger.debug(JSON.stringify(devmessage));
 
     // joi can send an object if only a single validation error, array if multiple validation errors
     // just set all joi errors to be arrays so we don't have to worry about it

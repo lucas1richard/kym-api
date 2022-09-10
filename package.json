@@ -17,6 +17,7 @@
     "db:sync:force": "FORCE_DB_SYNC=true node ./server/db/sync",
     "db:seed": "node ./server/db/seed",
     "start:dev": "NODE_ENV=development nodemon server",
+    "start:test": "NODE_ENV=test nodemon server",
     "start": "npm run start:prod",
     "start:prod": "NODE_ENV=production node server",
     "lint": "eslint ./server",
@@ -72,6 +73,7 @@
     "winston": "^3.0.0"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
     "enzyme": "3.3.0",
     "enzyme-to-json": "3.3.4",
     "eslint": "^8.23.0",

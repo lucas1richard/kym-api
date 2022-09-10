@@ -1,11 +1,11 @@
 const { connectDatabase } = require('@kym/db');
 const { expect } = require('chai');
-const singleMealCalculation = require('../');
+const singleMealCalculationV1 = require('../');
 const { errorMessages } = require('../validation');
 
 const { Abbrev, destroyAll } = connectDatabase();
 
-describe('singleMealCalculate', () => {
+describe('singleMealCalculateV1', () => {
   before(async () => {
     await Abbrev.bulkCreate(testData.abbrevs);
   });
@@ -14,7 +14,7 @@ describe('singleMealCalculate', () => {
   });
 
   it('is okay', async () => {
-    const { result, error } = await singleMealCalculation({
+    const { result, error } = await singleMealCalculationV1({
       proteinGoal: 20,
       carbGoal: 30,
       fatGoal: 10,
@@ -26,7 +26,7 @@ describe('singleMealCalculate', () => {
   });
   it('throw if query validation fails', async () => {
     try {
-      await singleMealCalculation({
+      await singleMealCalculationV1({
         // proteinGoal: 20,
         // carbGoal: 30,
         fatGoal: 10,

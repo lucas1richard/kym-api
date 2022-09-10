@@ -2,11 +2,11 @@ const { connectDatabase } = require('@kym/db');
 const { expect } = require('chai');
 const users = include('test-data/users.json');
 const mealGoals = include('test-data/meal-goals.json');
-const dayMealsCalculation = require('../');
+const dayMealsCalculationV1 = require('../');
 
 const { User, MealGoals, destroyAll } = connectDatabase();
 
-describe('dayMealsCalculate', () => {
+describe('dayMealsCalculateV1', () => {
   before(async () => {
     await User.bulkCreate(users);
     await MealGoals.bulkCreate(mealGoals);
@@ -16,7 +16,7 @@ describe('dayMealsCalculate', () => {
   });
 
   it('is okay', async () => {
-    const meal = await dayMealsCalculation({ type: 'TRAIN' }, users[0].uuid);
+    const meal = await dayMealsCalculationV1({ type: 'TRAIN' }, users[0].uuid);
     // eslint-disable-next-line no-unused-expressions
     expect(meal).to.be.ok;
   });

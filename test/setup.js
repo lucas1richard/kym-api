@@ -12,7 +12,6 @@ global.include = (file) => require(global.abs_path(`/${file}`));
 const logger = include('utils/logger');
 logger.verbose('mocha setup complete');
 
-
 const users = require('../test-data/users.json');
 const userMeasurements = require('../test-data/user-measurements.json');
 const abbrevs = require('../test-data/abbrev.json');
@@ -33,5 +32,8 @@ global.testData = {
   mealGoals,
   weights,
   filteredMealsObject,
+  tokens: {
+    user0: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJ1dWlkIjoiNjBmMjQyNjUtZWY0NS00ODkxLWI0ZWYtZThmYWQ0NDM1MzA4In0.ZiPnFVy1lBRzmrGEUX0d0KVoa9kZ9dsGsnENOfozzoA',
+    user1: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJ1dWlkIjoiMmE0MTNlZmYtNmVhYi00NGY0LWFhZmEtNDg1ZTgxNGIwMjViIn0.ji7ATKYy-HhRyzGPfsK7y5BnhrB7_SwOZQTHscLdPDk',
+  },
 };
-

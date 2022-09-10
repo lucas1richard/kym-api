@@ -1,13 +1,14 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const router = require('express').Router();
-const singleMealCalculate = require('./controllers/singleMealCalculate');
-const dayMealsCalculate = require('./controllers/dayMealsCalculate');
+const singleMealCalculateV1 = require('./controllers/singleMealCalculateV1');
+const dayMealsCalculateV1 = require('./controllers/dayMealsCalculateV1');
+const { bodySchema } = require('./controllers/dayMealsCalculateV1/validation');
 
 module.exports = router;
 
-router.get('/', async function getCalculate(req, res, next) {
+router.get('/v1', async function getCalculate(req, res, next) {
   try {
-    const result = await singleMealCalculate(req.query);
+    const result = await singleMealCalculateV1(req.query);
     res.json(result);
   } catch (err) {
     handleRouteError(err, err.message);
@@ -15,9 +16,10 @@ router.get('/', async function getCalculate(req, res, next) {
   }
 });
 
-router.post('/day', async function postCalculateDay(req, res, next) {
+router.post('/day/v1', async function postCalculateDay(req, res, next) {
   try {
-    const meals = await dayMealsCalculate(req.body, res.locals.uuid);
+    await bodySchema.validate(req.body, { allowUnknown: true, abortEarly: false });
+    const meals = await dayMealsCalculateV1(req.body, res.locals.uuid);
     res.json(meals);
   } catch (err) {
     handleRouteError(err, err.message);

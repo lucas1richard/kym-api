@@ -90,15 +90,6 @@ describe('calculate/controllers/singleMealCalculate/validation', () => {
         }
       });
     });
-    it('should give a helpful error message', (done) => {
-      idIndSchema.validate('something absurd', (err) => {
-        if (err && err.message === errorMessages.INVALID_GOAL_ID) {
-          done();
-        } else {
-          done(new Error('Test should fail'));
-        }
-      });
-    });
   });
   describe('querySchema', () => {
     it('should require an object', (done) => {

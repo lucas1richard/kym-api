@@ -2,7 +2,7 @@ const { connectDatabase } = require('@kym/db');
 const { Abbrev } = connectDatabase();
 const { querySchema } = require('./validation');
 
-const singleMealCalculate = async (query) => {
+const singleMealCalculateV1 = async (query) => {
   const { error } = querySchema.validate(query, { abortEarly: false });
   if (error) throw error;
 
@@ -24,4 +24,4 @@ const singleMealCalculate = async (query) => {
   return output;
 };
 
-module.exports = singleMealCalculate;
+module.exports = singleMealCalculateV1;

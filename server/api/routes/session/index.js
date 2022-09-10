@@ -8,13 +8,13 @@ module.exports = router;
 router.post('/', async function postSession(req, res, next) {
   try {
     const {
-      username,
+      email,
       password,
     } = req.body;
 
     try {
       const token = await signIn(
-        username,
+        email,
         password,
       );
 

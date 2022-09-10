@@ -58,12 +58,8 @@ router.use(async function authMiddleware(req, res, next) {
     }
 
     const { token } = req.headers;
-    if (process.env.NODE_ENV !== 'test') {
-      const { user_id: userId, uuid } = await checkSecureRoute(token);
-      Object.assign(res.locals, { user_id: userId, uuid });
-    } else {
-      Object.assign(res.locals, { user_id: req.headers.user_id || 1 });
-    }
+    const { user_id: userId, uuid } = await checkSecureRoute(token);
+    Object.assign(res.locals, { user_id: userId, uuid });
     next();
   } catch (err) {
     logger.error(chalk.yellow(err.message));
