@@ -14,7 +14,7 @@ const deleteMeasurements = async (req, res, next) => {
       where: {
         id,
         [foreignKeys.USER]: uuid,
-      }
+      },
     });
 
     res.status(200).send('SUCCESS');

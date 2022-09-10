@@ -5,5 +5,5 @@ const offsetSchema = Joi.number().optional();
 
 module.exports = {
   foodnameSchema,
-  offsetSchema
+  offsetSchema,
 };

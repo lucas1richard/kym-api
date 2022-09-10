@@ -6,7 +6,6 @@ const bayes = require('../../../../../NaiveBayes');
 const readFileAsync = promisify(fs.readFile);
 
 async function train(uuid, foodName) {
-
   let model;
 
   try {
@@ -16,15 +15,14 @@ async function train(uuid, foodName) {
     const data = model.categorize(foodName);
     return {
       status: 'success',
-      guess: data
+      guess: data,
     };
   } catch (err) {
     return {
       status: 'fail',
-      error: err
+      error: err,
     };
   }
-
 }
 
 module.exports = train;

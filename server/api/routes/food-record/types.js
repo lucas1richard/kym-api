@@ -1,6 +1,6 @@
 /**
  * @apiDefine foodrecordType
- * 
+ *
  * {
  *   id: 1538,
  *   Date: '2017-11-17T05:00:00.000Z',

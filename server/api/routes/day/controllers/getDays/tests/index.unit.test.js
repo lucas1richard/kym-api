@@ -5,9 +5,9 @@ const { getDays, daysReduce } = require('../');
 const { expect } = require('chai');
 
 describe('routes/day/getDays', () => {
-  let user_id;
+  let userId;
   beforeEach(() => {
-    user_id = users[0].uuid;
+    userId = users[0].uuid;
   });
   before(async () => {
     await User.bulkCreate(users);
@@ -24,7 +24,7 @@ describe('routes/day/getDays', () => {
     }
   });
   it('returns an object', async () => {
-    const day = await getDays(user_id);
+    const day = await getDays(userId);
     expect(day).eql({});
   });
 
@@ -33,9 +33,8 @@ describe('routes/day/getDays', () => {
       const memo = {};
       const day = { date: '2018-08-01', dayType: 'train' };
       expect(daysReduce(memo, day)).eql({
-        '2018-08-01': 'train'
+        '2018-08-01': 'train',
       });
     });
   });
 });
-

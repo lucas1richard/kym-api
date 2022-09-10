@@ -7,9 +7,9 @@ swaggerPaths.addPath('/programs', {
     tags: ['programs'],
     responses: {
       200: {
-        $ref: '#/definitions/Program'
-      }
-    }
+        $ref: '#/definitions/Program',
+      },
+    },
   },
   post: {
     description: 'Create a program',
@@ -24,21 +24,21 @@ swaggerPaths.addPath('/programs', {
         properties: {
           weight: {
             type: 'string',
-            example: '181.2'
+            example: '181.2',
           },
           units: {
             type: 'string',
-            example: 'imperial'
-          }
-        }
-      }
+            example: 'imperial',
+          },
+        },
+      },
     }],
     responses: {
       200: {
-        $ref: '#/definitions/Program'
-      }
-    }
-  }
+        $ref: '#/definitions/Program',
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });

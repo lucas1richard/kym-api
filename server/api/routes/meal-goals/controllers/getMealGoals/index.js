@@ -11,7 +11,7 @@ const getMealGoals = async (uuid) => {
   });
   if (!mealGoals) {
     throw new AppError(404, {
-      usermessage: 'Couldn\'t get your meal goals'
+      usermessage: 'Couldn\'t get your meal goals',
     }, true);
   }
   return mealGoals;

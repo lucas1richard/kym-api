@@ -7,7 +7,7 @@ module.exports = router;
 
 router.get('/', async function getCalculate(req, res, next) {
   try {
-    const { result, error } = await singleMealCalculate(req.query);
+    const result = await singleMealCalculate(req.query);
     res.json(result);
   } catch (err) {
     handleRouteError(err, err.message);

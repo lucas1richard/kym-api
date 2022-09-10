@@ -11,13 +11,13 @@ describe('routes/food/autocomplete', () => {
   let next;
   beforeEach(() => {
     res = {
-      json: sinon.spy()
+      json: sinon.spy(),
     };
     next = sinon.spy();
     req = {
       params: {
-        foodname: 'chicken'
-      }
+        foodname: 'chicken',
+      },
     };
   });
   before(async () => {
@@ -35,4 +35,3 @@ describe('routes/food/autocomplete', () => {
     expect(res.json.called).equal(true);
   });
 });
-

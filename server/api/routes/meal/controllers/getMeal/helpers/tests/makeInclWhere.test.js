@@ -10,28 +10,28 @@ describe('meal/controllers/getMeal/helpers/makeInclWhere', () => {
     expect(makeInclWhere('test')).to.eql({
       [Op.and]: [{
         [Op.or]: [{
-          main: { $iLike: '%test%' }
+          main: { $iLike: '%test%' },
         }, {
-          sub: { $iLike: '%test%' }
-        }]
-      }]
+          sub: { $iLike: '%test%' },
+        }],
+      }],
     });
   });
   it('should return something else when there is a longer argument', () => {
     expect(makeInclWhere('test hello')).to.eql({
       [Op.and]: [{
         [Op.or]: [{
-          main: { $iLike: '%test%' }
+          main: { $iLike: '%test%' },
         }, {
-          sub: { $iLike: '%test%' }
-        }]
+          sub: { $iLike: '%test%' },
+        }],
       }, {
         [Op.or]: [{
-          main: { $iLike: '%hello%' }
+          main: { $iLike: '%hello%' },
         }, {
-          sub: { $iLike: '%hello%' }
-        }]
-      }]
+          sub: { $iLike: '%hello%' },
+        }],
+      }],
     });
   });
 });

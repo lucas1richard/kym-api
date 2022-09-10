@@ -3,7 +3,7 @@ const { handleRouteError } = include('utils/handleRouteError');
 const { bodySchema } = require('./validation');
 
 const {
-  MealGoals, User
+  MealGoals, User,
 } = connectDatabase();
 
 const createGoals = async (req, res, next) => {
@@ -12,13 +12,13 @@ const createGoals = async (req, res, next) => {
 
     await MealGoals.create({
       goals: req.body,
-      [foreignKeys.USER]: res.locals.uuid
+      [foreignKeys.USER]: res.locals.uuid,
     });
 
     const user = await User.scope(
       'withMeasurements',
       'withMealGoals',
-      'withPrograms'
+      'withPrograms',
     ).findByPk(res.locals.uuid);
 
     res.json(user);

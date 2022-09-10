@@ -10,7 +10,7 @@ function cleanBody(body, uuid) {
     fat,
     servingDescription,
     servingWeight,
-    servingSize
+    servingSize,
   } = body;
 
   return {
@@ -23,7 +23,7 @@ function cleanBody(body, uuid) {
     gmwt_1: servingWeight,
     gmwt_desc1: `${servingSize} ${servingDescription}`,
     [foreignKeys.USER]: uuid,
-    photo: null
+    photo: null,
   };
 }
 

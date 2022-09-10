@@ -14,7 +14,7 @@ swaggerPaths.addPath('/database/foodgroup', {
       items: {
         type: 'string',
       },
-      example: ['Avocado', 'Florida']
+      example: ['Avocado', 'Florida'],
     }],
     responses: {
       200: {
@@ -24,20 +24,20 @@ swaggerPaths.addPath('/database/foodgroup', {
           properties: {
             group: {
               type: 'integer',
-              example: 900
+              example: 900,
             },
             name: {
               type: 'string',
-              example: 'Fruits and Fruit Juices'
-            }
-          }
-        }
+              example: 'Fruits and Fruit Juices',
+            },
+          },
+        },
       },
       404: {
-        description: swaggerPaths.httpStatus(404, 'No groups fit the description')
-      }
-    }
-  }
+        description: swaggerPaths.httpStatus(404, 'No groups fit the description'),
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });

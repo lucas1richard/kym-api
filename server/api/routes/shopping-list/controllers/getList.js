@@ -13,9 +13,9 @@ const getList = async (req, res, next) => {
       where: {
         date: {
           [Op.gte]: currentDate,
-          [Op.lte]: laterDate
+          [Op.lte]: laterDate,
         },
-        [foreignKeys.USER]: uuid
+        [foreignKeys.USER]: uuid,
       },
     });
 

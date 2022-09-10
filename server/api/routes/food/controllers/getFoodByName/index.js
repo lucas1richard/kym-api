@@ -7,7 +7,6 @@ const { foodnameSchema, offsetSchema } = require('./validation');
 const Query = require('./helpers/Query');
 const redisCounter = require('./redis/counter');
 
-
 const getFoodByName = async (req, res, next) => {
   try {
     await foodnameSchema.validate(req.params.foodname);
@@ -24,7 +23,8 @@ const getFoodByName = async (req, res, next) => {
       offset: offset * 50,
       distinct: true,
       where: query.makeWhere(),
-      order: query.hasName ? sequelize.literal(`
+      order: query.hasName
+        ? sequelize.literal(`
         case
           when ("abbrev"."main" ILIKE '${query.firstword}') then 'aaaa'
           when ("abbrev"."main" ILIKE '${query.firstword} %') then 'aaaaa'
@@ -32,17 +32,17 @@ const getFoodByName = async (req, res, next) => {
           else "abbrev"."main"
         end`)
         : [
-          ['main', 'desc'],
-          ['sub', 'desc']
-        ],
-      include: [FoodDesc, Weight]
+            ['main', 'desc'],
+            ['sub', 'desc'],
+          ],
+      include: [FoodDesc, Weight],
     });
 
     return res.json({
       // rows: rowsToSend,
       ...rowsToSend,
       query: req.params.foodname,
-      offset: offset || 0
+      offset: offset || 0,
     });
   } catch (err) {
     handleRouteError(err, 'Couldn\'t get the foods');

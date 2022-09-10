@@ -6,7 +6,7 @@ const {
   Meal,
   FoodRecord,
   Abbrev,
-}  = connectDatabase();
+} = connectDatabase();
 
 const getFoodMicro = async (req, res, next) => {
   try {
@@ -16,7 +16,7 @@ const getFoodMicro = async (req, res, next) => {
       req.body.meals,
       postWorkout,
       keyword,
-      res.locals.uuid
+      res.locals.uuid,
     );
 
     const inclWhere = makeInclWhere(keyword);
@@ -27,18 +27,18 @@ const getFoodMicro = async (req, res, next) => {
         model: FoodRecord,
         include: [{
           model: Abbrev,
-          where: inclWhere
-        }]
+          where: inclWhere,
+        }],
       }],
       order: [['id', 'DESC']],
-      limit: 15
+      limit: 15,
     });
 
     const indMeals = await Meal.scope('withRecords').findAll({
       where: {
         [Op.or]: meals.map((meal) => ({
-          id: meal.id
-        }))
+          id: meal.id,
+        })),
       },
     });
 
@@ -49,4 +49,3 @@ const getFoodMicro = async (req, res, next) => {
 };
 
 module.exports = getFoodMicro;
-

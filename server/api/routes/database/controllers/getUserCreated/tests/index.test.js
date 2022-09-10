@@ -13,7 +13,7 @@ describe('routes/database/getUserCreated', () => {
     next = sinon.spy();
     res = {
       locals: { user_id: 1 },
-      json: sinon.spy()
+      json: sinon.spy(),
     };
   });
   before(async () => {
@@ -34,4 +34,3 @@ describe('routes/database/getUserCreated', () => {
     expect(res.json.called).equal(true);
   });
 });
-

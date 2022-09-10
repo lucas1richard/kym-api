@@ -6,12 +6,12 @@ const recordSchema = Joi.object().keys({
   meal: Joi.number().required(),
   quantity: Joi.number().required(),
   unit: Joi.number().required(),
-  confirmed: Joi.bool().optional()
+  confirmed: Joi.bool().optional(),
 });
 
 const bodySchema = Joi.array().items(recordSchema);
 
 module.exports = {
   recordSchema,
-  bodySchema
+  bodySchema,
 };

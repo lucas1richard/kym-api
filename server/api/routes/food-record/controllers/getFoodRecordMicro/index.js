@@ -2,7 +2,7 @@ const { connectDatabase } = require('@kym/db');
 const { handleRouteError } = include('utils/handleRouteError');
 const {
   dateSchema,
-  userIdSchema
+  userIdSchema,
 } = require('./validation');
 
 const {
@@ -25,11 +25,11 @@ const getFoodRecordsByDate = async (req, res, next) => {
       Meal,
       Weight,
       date: req.params.date,
-      uuid: res.locals.uuid
+      uuid: res.locals.uuid,
     });
 
     const records = await Promise.all(rawRecords.map((record) => record.calMacros()));
-    
+
     res.json(records);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t get the records');

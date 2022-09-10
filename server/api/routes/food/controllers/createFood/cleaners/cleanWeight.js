@@ -5,7 +5,7 @@ function cleanWeight(body) {
     seq: 1,
     amount: servingSize,
     description: servingDescription,
-    gr_wgt: servingWeight
+    gr_wgt: servingWeight,
   };
 }
 

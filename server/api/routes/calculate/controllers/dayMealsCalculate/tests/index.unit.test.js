@@ -17,6 +17,7 @@ describe('dayMealsCalculate', () => {
 
   it('is okay', async () => {
     const meal = await dayMealsCalculation({ type: 'TRAIN' }, users[0].uuid);
+    // eslint-disable-next-line no-unused-expressions
     expect(meal).to.be.ok;
   });
 });

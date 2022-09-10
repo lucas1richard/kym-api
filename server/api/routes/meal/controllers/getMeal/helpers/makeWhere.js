@@ -9,13 +9,13 @@ const { Op, foreignKeys } = require('@kym/db');
 function makeWhere(meals, postWorkout, uuid) {
   const where = {
     [foreignKeys.USER]: {
-      [Op.ne]: uuid
+      [Op.ne]: uuid,
     },
-    public: true
+    public: true,
   };
   if (meals) {
     Object.assign(where, {
-      meal: { [Op.or]: meals }
+      meal: { [Op.or]: meals },
     });
   }
   if (postWorkout === 'true') {

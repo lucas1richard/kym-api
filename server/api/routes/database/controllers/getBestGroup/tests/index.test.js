@@ -18,7 +18,7 @@ describe('routes/database/getBestGroup', () => {
     // };
     res = {
       locals: { user_id: 1 },
-      json: sinon.spy()
+      json: sinon.spy(),
     };
   });
   before(async () => {
@@ -37,4 +37,3 @@ describe('routes/database/getBestGroup', () => {
     expect(next.called).equal(true);
   });
 });
-

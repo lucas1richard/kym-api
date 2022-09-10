@@ -11,15 +11,15 @@ const createUpdateDays = async (uuid, date) => {
   await Day.findOrCreate({
     where: {
       [USER]: uuid,
-      date
+      date,
     },
     defaults: {
-      dayType: true
-    }
+      dayType: true,
+    },
   });
 
   return {
-    [date]: true
+    [date]: true,
   };
 };
 

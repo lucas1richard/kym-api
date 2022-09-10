@@ -15,7 +15,7 @@ const deleteFood = async (req, res, next) => {
     if (!abbrev) {
       throw new AppError(404, {
         devmessage: 'Couldn\'t find the food you\'re trying to delete',
-        usermessage: 'Couldn\'t delete a food which was created by another user'
+        usermessage: 'Couldn\'t delete a food which was created by another user',
       }, true);
     }
 
@@ -24,7 +24,7 @@ const deleteFood = async (req, res, next) => {
     if (abbrev[USER].toString() !== uuid.toString()) {
       throw new AppError(401, {
         devmessage: `User with id ${uuid} tried to delete food with id ${abbrev.id}`,
-        usermessage: 'Couldn\'t delete a food which was created by another user'
+        usermessage: 'Couldn\'t delete a food which was created by another user',
       }, true);
     }
     await abbrev.destroy();

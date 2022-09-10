@@ -30,7 +30,7 @@ describe('bodySchema', () => {
       units: 'imperial',
       updatedAt: '1990-01-01',
       user_id: 5,
-      weight: '180.1'
+      weight: '180.1',
     };
     bodySchema.validate(body, done);
   });

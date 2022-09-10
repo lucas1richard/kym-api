@@ -7,7 +7,7 @@ const userMeasurementsSchema = Joi.object().keys({
   date: Joi.date().required(),
   lifestyle: Joi.string().valid(['NORMAL', 'ACTIVE', 'SEDENTARY']).required(),
   units: Joi.string().valid(['IMPERIAL', 'METRIC']).required(),
-  weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required()
+  weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required(),
 });
 
 const bodySchema = Joi.object().keys({
@@ -17,10 +17,10 @@ const bodySchema = Joi.object().keys({
   lastname: Joi.string().regex(/^[a-zA-Z]+$/, 'letters only').required(),
   password: Joi.string().required(),
   loggedIn: Joi.bool().required(),
-  userMeasurements: Joi.any().optional()
+  userMeasurements: Joi.any().optional(),
 });
 
 module.exports = {
   userMeasurementsSchema,
-  bodySchema
+  bodySchema,
 };

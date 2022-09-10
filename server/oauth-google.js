@@ -21,7 +21,7 @@ module.exports = (app) => {
         lastname: nameArray[1],
         username: profile.emails[0].value,
         email: profile.emails[0].value,
-        password: profile.id
+        password: profile.id,
       };
 
       const [user] = await User.findOrCreate({ where: { googleId: profile.id }, defaults });
@@ -33,13 +33,13 @@ module.exports = (app) => {
 
   app.get('/api/auth/google', passport.authenticate('google', {
     scope: 'email',
-    session: false
+    session: false,
   }));
 
   // passport will exchange token from google with a token which we can use.
   app.get(app.get('oauth').googleInfo.callbackURL, passport.authenticate('google', {
     failureRedirect: '/',
-    session: false
+    session: false,
   }), function redirectWithToken(req, res) {
     const jwtToken = jwt.encode({ id: req.user.id }, app.get('jwtSecret'));
     res.redirect(`/?token=${jwtToken}`);

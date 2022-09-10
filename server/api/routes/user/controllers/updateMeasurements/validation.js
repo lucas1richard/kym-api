@@ -12,9 +12,9 @@ const bodySchema = Joi.object().keys({
   height: Joi.string().alphanum(),
   lifestyle: Joi.string().valid(['NORMAL', 'ACTIVE', 'SEDENTARY']),
   units: Joi.string().valid(['IMPERIAL', 'METRIC']),
-  weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required()
+  weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required(),
 });
 
 module.exports = {
-  bodySchema
+  bodySchema,
 };

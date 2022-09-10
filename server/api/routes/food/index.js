@@ -17,7 +17,6 @@ router.post('/', createFood);
 
 router.put(PREFERENCES_TRAIN, async function trainPreferences(req, res, next) {
   try {
-
     const { uuid } = res.locals;
     const { food, like } = req.body;
 
@@ -43,15 +42,10 @@ router.get(RANDOM, async function getRandomFood(req, res, next) {
   }
 });
 
-
-
 router.get(FOOD_NAME, getFoodByName);
-
-
 
 router.post(PREFERENCES_ADD, async function postAddPreferences(req, res, next) {
   try {
-
     const { uuid } = res.locals;
     const { abbrevId, preference } = req.body;
 

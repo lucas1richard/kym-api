@@ -12,7 +12,7 @@ describe('routes/food/controllers/createFood', () => {
     await Abbrev.bulkCreate(abbrevs);
     await FoodGroup.create({
       GroupID: '0100',
-      Description: 'Description'
+      Description: 'Description',
     });
   });
   after(async () => {
@@ -34,7 +34,7 @@ describe('routes/food/controllers/createFood', () => {
           servingDescription: 'g',
           servingWeight: '100',
           servingSize: '100',
-          group: '0100'
+          group: '0100',
         })
         .set('Accept', 'application/json')
         // .expect((res) => {

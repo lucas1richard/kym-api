@@ -9,17 +9,17 @@ function makeInclWhere(keyword = '') {
     [Op.and]: keyword.split(' ').map((fd) => {
       const searchTerm = `%${fd}%`;
       const likeTerm = {
-        [Op.iLike]: searchTerm
+        [Op.iLike]: searchTerm,
       };
 
       return ({
         [Op.or]: [{
-          main: likeTerm
+          main: likeTerm,
         }, {
-          sub: likeTerm
-        }]
+          sub: likeTerm,
+        }],
       });
-    })
+    }),
   };
 }
 

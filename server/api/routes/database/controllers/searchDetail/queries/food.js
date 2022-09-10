@@ -10,11 +10,11 @@ function makeFoodQuery(food) {
   return {
     [Op.and]: food.map((fd) => ({
       [Op.or]: [{
-        Main: { [Op.iLike]: `%${fd}%` }
+        Main: { [Op.iLike]: `%${fd}%` },
       }, {
-        Sub: { [Op.iLike]: `%${fd}%` }
+        Sub: { [Op.iLike]: `%${fd}%` },
       }],
-    }))
+    })),
   };
 }
 

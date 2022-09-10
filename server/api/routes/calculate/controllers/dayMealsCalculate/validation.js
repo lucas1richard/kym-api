@@ -6,10 +6,10 @@ const typeSchema = Joi
   .error(() => 'INVALID_GOAL_TYPE');
 
 const bodySchema = Joi.object().keys({
-  type: typeSchema
+  type: typeSchema,
 });
 
 module.exports = {
   typeSchema,
-  bodySchema
+  bodySchema,
 };

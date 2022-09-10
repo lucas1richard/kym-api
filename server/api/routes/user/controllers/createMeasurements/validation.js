@@ -16,9 +16,9 @@ const bodySchema = Joi.object().keys({
   units: Joi.string().valid(['IMPERIAL', 'METRIC']).required(),
   // updatedAt: Joi.date().required(),
   [foreignKeys.USER]: foreignKeys.USER_VALIDATION,
-  weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required()
+  weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required(),
 });
 
 module.exports = {
-  bodySchema
+  bodySchema,
 };

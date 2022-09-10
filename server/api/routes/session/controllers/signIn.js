@@ -8,7 +8,7 @@ async function signIn(email, password) {
   const user = await User.findByPassword({
     credentials: {
       email,
-      password
+      password,
     },
   });
 

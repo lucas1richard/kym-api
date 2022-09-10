@@ -12,20 +12,22 @@ const searchDetail = async (req, res, next) => {
     const food = req.body.searchVal ? req.body.searchVal.split(' ') : null;
     let foodQuery = {
       Main: {
-        [Op.ne]: ''
-      }
+        [Op.ne]: '',
+      },
     };
 
     if (food) {
       foodQuery = makeFoodQuery(food);
     }
 
-    const where = Object.assign({}, foodQuery, makePercentQuery(req.body)
+    const where = Object.assign({}, foodQuery, makePercentQuery(req.body),
     );
 
     const count = await Abbrev.count({ where });
-    const rows = await Abbrev.findAll({ where,
-      order: food ? sequelize.literal(`
+    const rows = await Abbrev.findAll({
+      where,
+      order: food
+        ? sequelize.literal(`
         case
           when ("abbrev"."Main" ILIKE '${food[0]}') then 'aaaa'
           when ("abbrev"."Main" ILIKE '${food[0]} %') then 'aaaaa'
@@ -33,17 +35,17 @@ const searchDetail = async (req, res, next) => {
           else "abbrev"."Main"
         end`)
         : [
-          ['Main', 'desc'],
-          ['Sub', 'desc']
-        ],
-      limit: 50
+            ['Main', 'desc'],
+            ['Sub', 'desc'],
+          ],
+      limit: 50,
     });
 
     res.json({
       count,
       rows,
       query: req.body.searchVal,
-      offset: 0
+      offset: 0,
     });
   } catch (err) {
     // if (err.isJoi) {
@@ -56,6 +58,5 @@ const searchDetail = async (req, res, next) => {
     next(err);
   }
 };
-
 
 module.exports = searchDetail;

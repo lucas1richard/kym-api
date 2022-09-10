@@ -15,7 +15,7 @@ module.exports = (app) => {
       const user = await User.setupFitbit(
         profile,
         token,
-        refreshToken
+        refreshToken,
       );
       done(null, user);
     } catch (err) {
@@ -26,8 +26,8 @@ module.exports = (app) => {
   passport.use(
     new FitbitStrategy(
       app.get('oauth').fitbitInfo,
-      fitbitMiddleware
-    )
+      fitbitMiddleware,
+    ),
   );
 
   const scope = [
@@ -35,7 +35,7 @@ module.exports = (app) => {
     'activity',
     'nutrition',
     'weight',
-    'settings'
+    'settings',
   ];
 
   app.get('/api/auth/fitbit', function getAuthFitbit(req, res) {
@@ -46,10 +46,10 @@ module.exports = (app) => {
 
   app.get(callbackURL, passport.authenticate('fitbit', {
     failureRedirect: '/',
-    session: false
+    session: false,
   }), function redirectWithToken(req, res) {
     const fitbitToken = jwt.encode({
-      id: req.user.id
+      id: req.user.id,
     }, app.get('jwtSecret'));
 
     res.cookie('token', fitbitToken);

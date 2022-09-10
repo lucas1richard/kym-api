@@ -13,7 +13,7 @@ const updateQuantity = async (req, res, next) => {
     const {
       id, // foodRecord id
       seq, // the weight unit (`unit`)
-      quantity // the number of `unit`
+      quantity, // the number of `unit`
     } = req.body;
 
     await FoodRecord.update({ seq, quantity }, { where: { id, [USER]: res.locals.uuid } });

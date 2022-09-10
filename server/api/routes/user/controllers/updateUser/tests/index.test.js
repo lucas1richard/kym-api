@@ -1,5 +1,5 @@
 const { connectDatabase } = require('@kym/db');
-const { User} = connectDatabase();
+const { User } = connectDatabase();
 const users = include('test-data/users.json');
 const updateUser = require('../index');
 const { expect } = require('chai');
@@ -16,11 +16,11 @@ describe('updateUser controller', () => {
   it('should successfully update', async () => {
     const requestBody = {
       firstname: 'Jimmy',
-      lastname: 'Tester'
+      lastname: 'Tester',
     };
 
-    const user_id = users[0].uuid;
-    await updateUser(requestBody, user_id);
+    const userId = users[0].uuid;
+    await updateUser(requestBody, userId);
     expect(1).to.equal(1);
   });
 });

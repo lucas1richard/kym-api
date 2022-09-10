@@ -5,8 +5,8 @@ const getPrograms = async (req, res, next) => {
   try {
     const program = await Program.findAll({
       where: {
-        [foreignKeys.USER]: res.locals.uuid
-      }
+        [foreignKeys.USER]: res.locals.uuid,
+      },
     });
 
     res.json(program);

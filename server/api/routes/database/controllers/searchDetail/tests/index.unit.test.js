@@ -15,12 +15,12 @@ describe('routes/database/searchDetail', () => {
     next = sinon.spy();
     req = {
       body: {
-        searchVal: 'chicken'
-      }
+        searchVal: 'chicken',
+      },
     };
     res = {
       locals: { user_id: 1 },
-      json: sinon.spy()
+      json: sinon.spy(),
     };
   });
   before(async () => {
@@ -47,4 +47,3 @@ describe('routes/database/searchDetail', () => {
     expect(res.json.called).equal(true);
   });
 });
-

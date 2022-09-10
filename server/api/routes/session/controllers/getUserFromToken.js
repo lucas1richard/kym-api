@@ -7,7 +7,7 @@ const getUserFromToken = async (req, res, next) => {
   try {
     const token = jwt.decode(
       req.params.token,
-      res.locals.jwtSecret
+      res.locals.jwtSecret,
     );
 
     const user = await User.findByPk(token.uuid);
@@ -16,7 +16,7 @@ const getUserFromToken = async (req, res, next) => {
 
     if (!user) {
       throw new AppError(401, {
-        usermessage: 'Could not log you in'
+        usermessage: 'Could not log you in',
       }, true);
     }
     res.send(sanitizedUser);

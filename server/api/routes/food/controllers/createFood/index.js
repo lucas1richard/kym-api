@@ -53,5 +53,4 @@ const createFood = async (req, res, next) => {
   }
 };
 
-
 module.exports = createFood;

@@ -11,7 +11,7 @@ const createMealGoals = async (req, res, next) => {
     // Create the new goals
     const mealGoals = await MealGoals.create({
       goals: req.body.mealGoals,
-      [foreignKeys.USER]: res.locals.uuid
+      [foreignKeys.USER]: res.locals.uuid,
     });
 
     res.json(mealGoals);

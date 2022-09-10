@@ -5,10 +5,10 @@ const destroyDays = require('../');
 const { expect } = require('chai');
 
 describe('(unit) routes/day/destroyDays', () => {
-  let user_id;
+  let userId;
   let date;
   beforeEach(() => {
-    user_id = 1;
+    userId = 1;
     date = ['2018-08-01'];
   });
   before(async () => {
@@ -26,8 +26,7 @@ describe('(unit) routes/day/destroyDays', () => {
     }
   });
   it('returns an object', async () => {
-    const day = await destroyDays(user_id, date);
+    const day = await destroyDays(userId, date);
     expect(day).equal(date);
   });
 });
-

@@ -12,11 +12,11 @@ describe('foodQuery', () => {
     expect(query).to.eql({
       [Op.and]: [{
         [Op.or]: [{
-          Main: { [Op.iLike]: '%ham%' }
+          Main: { [Op.iLike]: '%ham%' },
         }, {
-          Sub: { [Op.iLike]: '%ham%' }
+          Sub: { [Op.iLike]: '%ham%' },
         }],
-      }]
+      }],
     });
   });
   it('only deals with an array', () => {

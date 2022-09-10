@@ -4,7 +4,7 @@ const moment = require('moment');
 const { bodySchema } = require('./validation');
 
 const createMeasurements = async (body, uuid) => {
-  const { error } =  bodySchema.validate(body, {
+  const { error } = bodySchema.validate(body, {
     // allowUnknown: true,
     abortEarly: false,
   });
@@ -24,11 +24,11 @@ const createMeasurements = async (body, uuid) => {
         createdAt: {
           $between: [
             startDate,
-            endDate
-          ]
+            endDate,
+          ],
         },
-        [foreignKeys.USER]: uuid
-      }
+        [foreignKeys.USER]: uuid,
+      },
     });
   }
 

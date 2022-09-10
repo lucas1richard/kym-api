@@ -10,7 +10,7 @@ module.exports = function makeNativeBayes(options) {
 // keys we use to serialize a classifier's state
 const STATE_KEYS = [
   'categories', 'docCount', 'totalDocuments', 'vocabulary', 'vocabularySize',
-  'wordCount', 'wordFrequencyCount', 'options'
+  'wordCount', 'wordFrequencyCount', 'options',
 ];
 
 module.exports.STATE_KEYS = STATE_KEYS;

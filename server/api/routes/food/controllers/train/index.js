@@ -36,7 +36,7 @@ async function train(uuid, food, like) {
 
   return {
     randomFood,
-    guess
+    guess,
   };
 }
 

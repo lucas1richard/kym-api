@@ -10,14 +10,14 @@ swaggerPaths.addPath('/food/{foodname}', {
       description: 'uri encoded string of a food name',
       in: 'path',
       type: 'string',
-      example: 'apple'
+      example: 'apple',
     }, {
       name: 'offset',
       description: 'the database offset query multiple, defaults to 0',
       default: 0,
       in: 'query',
       type: 'string',
-      example: '1'
+      example: '1',
     }],
     responses: {
       200: {
@@ -27,29 +27,29 @@ swaggerPaths.addPath('/food/{foodname}', {
           properties: {
             count: {
               type: 'integer',
-              example: 158
+              example: 158,
             },
             query: {
               type: 'string',
-              example: 'avocado'
+              example: 'avocado',
             },
             offset: {
               type: 'integer',
-              example: 0
+              example: 0,
             },
             rows: {
               type: 'array',
               items: {
-                $ref: '#/definitions/Abbrev'
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+                $ref: '#/definitions/Abbrev',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });
 
 swaggerPaths.addPath('/food', {
@@ -66,66 +66,66 @@ swaggerPaths.addPath('/food', {
           properties: {
             calories: {
               type: 'string',
-              example: '100'
+              example: '100',
             },
             protein: {
               type: 'string',
-              example: '10'
+              example: '10',
             },
             carbohydrates: {
               type: 'string',
-              example: '10'
+              example: '10',
             },
             fat: {
               type: 'string',
-              example: '3'
+              example: '3',
             },
             main: {
               type: 'string',
-              example: 'Potato'
+              example: 'Potato',
             },
             sub: {
               type: 'string',
-              example: 'Peeled, boiled'
+              example: 'Peeled, boiled',
             },
             group: {
               type: 'object',
               properties: {
                 name: {
                   type: 'string',
-                  example: 'Vegetables and Vegetable Products'
+                  example: 'Vegetables and Vegetable Products',
                 },
                 group: {
                   type: 'integer',
-                  example: 1100
-                }
-              }
+                  example: 1100,
+                },
+              },
             },
             servingSize: {
               type: 'string',
-              example: '1'
+              example: '1',
             },
             servingDescription: {
               type: 'string',
-              example: 'potato'
+              example: 'potato',
             },
             servingWeight: {
               type: 'string',
-              example: '120'
-            }
-          }
-        }
-      }
+              example: '120',
+            },
+          },
+        },
+      },
     ],
     responses: {
       201: {
-        description: swaggerPaths.httpStatus(201, 'The food was successfully created in the database')
+        description: swaggerPaths.httpStatus(201, 'The food was successfully created in the database'),
       },
       400: {
-        description: swaggerPaths.httpStatus(400, 'A complete data set wasn\'t sent')
-      }
-    }
-  }
+        description: swaggerPaths.httpStatus(400, 'A complete data set wasn\'t sent'),
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });

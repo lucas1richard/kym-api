@@ -6,13 +6,12 @@ const {
   User,
   UserMeasurement,
   Program,
-  MealGoals
 } = connectDatabase();
 const moment = require('moment');
 const jwt = require('jwt-simple');
 const {
   bodySchema,
-  userMeasurementsSchema
+  userMeasurementsSchema,
 } = require('./validation');
 
 const signup = async (req, res, next) => {
@@ -26,7 +25,7 @@ const signup = async (req, res, next) => {
       'weight',
       'units',
       'lifestyle',
-      'goal'
+      'goal',
     ];
 
     const { body } = req;
@@ -42,10 +41,9 @@ const signup = async (req, res, next) => {
 
         const config = {
           ...body,
-          ...userMeasurements
+          ...userMeasurements,
         };
-        
-        
+
         const programObj = Program.makeProgramObject(config);
 
         delete programObj[foreignKeys.USER];
@@ -57,15 +55,15 @@ const signup = async (req, res, next) => {
           User.create(config, { transaction }),
           UserMeasurement.create({
             ...userMeasurements,
-            age
+            age,
           }, { transaction }),
-          Program.create(programObj, { transaction })
+          Program.create(programObj, { transaction }),
         ]);
 
         // Associate measurements and program
         await Promise.all([
           user.addUserMeasurement(measurement, { transaction }),
-          user.addProgram(program, { transaction })
+          user.addProgram(program, { transaction }),
         ]);
 
         await transaction.commit();
@@ -74,7 +72,7 @@ const signup = async (req, res, next) => {
         const userFull = await User.scope(
           'withMeasurements',
           'withMealGoals',
-          'withPrograms'
+          'withPrograms',
         ).findByPk(user.uuid);
 
         const token = jwt.encode({ id: user.id, uuid: user.uuid }, res.locals.jwtSecret);
@@ -83,7 +81,7 @@ const signup = async (req, res, next) => {
       } catch (err) {
         throw new AppError(400, {
           usermessage: 'This email is already taken',
-          devmessage: err.message
+          devmessage: err.message,
         }, true);
       }
     } else {
@@ -91,7 +89,7 @@ const signup = async (req, res, next) => {
         const user = await User.create(req.body);
         const token = jwt.encode({
           id: user.id,
-          uuid: user.uuid
+          uuid: user.uuid,
         }, res.locals.jwtSecret);
 
         res
@@ -101,7 +99,7 @@ const signup = async (req, res, next) => {
       } catch (err) {
         throw new AppError(400, {
           usermessage: 'This email is already taken',
-          devmessage: err.message
+          devmessage: err.message,
         }, true);
       }
     }

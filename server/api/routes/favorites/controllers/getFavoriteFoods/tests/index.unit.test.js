@@ -22,4 +22,3 @@ describe('routes/favorites/getFavoriteFoods', () => {
     expect(Array.isArray(favs)).equal(true);
   });
 });
-

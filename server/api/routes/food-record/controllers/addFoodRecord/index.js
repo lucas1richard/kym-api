@@ -14,7 +14,7 @@ const addFoodRecord = async (req, res, next) => {
     // Validate
     await bodySchema.validate(
       req.body,
-      { allowUnknown: true, abortEarly: false }
+      { allowUnknown: true, abortEarly: false },
     );
 
     const createRecordArray = req.body.map(function addRecord(body) {
@@ -36,7 +36,7 @@ const addFoodRecord = async (req, res, next) => {
 
     // Create records
     const foods = await Promise.all(
-      createRecordArray
+      createRecordArray,
     );
 
     // Send back to user

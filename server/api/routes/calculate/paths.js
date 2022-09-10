@@ -16,9 +16,9 @@ swaggerPaths.addPath('/calculate', {
           type: 'array',
           items: {
             type: 'integer',
-            description: 'Identifies the record'
-          }
-        }
+            description: 'Identifies the record',
+          },
+        },
       }, {
         name: 'proteinGoal',
         example: 20,
@@ -26,8 +26,8 @@ swaggerPaths.addPath('/calculate', {
         in: 'query',
         required: true,
         schema: {
-          type: 'number'
-        }
+          type: 'number',
+        },
       }, {
         name: 'carbGoal',
         example: 30,
@@ -35,8 +35,8 @@ swaggerPaths.addPath('/calculate', {
         in: 'query',
         required: true,
         schema: {
-          type: 'number'
-        }
+          type: 'number',
+        },
       }, {
         name: 'fatGoal',
         example: 10,
@@ -44,46 +44,46 @@ swaggerPaths.addPath('/calculate', {
         required: true,
         in: 'query',
         schema: {
-          type: 'number'
-        }
-      }
+          type: 'number',
+        },
+      },
     ],
     responses: {
       200: {
-        $ref: '#/definitions/MealCalculation'
+        $ref: '#/definitions/MealCalculation',
       },
       400: {
-        description: '`type` must be \'train\' or \'rest\''
-      }
-    }
-  }
+        description: '`type` must be \'train\' or \'rest\'',
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });
 
 swaggerPaths.addPath('/calculate/day', {
   get: {
     summary: 'Calculate all meals for a day',
     tags: [
-      'calculate'
+      'calculate',
     ],
     parameters: [{
       name: 'type',
       description: '\'train\' or \'rest\'',
       type: 'string',
       in: 'query',
-      enum: ['train', 'rest']
+      enum: ['train', 'rest'],
     }],
     responses: {
       200: {
         type: 'array',
         items: {
           required: false,
-          $ref: '#/definitions/MealCalculation'
-        }
-      }
-    }
-  }
+          $ref: '#/definitions/MealCalculation',
+        },
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });

@@ -20,15 +20,15 @@ class DayModel {
     await Day.findOrCreate({
       where: {
         [USER]: uuid,
-        date
+        date,
       },
       defaults: {
-        dayType: true
-      }
+        dayType: true,
+      },
     });
-  
+
     return {
-      [date]: true
+      [date]: true,
     };
   }
 
@@ -43,12 +43,12 @@ class DayModel {
       where: {
         [USER]: uuid,
         date: {
-          [Op.or]: date
-        }
-      }
+          [Op.or]: date,
+        },
+      },
     });
     return {
-      status: 'OK'
+      status: 'OK',
     };
   }
 
@@ -62,12 +62,12 @@ class DayModel {
     this.validateGetDays(uuid);
     const days = await Day.findAll({
       where: {
-        [USER]: uuid
+        [USER]: uuid,
       },
       order: [['date', 'DESC']],
-      limit: 60
+      limit: 60,
     });
-  
+
     return days.reduce(daysReduce, {});
   }
 }

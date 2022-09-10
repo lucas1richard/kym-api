@@ -4,7 +4,7 @@ swaggerPaths.addPath('/food-record/{date}', {
   get: {
     summary: 'Gets the food records',
     tags: [
-      'food-record'
+      'food-record',
     ],
     description: 'Returns an array of food records.',
     parameters: [{
@@ -12,7 +12,7 @@ swaggerPaths.addPath('/food-record/{date}', {
       description: 'uri encoded date string',
       example: 'Nov 18 2017',
       in: 'path',
-      required: true
+      required: true,
     }],
     responses: {
       200: {
@@ -20,30 +20,29 @@ swaggerPaths.addPath('/food-record/{date}', {
         schema: {
           type: 'array',
           items: {
-            $ref: '#/definitions/FoodRecord'
-          }
-        }
-      }
-    }
-  }
+            $ref: '#/definitions/FoodRecord',
+          },
+        },
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });
-
 
 swaggerPaths.addPath('/food-record', {
   post: {
     summary: 'Adds a food record',
     tags: [
-      'food-record'
+      'food-record',
     ],
     responses: {
       201: {
         description: swaggerPaths.httpStatus(201, 'A food record was created for the user'),
         schema: {
-          $ref: '#/definitions/FoodRecord'
-        }
-      }
+          $ref: '#/definitions/FoodRecord',
+        },
+      },
     },
     parameters: [{
       in: 'body',
@@ -55,47 +54,47 @@ swaggerPaths.addPath('/food-record', {
           abbrev_id: {
             required: true,
             type: 'integer',
-            example: 5470
+            example: 5470,
           },
           date: {
             required: true,
             type: 'string',
-            example: 'Sat Nov 18 2017'
+            example: 'Sat Nov 18 2017',
           },
           meal: {
             required: true,
             type: 'integer',
             min: 1,
             max: 6,
-            example: 1
+            example: 1,
           },
           quantity: {
             required: true,
             type: 'string',
-            example: '1'
+            example: '1',
           },
           unit: {
             required: true,
             type: 'integer',
-            example: 1
-          }
-        }
-      }
-    }]
+            example: 1,
+          },
+        },
+      },
+    }],
   },
   delete: {
     description: 'Delete a food record',
     summary: 'Delete a food record based on the id',
     tags: [
-      'food-record'
+      'food-record',
     ],
     responses: {
       204: {
-        description: swaggerPaths.httpStatus(204, 'The record was successfully deleted')
+        description: swaggerPaths.httpStatus(204, 'The record was successfully deleted'),
       },
       404: {
-        description: swaggerPaths.httpStatus(404, 'There is no record with the supplied id')
-      }
+        description: swaggerPaths.httpStatus(404, 'There is no record with the supplied id'),
+      },
     },
     parameters: [{
       name: 'body',
@@ -108,14 +107,14 @@ swaggerPaths.addPath('/food-record', {
             type: 'integer',
             format: 'int32',
             example: 1539,
-            required: true
-          }
-        }
-      }
-    }]
-  }
+            required: true,
+          },
+        },
+      },
+    }],
+  },
 }, {
-  protected: true
+  protected: true,
 });
 
 swaggerPaths.addPath('/food-record/meal', {
@@ -123,7 +122,7 @@ swaggerPaths.addPath('/food-record/meal', {
     description: 'Make a meal publically accessible',
     summary: 'Make a meal publically accessible',
     tags: [
-      'food-record'
+      'food-record',
     ],
     parameters: [{
       name: 'body',
@@ -135,22 +134,22 @@ swaggerPaths.addPath('/food-record/meal', {
           id: {
             required: true,
             type: 'integer',
-            example: 15
-          }
-        }
-      }
+            example: 15,
+          },
+        },
+      },
     }],
-    responses: {}
-  }
+    responses: {},
+  },
 }, {
-  protected: true
+  protected: true,
 });
 
 swaggerPaths.addPath('/food-record/quantity/{id}', {
   put: {
     summary: 'Update a record quantity',
     tags: [
-      'food-record'
+      'food-record',
     ],
     parameters: [{
       name: 'body',
@@ -162,36 +161,36 @@ swaggerPaths.addPath('/food-record/quantity/{id}', {
         properties: {
           quantity: {
             type: 'string',
-            example: '1.02'
+            example: '1.02',
           },
           seq: {
             type: 'string',
-            example: '2'
-          }
-        }
-      }
+            example: '2',
+          },
+        },
+      },
     }, {
       name: 'id',
       description: 'identifies the record',
       required: true,
       in: 'path',
-      type: 'number'
+      type: 'number',
     }],
     responses: {
       200: {
         description: swaggerPaths.httpStatus(200, 'Update successful'),
-        $ref: '#/definitions/FoodRecord'
+        $ref: '#/definitions/FoodRecord',
       },
       400: {
-        description: swaggerPaths.httpStatus(400)
+        description: swaggerPaths.httpStatus(400),
       },
       404: {
-        description: swaggerPaths.httpStatus(404, 'Record not found')
-      }
-    }
-  }
+        description: swaggerPaths.httpStatus(404, 'Record not found'),
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });
 
 swaggerPaths.addPath('/food-record/{recordId}/{status}', {
@@ -199,17 +198,17 @@ swaggerPaths.addPath('/food-record/{recordId}/{status}', {
     description: 'Updates the record status to/from \'confirmed\'',
     summary: 'Update the record status',
     tags: [
-      'food-record'
+      'food-record',
     ],
     responses: {
       200: {
         schema: {
           description: 'The updated food record',
-          $ref: '#/definitions/FoodRecord'
-        }
-      }
-    }
-  }
+          $ref: '#/definitions/FoodRecord',
+        },
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });

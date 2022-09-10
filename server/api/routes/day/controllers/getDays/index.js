@@ -10,10 +10,10 @@ async function getDays(uuid) {
   }
   const days = await Day.findAll({
     where: {
-      [USER]: uuid
+      [USER]: uuid,
     },
     order: [['date', 'DESC']],
-    limit: 60
+    limit: 60,
   });
 
   return days.reduce(daysReduce, {});
@@ -29,5 +29,5 @@ function daysReduce(memo, day) {
 
 module.exports = {
   getDays,
-  daysReduce
+  daysReduce,
 };

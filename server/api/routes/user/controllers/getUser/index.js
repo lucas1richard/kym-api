@@ -1,7 +1,7 @@
 const AppError = include('configure/appError');
 const { connectDatabase } = require('@kym/db');
 const {
-  User
+  User,
 } = connectDatabase();
 
 const getUser = async (req, res, next) => {
@@ -13,19 +13,19 @@ const getUser = async (req, res, next) => {
     const user = await User.scope(
       'withMeasurements',
       'withMealGoals',
-      'withPrograms'
+      'withPrograms',
     ).findByPk(uuid);
 
     // Make sure we have the user. If not, send back a 404
     if (!user) {
       throw new AppError(404, {
         devmessage: 'USER_NOT_FOUND',
-        usermessage: 'USER_NOT_FOUND'
+        usermessage: 'USER_NOT_FOUND',
       }, true);
     }
 
     const sanitizedUser = await User.sanitize(user);
-    
+
     res.json(sanitizedUser);
   } catch (err) {
     next(err);

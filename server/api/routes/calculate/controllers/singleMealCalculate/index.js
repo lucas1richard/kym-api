@@ -10,7 +10,7 @@ const singleMealCalculate = async (query) => {
     proteinGoal,
     carbGoal,
     fatGoal,
-    id
+    id,
   } = query;
 
   const goals = {

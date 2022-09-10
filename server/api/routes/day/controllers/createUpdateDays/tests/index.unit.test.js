@@ -5,10 +5,10 @@ const createUpdateDays = require('../');
 const { expect } = require('chai');
 
 describe('(unit) routes/day/createUpdateDays', () => {
-  let user_id;
+  let userId;
   let date;
   beforeEach(() => {
-    user_id = 1;
+    userId = 1;
     date = '2018-08-01';
   });
   before(async () => {
@@ -26,8 +26,7 @@ describe('(unit) routes/day/createUpdateDays', () => {
     }
   });
   it('returns an object', async () => {
-    const day = await createUpdateDays(user_id, date);
+    const day = await createUpdateDays(userId, date);
     expect(day).eql({ [date]: true });
   });
 });
-

@@ -9,15 +9,14 @@ router.post('/', async function postSession(req, res, next) {
   try {
     const {
       username,
-      password
+      password,
     } = req.body;
 
     try {
       const token = await signIn(
         username,
-        password
+        password,
       );
-
 
       res.send({ token });
     } catch (error) {

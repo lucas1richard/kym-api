@@ -19,7 +19,7 @@ const definitions = {
   Measurement,
   Program,
   User,
-  Weight
+  Weight,
 };
 
 module.exports = definitions;

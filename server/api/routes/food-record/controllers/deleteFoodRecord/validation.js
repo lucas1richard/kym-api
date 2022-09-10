@@ -1,15 +1,14 @@
 const Joi = require('joi');
 
-
 const idsSchema = Joi.array().items(
-  Joi.number().integer().required()
+  Joi.number().integer().required(),
 );
 
 const bodySchema = Joi.object().keys({
-  ids: idsSchema
+  ids: idsSchema,
 });
 
 module.exports = {
   idsSchema,
-  bodySchema
+  bodySchema,
 };

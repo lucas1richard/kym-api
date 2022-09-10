@@ -32,7 +32,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 module.exports = app;
 
-
 /**
  * This must be called before setting up oauth just below
  */
@@ -45,14 +44,12 @@ makeAppVariables(app);
 // setupGoogleOauth(app);
 // setupFitbitOauth(app);
 
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Static assets to be loaded
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(path.join(__dirname, '..', 'node_modules')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-
 
 /** API routes */
 app.use('/api', require('./api'));
@@ -64,7 +61,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   if (err.isJoi) {
     const { toSend: { devmessage } } = err;
     if (process.env.NODE_ENV !== 'production') console.log(devmessage);
-  
+
     // joi can send an object if only a single validation error, array if multiple validation errors
     // just set all joi errors to be arrays so we don't have to worry about it
     const body = Array.isArray(devmessage) ? devmessage : [devmessage];

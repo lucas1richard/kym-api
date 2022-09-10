@@ -25,7 +25,7 @@ async function postUserMeasurements(req, res, next) {
   try {
     const measurements = await createMeasurements(
       req.body,
-      res.locals.uuid
+      res.locals.uuid,
     );
     res.json(measurements);
   } catch (err) {
@@ -50,4 +50,3 @@ router.delete('/measurements', deleteMeasurements);
 
 // db.User.requestFoodLog(3, '2017-10-04')
 //   .then(({data}) => console.log(data));
-

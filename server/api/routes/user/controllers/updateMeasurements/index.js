@@ -14,7 +14,7 @@ const updateMeasurements = async (body, uuid) => {
   });
 
   if (!measurement) throw new AppError(400, { userMessage: 'MEASUREMENT_NOT_FOUND' });
-  
+
   Object.assign(measurement, { ...body });
   await measurement.save();
 

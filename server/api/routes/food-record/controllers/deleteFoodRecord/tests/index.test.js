@@ -16,14 +16,14 @@ describe('/routes/food-record/controllers/deleteFoodRecord', () => {
   });
   it('deletes a food', async () => {
     const body = {
-      ids: ['1']
+      ids: ['1'],
     };
     await deleteFoodRecord(body);
   });
   it('fails with malformed data', async () => {
     try {
       const body = {
-        id: 100
+        id: 100,
       };
       await deleteFoodRecord(body);
     } catch (err) {

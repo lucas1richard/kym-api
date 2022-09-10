@@ -9,8 +9,8 @@ const makeMealPublic = async (req, res, next) => {
     const meal = await Meal.findOne({
       where: {
         id,
-        [foreignKeys.USER]: uuid
-      }
+        [foreignKeys.USER]: uuid,
+      },
     });
 
     meal.public = true;

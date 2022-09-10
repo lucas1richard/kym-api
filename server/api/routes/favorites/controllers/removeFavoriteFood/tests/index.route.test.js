@@ -20,7 +20,7 @@ describe('favorites/controllers/removeFood', () => {
     await UserRecordFavorites.bulkCreate(favorites);
     body = {
       abbrevId: 2514,
-      meal: 3
+      meal: 3,
     };
   });
   after(async () => {

@@ -15,7 +15,7 @@ const querySchema = Joi.object().keys({
   proteinGoal: proteinGoalSchema,
   carbGoal: carbGoalSchema,
   fatGoal: fatGoalSchema,
-  id: Joi.array().items(idIndSchema)
+  id: Joi.array().items(idIndSchema),
 });
 
 module.exports = {

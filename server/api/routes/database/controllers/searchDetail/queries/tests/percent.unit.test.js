@@ -22,7 +22,7 @@ describe('percentQuery', () => {
       FatH: fatQuery((5 / 100) - 0.05, '>'),
       FatL: fatQuery((5 / 100) + 0.05, '<'),
       CarbohydratesH: carbQuery((5 / 100) - 0.05, '>'),
-      CarbohydratesL: carbQuery((5 / 100) + 0.05, '<')
+      CarbohydratesL: carbQuery((5 / 100) + 0.05, '<'),
     });
   });
 });

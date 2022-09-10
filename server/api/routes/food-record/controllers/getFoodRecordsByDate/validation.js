@@ -6,5 +6,5 @@ const userIdSchema = foreignKeys.USER_VALIDATION;
 
 module.exports = {
   dateSchema,
-  userIdSchema
+  userIdSchema,
 };

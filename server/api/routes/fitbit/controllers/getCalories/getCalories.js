@@ -25,7 +25,7 @@ async function getCalories(uuid, startDate, endDate) {
     const calories = await User.exRefreshToken({
       refTok: user.fitbitRefreshToken,
       uuid,
-      refreshBuffer: app.get('oauth').fitbitInfo.refreshBuffer
+      refreshBuffer: app.get('oauth').fitbitInfo.refreshBuffer,
     });
     return calories.data['activities-calories'];
   }

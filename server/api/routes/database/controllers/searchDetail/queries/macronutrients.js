@@ -43,7 +43,7 @@ function proteinQuery(percent, comparator) {
   return sequelize.where(
     sequelize.col('abbrev.Protein'),
     comparator,
-    sequelize.literal(`(((${safePercent * 4} * ${carbs}) + (${safePercent * 9} * ${fat}))/ (${4 - (safePercent * 4)}))`)
+    sequelize.literal(`(((${safePercent * 4} * ${carbs}) + (${safePercent * 9} * ${fat}))/ (${4 - (safePercent * 4)}))`),
   );
 }
 
@@ -63,7 +63,7 @@ function carbQuery(percent, comparator) {
   return sequelize.where(
     sequelize.col('abbrev.Carbohydrates'),
     comparator,
-    sequelize.literal(`(((${safePercent * 4} * ${protein}) + (${safePercent * 9} * ${fat}))/ (${4 - (safePercent * 4)}))`)
+    sequelize.literal(`(((${safePercent * 4} * ${protein}) + (${safePercent * 9} * ${fat}))/ (${4 - (safePercent * 4)}))`),
   );
 }
 
@@ -83,7 +83,7 @@ function fatQuery(percent, comparator) {
   return sequelize.where(
     sequelize.col('abbrev.Fat'),
     comparator,
-    sequelize.literal(`(((${safePercent * 4} * ${protein}) + (${safePercent * 4} * ${carbs}))/ (${9 - (safePercent * 9)}))`)
+    sequelize.literal(`(((${safePercent * 4} * ${protein}) + (${safePercent * 4} * ${carbs}))/ (${9 - (safePercent * 9)}))`),
   );
 }
 
@@ -93,5 +93,5 @@ module.exports = {
   fatQuery,
   carbs,
   fat,
-  protein
+  protein,
 };

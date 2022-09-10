@@ -4,17 +4,17 @@ module.exports = {
     protein: {
       type: 'number',
       format: 'float',
-      example: 33.5
+      example: 33.5,
     },
     carbs: {
       type: 'number',
       format: 'float',
-      example: 31.3
+      example: 31.3,
     },
     fat: {
       type: 'number',
       format: 'float',
-      example: 14.9
-    }
-  }
+      example: 14.9,
+    },
+  },
 };

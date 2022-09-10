@@ -36,15 +36,14 @@ describe('routes/database/updateQuantity', () => {
       body: {
         id: 1,
         seq: 1,
-        quantity: 1
-      }
+        quantity: 1,
+      },
     };
     res = {
       locals: { user_id: users[0].uuid },
-      json: sinon.spy()
+      json: sinon.spy(),
     };
   });
-
 
   it('catches an error', async () => {
     delete res.locals.user_id;
@@ -71,4 +70,3 @@ describe('routes/database/updateQuantity', () => {
     expect(res.json.called).equal(true);
   });
 });
-

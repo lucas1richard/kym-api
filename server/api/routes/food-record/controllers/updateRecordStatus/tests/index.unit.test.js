@@ -4,7 +4,7 @@ const {
   FoodRecord,
   Meal,
   Abbrev,
-  Weight
+  Weight,
 } = connectDatabase();
 const abbrevs = include('test-data/abbrev.json');
 const users = include('test-data/users.json');
@@ -38,15 +38,14 @@ describe('routes/database/updateRecordStatus', () => {
     req = {
       body: {
         ids: [1],
-        status: true
-      }
+        status: true,
+      },
     };
     res = {
       locals: { user_id: 1 },
-      json: sinon.spy()
+      json: sinon.spy(),
     };
   });
-
 
   it('catches an error', async () => {
     delete res.locals.user_id;
@@ -66,4 +65,3 @@ describe('routes/database/updateRecordStatus', () => {
     expect(res.json.called).equal(true);
   });
 });
-

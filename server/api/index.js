@@ -40,13 +40,13 @@ const userMeasurementsRouter = require('./routes/user-measurements');
  */
 const openRoutes = [
   '/user/signup',
-  '/session'
+  '/session',
 ];
 
 router.use(async function authMiddleware(req, res, next) {
   try {
     res.locals = {
-      jwtSecret: process.env.JWT_SECRET
+      jwtSecret: process.env.JWT_SECRET,
     };
 
     /**
@@ -59,8 +59,8 @@ router.use(async function authMiddleware(req, res, next) {
 
     const { token } = req.headers;
     if (process.env.NODE_ENV !== 'test') {
-      const { user_id, uuid } = await checkSecureRoute(token);
-      Object.assign(res.locals, { user_id, uuid });
+      const { user_id: userId, uuid } = await checkSecureRoute(token);
+      Object.assign(res.locals, { user_id: userId, uuid });
     } else {
       Object.assign(res.locals, { user_id: req.headers.user_id || 1 });
     }
@@ -70,8 +70,8 @@ router.use(async function authMiddleware(req, res, next) {
     if (req.method === 'GET') {
       res.sendFile(
         nodepath.join(
-          __dirname, '..', 'public', 'unauthorized.html'
-        )
+          __dirname, '..', 'public', 'unauthorized.html',
+        ),
       );
     } else {
       res.status(401).send(err.message);
@@ -103,7 +103,6 @@ router.use('/session', sessionRouter);
 router.use('/shopping-list', shoppingListRouter);
 router.use('/user-measurements', userMeasurementsRouter);
 
-
 module.exports = router;
 
 /**
@@ -130,7 +129,7 @@ async function checkSecureRoute(token) {
 
   logger.verbose(`decoded: ${JSON.stringify(decoded)}`);
 
-  const user_id = decoded.id || decoded.token;
+  const userId = decoded.id || decoded.token;
   const { uuid } = decoded;
   const user = await User.findByPk(uuid);
 
@@ -138,6 +137,6 @@ async function checkSecureRoute(token) {
     throw Error('NO_ACCOUNT_LOGGED_IN');
   }
 
-  redisClient.hmsetAsync(key, { user_id, uuid });
+  redisClient.hmsetAsync(key, { user_id: userId, uuid });
   return decoded;
 }

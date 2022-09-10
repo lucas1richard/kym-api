@@ -6,8 +6,8 @@ async function addPreference(uuid, abbrevId, pref) {
     where: {
       [foreignKeys.USER]: uuid,
       [foreignKeys.ABBREV]: abbrevId,
-      preference: pref
-    }
+      preference: pref,
+    },
   });
 
   return preference;

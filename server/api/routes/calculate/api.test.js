@@ -26,9 +26,10 @@ describe('calculate api', () => {
 
       expect(res.get('Content-Type').includes('json')).to.eql(true);
       expect(200);
+      // eslint-disable-next-line no-unused-expressions
       expect(res.body.result).to.be.ok;
     });
-  
+
     it('should be okay', (done) => {
       agent
         .get('/api/calculate?id[]=2514&id[]=2583&id[]=2768&proteinGoal=20&carbGoal=30&fatGoal=20')
@@ -36,7 +37,7 @@ describe('calculate api', () => {
         .expect('Content-Type', /json/)
         .expect(200, done);
     });
-  
+
     it('should not be okay', async () => {
       const res = await agent
         .get('/api/calculate?id[]=2514&id[]=2583&id[]=2768&proteinGoal=20&carbGoal=30') // no fatGoal
@@ -48,6 +49,7 @@ describe('calculate api', () => {
   describe('post /api/calculate/day', () => {
     it('id okay', async () => {
       const meal = await dayMealsCalculation({ type: 'TRAIN' }, testData.users[0].uuid);
+      // eslint-disable-next-line no-unused-expressions
       expect(meal).to.be.ok;
     });
   });

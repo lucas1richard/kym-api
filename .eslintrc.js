@@ -7,24 +7,25 @@ module.exports = {
     __DEV__: true,
     Raven: true,
     include: true,
-    testData: true
+    testData: true,
   },
   env: {
     node: true,
     es2022: true,
-    mocha: true
+    mocha: true,
   },
   parserOptions: {
     ecmaVersion: 2022,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   rules: {
     semi: ['error', 'always'],
     'space-before-function-paren': ['error', {
       anonymous: 'never',
       named: 'never',
-      asyncArrow: 'always'
-    }]
+      asyncArrow: 'always',
+    }],
+    'comma-dangle': ['error', 'always-multiline'],
     // "node/exports-style": ["error", "module.exports"],
     // "node/prefer-global/buffer": ["error", "always"],
     // "node/prefer-global/console": ["error", "always"],
@@ -88,5 +89,5 @@ module.exports = {
     //     config: './internals/webpack/webpack.prod.babel.js',
     //   },
     // },
-  }
+  },
 };

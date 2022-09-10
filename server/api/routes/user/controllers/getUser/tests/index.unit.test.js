@@ -12,7 +12,7 @@ describe('routes/database/getUser', () => {
     next = sinon.spy();
     res = {
       locals: { user_id: 1 },
-      json: sinon.spy()
+      json: sinon.spy(),
     };
   });
   before(async () => {
@@ -38,4 +38,3 @@ describe('routes/database/getUser', () => {
     expect(res.json.called).equal(true);
   });
 });
-

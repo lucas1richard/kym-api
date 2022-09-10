@@ -18,8 +18,9 @@ describe('singleMealCalculate', () => {
       proteinGoal: 20,
       carbGoal: 30,
       fatGoal: 10,
-      id: [1, 2, 3]
+      id: [1, 2, 3],
     });
+    // eslint-disable-next-line no-unused-expressions
     expect(result).to.be.ok;
     expect(error).to.eql(undefined);
   });
@@ -29,7 +30,7 @@ describe('singleMealCalculate', () => {
         // proteinGoal: 20,
         // carbGoal: 30,
         fatGoal: 10,
-        id: [1, 2, 3]
+        id: [1, 2, 3],
       });
     } catch (err) {
       expect(err.details[0].message).to.eql(errorMessages.INVALID_GOAL_PROTEIN);

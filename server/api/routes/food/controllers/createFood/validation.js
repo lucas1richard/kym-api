@@ -12,9 +12,9 @@ const bodySchema = Joi.object().keys({
   sub: Joi.string().required(),
   servingDescription: Joi.string().required(),
   servingSize: numberLikeString(),
-  servingWeight: numberLikeString()
+  servingWeight: numberLikeString(),
 });
 
 module.exports = {
-  bodySchema
+  bodySchema,
 };

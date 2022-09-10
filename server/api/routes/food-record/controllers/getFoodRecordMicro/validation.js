@@ -5,5 +5,5 @@ const userIdSchema = Joi.number().integer();
 
 module.exports = {
   dateSchema,
-  userIdSchema
+  userIdSchema,
 };

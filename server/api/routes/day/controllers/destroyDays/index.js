@@ -12,9 +12,9 @@ const destroyDays = async (uuid, date) => {
     where: {
       [USER]: uuid,
       date: {
-        [Op.or]: date
-      }
-    }
+        [Op.or]: date,
+      },
+    },
   });
 
   return date;

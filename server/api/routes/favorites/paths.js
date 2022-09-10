@@ -18,31 +18,31 @@ swaggerPaths.addPath('/favorites/foods', {
                 properties: {
                   abbrevId: {
                     type: 'integer',
-                    example: 2160
+                    example: 2160,
                   },
                   createdAt: {
                     type: 'string',
-                    example: '2017-11-26T02:11:40.536Z'
+                    example: '2017-11-26T02:11:40.536Z',
                   },
                   meal: {
                     type: 'integer',
-                    example: 1
+                    example: 1,
                   },
                   updatedAt: {
                     type: 'string',
-                    example: '2017-11-26T02:11:40.536Z'
+                    example: '2017-11-26T02:11:40.536Z',
                   },
                   userId: {
                     type: 'integer',
-                    example: 3
-                  }
-                }
-              }
-            })
-          }
-        }
-      }
-    }
+                    example: 3,
+                  },
+                },
+              },
+            }),
+          },
+        },
+      },
+    },
   },
   post: {
     tags: ['favorites'],
@@ -55,19 +55,19 @@ swaggerPaths.addPath('/favorites/foods', {
         properties: {
           abbrevId: {
             type: 'integer',
-            example: 1
+            example: 1,
           },
           userId: {
             type: 'integer',
-            example: 3
+            example: 3,
           },
           meal: {
             type: 'integer',
-            example: 1549
-          }
-        }
-      }
-    }]
+            example: 1549,
+          },
+        },
+      },
+    }],
   },
   delete: {
     tags: ['favorites'],
@@ -81,21 +81,21 @@ swaggerPaths.addPath('/favorites/foods', {
         properties: {
           abbrevId: {
             type: 'integer',
-            example: 8778
+            example: 8778,
           },
           meal: {
             type: 'integer',
-            example: 1
-          }
-        }
-      }
+            example: 1,
+          },
+        },
+      },
     }],
     responses: {
       204: {
-        description: swaggerPaths.httpStatus(204, 'Favorite food deleted')
-      }
-    }
-  }
+        description: swaggerPaths.httpStatus(204, 'Favorite food deleted'),
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });

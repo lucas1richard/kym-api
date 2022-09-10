@@ -16,7 +16,6 @@ describe('calculate api', () => {
     destroyAll().then(() => done());
   });
 
-
   it('should be okay with good choices and goals', async () => {
     const res = await agent
       .get('/api/calculate?id[]=2514&id[]=5470&id[]=2768&proteinGoal=20&carbGoal=30&fatGoal=20')
@@ -27,6 +26,7 @@ describe('calculate api', () => {
       // })
     expect(res.get('Content-Type').includes('json')).to.eql(true);
     expect(200);
+    // eslint-disable-next-line no-unused-expressions
     expect(res.body.result).to.be.ok;
   });
 
@@ -42,7 +42,7 @@ describe('calculate api', () => {
     const res = await agent
       .get('/api/calculate?id[]=2514&id[]=2583&id[]=2768&proteinGoal=20&carbGoal=30')
       .set('Accept', 'application/json');
-    // console.log(res);
+    // eslint-disable-next-line no-unused-expressions
     expect(res).to.be.ok;
   });
 });

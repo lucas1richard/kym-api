@@ -14,7 +14,7 @@ const getUserCreated = async (req, res, next) => {
 
     const abbrevs = await Abbrev.findAll({
       where: { [USER]: uuid },
-      order: ['main', 'sub']
+      order: ['main', 'sub'],
     });
 
     res.json(abbrevs);

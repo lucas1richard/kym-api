@@ -18,7 +18,7 @@ describe('user/controllers/signup', () => {
       date: '2018-01-01',
       lifestyle: 'NORMAL',
       units: 'IMPERIAL',
-      weight: '179'
+      weight: '179',
     };
     body = {
       birthdate: '1989-01-01',
@@ -27,7 +27,7 @@ describe('user/controllers/signup', () => {
       lastname: 'Test',
       password: '1234',
       preferredlocale: 'en-US',
-      loggedIn: false
+      loggedIn: false,
     };
   });
   after(async () => {

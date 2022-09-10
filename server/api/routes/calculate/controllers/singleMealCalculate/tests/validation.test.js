@@ -106,7 +106,7 @@ describe('calculate/controllers/singleMealCalculate/validation', () => {
         proteinGoal: 1,
         carbGoal: 1,
         fatGoal: 1,
-        id: [1]
+        id: [1],
       }, done);
     });
   });

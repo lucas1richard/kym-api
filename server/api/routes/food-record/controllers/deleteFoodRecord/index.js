@@ -15,13 +15,13 @@ const deleteFoodRecord = async (body, uuid) => {
 
   const records = await FoodRecord.findAll({
     attributes: [
-      [Sequelize.fn('DISTINCT', Sequelize.col('meal_id')) ,'meal_id'],
+      [Sequelize.fn('DISTINCT', Sequelize.col('meal_id')), 'meal_id'],
     ],
-    where: { id: ids, [USER]: uuid }
+    where: { id: ids, [USER]: uuid },
   });
   const mealIds = records.map((record) => record.meal_id).filter(Boolean);
 
-  await FoodRecord.destroy({ where: { id: ids }});
+  await FoodRecord.destroy({ where: { id: ids } });
   if (mealIds.length > 0) { // support legacy data
     await Meal.update({ public: false }, { where: { id: mealIds } });
   }

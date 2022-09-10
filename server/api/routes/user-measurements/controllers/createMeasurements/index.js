@@ -6,14 +6,14 @@ module.exports = createMeasurements;
 async function createMeasurements(uuid) {
   const measurements = await UserMeasurement.findAll({
     where: {
-      [foreignKeys.USER]: uuid
+      [foreignKeys.USER]: uuid,
     },
     order: [
       [
         'date',
-        'DESC'
-      ]
-    ]
+        'DESC',
+      ],
+    ],
   });
   return measurements;
 }
