@@ -1,13 +1,11 @@
 const app = include('app');
 const { connectDatabase } = require('@kym/db');
 const { Abbrev, User } = connectDatabase();
-const users = include('test-data/users.json');
-const abbrevs = include('test-data/abbrev.json');
 const supertest = require('supertest');
 
 const agent = supertest(app);
 
-const path = '/api/database/user-created';
+const path = '/api/database/user-created/v1';
 
 describe('deleteFood route', () => {
   let body;
@@ -16,10 +14,10 @@ describe('deleteFood route', () => {
     await Abbrev.destroy({ where: {}, force: true });
   });
   beforeEach(async () => {
-    await User.bulkCreate(users);
-    await Abbrev.bulkCreate(abbrevs);
+    await User.bulkCreate(testData.users);
+    await Abbrev.bulkCreate(testData.abbrevs);
     body = {
-      id: 1,
+      id: 2514,
     };
   });
   afterEach(async () => {
@@ -30,20 +28,22 @@ describe('deleteFood route', () => {
     await agent
       .delete(path)
       .send(body)
+      .set('token', testData.tokens.user0)
       .expect(204);
   });
   it('fails when food wasn\'t created by the user', async () => {
     await agent
       .delete(path)
-      .set('user_id', 2)
+      .set('token', testData.tokens.user1)
       .send(body)
       .expect(401);
   });
   it('fails when food doesn\'t exist', async () => {
-    body.id = 2;
+    body.id = 900000000000000;
     await agent
       .delete(path)
       .send(body)
+      .set('token', testData.tokens.user0)
       .expect(404);
   });
   it('fails when the request is malformed', async () => {
@@ -51,6 +51,7 @@ describe('deleteFood route', () => {
     await agent
       .delete(path)
       .send(body)
+      .set('token', testData.tokens.user0)
       .expect(400);
   });
 });

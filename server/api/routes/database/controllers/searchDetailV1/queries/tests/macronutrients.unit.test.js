@@ -12,7 +12,7 @@ describe('macronutrient queries', () => {
       const percent = 5;
       const comparator = '>';
       const query = proteinQuery(5, '>');
-      expect(query).to.eql(sequelize.where(sequelize.col('abbrev.Protein'), comparator, sequelize.literal(`(((${percent * 4} * ${carbs}) + (${percent * 9} * ${fat}))/ (${4 - (percent * 4)}))`)));
+      expect(query).to.eql(sequelize.where(sequelize.col('abbrev.protein'), comparator, sequelize.literal(`(((${percent * 4} * ${carbs}) + (${percent * 9} * ${fat}))/ (${4 - (percent * 4)}))`)));
     });
     it('fails without a percent', () => {
       try {
@@ -42,7 +42,7 @@ describe('macronutrient queries', () => {
       const percent = 5;
       const comparator = '>';
       const query = carbQuery(5, '>');
-      expect(query).to.eql(sequelize.where(sequelize.col('abbrev.Carbohydrates'), comparator, sequelize.literal(`(((${percent * 4} * ${protein}) + (${percent * 9} * ${fat}))/ (${4 - (percent * 4)}))`)));
+      expect(query).to.eql(sequelize.where(sequelize.col('abbrev.carbohydrates'), comparator, sequelize.literal(`(((${percent * 4} * ${protein}) + (${percent * 9} * ${fat}))/ (${4 - (percent * 4)}))`)));
     });
     it('fails without a percent', () => {
       try {
@@ -72,7 +72,7 @@ describe('macronutrient queries', () => {
       const percent = 5;
       const comparator = '>';
       const query = fatQuery(5, '>');
-      expect(query).to.eql(sequelize.where(sequelize.col('abbrev.Fat'), comparator, sequelize.literal(`(((${percent * 4} * ${protein}) + (${percent * 4} * ${carbs}))/ (${9 - (percent * 9)}))`)));
+      expect(query).to.eql(sequelize.where(sequelize.col('abbrev.fat'), comparator, sequelize.literal(`(((${percent * 4} * ${protein}) + (${percent * 4} * ${carbs}))/ (${9 - (percent * 9)}))`)));
     });
     it('fails without a percent', () => {
       try {

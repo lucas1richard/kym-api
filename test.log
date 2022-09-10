@@ -1,0 +1,1128 @@
+
+> know-your-macros@0.0.0 test
+> NODE_ENV=test nyc mocha --timeout=4000 --recursive --exit "./server/api/routes/database"
+
+[36mverbose[39m: mocha setup complete
+connecting to database: postgres://richard:Getitdone1@localhost/kym-test
+
+
+  deleteFood route
+delete 
+from "users"
+-----------------------------------
+delete 
+from "abbrevs"
+-----------------------------------
+insert into "users" ("id","uuid","firstname","lastname","username","email","password","salt","birthdate","googleId","fitbitId","fitbitToken","fitbitRefreshToken","createdAt","updatedAt") values (1,'60f24265-ef45-4891-b4ef-e8fad4435308','Test','Test','','test@test.test','c0991cb7fe24f39d8b37a77b68b2409201ee9f2bb092513d3a467dad82ce0040e7a30824a19fb4b80fd679626a12c9ce6b5c53aa457ea85c6c1210d3cddccf5f','7511417d2cb19286','1989-01-01','123','213','456','789','2022-09-10 22:45:12.859 +00:00','2022-09-10 22:45:12.859 +00:00'),(2,'2a413eff-6eab-44f4-aafa-485e814b025b','Test','Test','','test1@test.test','da45e20355a93a97c25abc5b2c50135f9de7694f0f57e9195f48bb0a535d010e1ecc4b3788d3a1de66a648cc536b48a21623c0e7518914ddbf9a30fb71429ab9','885a964b6bdad68d','1989-01-01','123','213','456','789','2022-09-10 22:45:12.859 +00:00','2022-09-10 22:45:12.859 +00:00') RETURNING *;
+-----------------------------------
+insert into "abbrevs" ("id","main","sub","calories","protein","fat","carbohydrates","gmwt_1","gmwt_desc1","gmwt_2","gmwt_desc2","user_uuid","createdAt","updatedAt") values (2514,'Chicken','broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','165','31.02','3.57','0.00','140','1 cup,
+  chopped or diced','52','1 unit,
+   (yield from 1 lb ready-to-cook chicken)','60f24265-ef45-4891-b4ef-e8fad4435308','2022-09-10 22:45:12.874 +00:00','2022-09-10 22:45:12.874 +00:00'),(5470,'Avocados','raw,
+  Florida','120','2.23','10.06','7.82','230','1 cup,
+  pureed','304','1 fruit,
+  without skin and seeds',null,'2022-09-10 22:45:12.874 +00:00','2022-09-10 22:45:12.874 +00:00'),(2583,'Chicken','broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','220','24.17','12.92','0.00','140','1 cup,
+  chopped or diced','75','1 unit,
+   (yield from 1 lb ready-to-cook chicken)',null,'2022-09-10 22:45:12.874 +00:00','2022-09-10 22:45:12.874 +00:00'),(2768,'Sweet potato','cooked,
+  boiled,
+  without skin,
+  with salt','76','1.37','0.14','17.72','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.874 +00:00','2022-09-10 22:45:12.874 +00:00'),(1,'EssenceOf','Protein','400','100','0','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.874 +00:00','2022-09-10 22:45:12.874 +00:00'),(2,'EssenceOf','Carbs','400','0','0','100','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.874 +00:00','2022-09-10 22:45:12.874 +00:00'),(3,'EssenceOf','Fat','900','0','100','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.874 +00:00','2022-09-10 22:45:12.874 +00:00') RETURNING *;
+-----------------------------------
+[36mverbose[39m: token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJ1dWlkIjoiNjBmMjQyNjUtZWY0NS00ODkxLWI0ZWYtZThmYWQ0NDM1MzA4In0.ZiPnFVy1lBRzmrGEUX0d0KVoa9kZ9dsGsnENOfozzoA
+[36mverbose[39m: redisStored: {"user_id":"1","uuid":"60f24265-ef45-4891-b4ef-e8fad4435308"}
+[35msilly[39m: Worker 65503 handling
+select
+  "id",
+  "main",
+  "sub",
+  "calories",
+  "protein",
+  "fat",
+  "carbohydrates",
+  "gmwt_1",
+  "gmwt_desc1",
+  "gmwt_2",
+  "gmwt_desc2",
+  "user_uuid",
+  "photo",
+  "createdAt",
+  "updatedAt" 
+from "abbrevs" as "abbrev"
+where "abbrev"."id" = 2514;
+-----------------------------------
+delete 
+from "abbrevs"
+where "id" = 2514
+-----------------------------------
+    ✓ deletes a food created by the user
+delete 
+from "users"
+-----------------------------------
+delete 
+from "abbrevs"
+-----------------------------------
+insert into "users" ("id","uuid","firstname","lastname","username","email","password","salt","birthdate","googleId","fitbitId","fitbitToken","fitbitRefreshToken","createdAt","updatedAt") values (1,'60f24265-ef45-4891-b4ef-e8fad4435308','Test','Test','','test@test.test','ab942b7909d886daa83df02cce16418c09073fabdb91cf70c7977b3d4e5098bf591d0ce27d3a67546f261b92f81e15dcfa0ea2aae8e5d93f54a0794a833e13b1','ad064920309b79a6','1989-01-01','123','213','456','789','2022-09-10 22:45:12.906 +00:00','2022-09-10 22:45:12.906 +00:00'),(2,'2a413eff-6eab-44f4-aafa-485e814b025b','Test','Test','','test1@test.test','77b56b8b4401dff7a70c95b40f03615a12ae9f3c379268db9319fac06ab3e60cc172c099ba94329c80ad9beb62946046f437b6b53639989efce68f806df89853','d098e877ea354034','1989-01-01','123','213','456','789','2022-09-10 22:45:12.906 +00:00','2022-09-10 22:45:12.906 +00:00') RETURNING *;
+-----------------------------------
+insert into "abbrevs" ("id","main","sub","calories","protein","fat","carbohydrates","gmwt_1","gmwt_desc1","gmwt_2","gmwt_desc2","user_uuid","createdAt","updatedAt") values (2514,'Chicken','broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','165','31.02','3.57','0.00','140','1 cup,
+  chopped or diced','52','1 unit,
+   (yield from 1 lb ready-to-cook chicken)','60f24265-ef45-4891-b4ef-e8fad4435308','2022-09-10 22:45:12.911 +00:00','2022-09-10 22:45:12.911 +00:00'),(5470,'Avocados','raw,
+  Florida','120','2.23','10.06','7.82','230','1 cup,
+  pureed','304','1 fruit,
+  without skin and seeds',null,'2022-09-10 22:45:12.911 +00:00','2022-09-10 22:45:12.911 +00:00'),(2583,'Chicken','broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','220','24.17','12.92','0.00','140','1 cup,
+  chopped or diced','75','1 unit,
+   (yield from 1 lb ready-to-cook chicken)',null,'2022-09-10 22:45:12.911 +00:00','2022-09-10 22:45:12.911 +00:00'),(2768,'Sweet potato','cooked,
+  boiled,
+  without skin,
+  with salt','76','1.37','0.14','17.72','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.911 +00:00','2022-09-10 22:45:12.911 +00:00'),(1,'EssenceOf','Protein','400','100','0','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.911 +00:00','2022-09-10 22:45:12.911 +00:00'),(2,'EssenceOf','Carbs','400','0','0','100','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.911 +00:00','2022-09-10 22:45:12.911 +00:00'),(3,'EssenceOf','Fat','900','0','100','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.911 +00:00','2022-09-10 22:45:12.911 +00:00') RETURNING *;
+-----------------------------------
+[36mverbose[39m: token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJ1dWlkIjoiMmE0MTNlZmYtNmVhYi00NGY0LWFhZmEtNDg1ZTgxNGIwMjViIn0.ji7ATKYy-HhRyzGPfsK7y5BnhrB7_SwOZQTHscLdPDk
+[36mverbose[39m: redisStored: {"user_id":"2","uuid":"2a413eff-6eab-44f4-aafa-485e814b025b"}
+[35msilly[39m: Worker 65503 handling
+select
+  "id",
+  "main",
+  "sub",
+  "calories",
+  "protein",
+  "fat",
+  "carbohydrates",
+  "gmwt_1",
+  "gmwt_desc1",
+  "gmwt_2",
+  "gmwt_desc2",
+  "user_uuid",
+  "photo",
+  "createdAt",
+  "updatedAt" 
+from "abbrevs" as "abbrev"
+where "abbrev"."id" = 2514;
+-----------------------------------
+    ✓ fails when food wasn't created by the user
+delete 
+from "users"
+-----------------------------------
+delete 
+from "abbrevs"
+-----------------------------------
+insert into "users" ("id","uuid","firstname","lastname","username","email","password","salt","birthdate","googleId","fitbitId","fitbitToken","fitbitRefreshToken","createdAt","updatedAt") values (1,'60f24265-ef45-4891-b4ef-e8fad4435308','Test','Test','','test@test.test','aba9707b48584ad9c3aaeec4f97ec0f76ef2e6c657250c00e13d47978247c0cfa35138aa659f6f4eff023a83ab8601c0b0c156adfbc6abdfe6e0b0418c10d21c','cd65aca403493779','1989-01-01','123','213','456','789','2022-09-10 22:45:12.923 +00:00','2022-09-10 22:45:12.923 +00:00'),(2,'2a413eff-6eab-44f4-aafa-485e814b025b','Test','Test','','test1@test.test','c0424a31827b94df1e4409be9f6e72ec98bcf054fa1e5bc512911cf8888a65a2ec4867e937c2534608e47b34452933b9cb78f92f563b7b7316f0182da34fc0df','b1e6f9a12bac85fe','1989-01-01','123','213','456','789','2022-09-10 22:45:12.923 +00:00','2022-09-10 22:45:12.923 +00:00') RETURNING *;
+-----------------------------------
+insert into "abbrevs" ("id","main","sub","calories","protein","fat","carbohydrates","gmwt_1","gmwt_desc1","gmwt_2","gmwt_desc2","user_uuid","createdAt","updatedAt") values (2514,'Chicken','broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','165','31.02','3.57','0.00','140','1 cup,
+  chopped or diced','52','1 unit,
+   (yield from 1 lb ready-to-cook chicken)','60f24265-ef45-4891-b4ef-e8fad4435308','2022-09-10 22:45:12.926 +00:00','2022-09-10 22:45:12.926 +00:00'),(5470,'Avocados','raw,
+  Florida','120','2.23','10.06','7.82','230','1 cup,
+  pureed','304','1 fruit,
+  without skin and seeds',null,'2022-09-10 22:45:12.926 +00:00','2022-09-10 22:45:12.926 +00:00'),(2583,'Chicken','broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','220','24.17','12.92','0.00','140','1 cup,
+  chopped or diced','75','1 unit,
+   (yield from 1 lb ready-to-cook chicken)',null,'2022-09-10 22:45:12.926 +00:00','2022-09-10 22:45:12.926 +00:00'),(2768,'Sweet potato','cooked,
+  boiled,
+  without skin,
+  with salt','76','1.37','0.14','17.72','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.926 +00:00','2022-09-10 22:45:12.926 +00:00'),(1,'EssenceOf','Protein','400','100','0','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.926 +00:00','2022-09-10 22:45:12.926 +00:00'),(2,'EssenceOf','Carbs','400','0','0','100','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.926 +00:00','2022-09-10 22:45:12.926 +00:00'),(3,'EssenceOf','Fat','900','0','100','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.926 +00:00','2022-09-10 22:45:12.926 +00:00') RETURNING *;
+-----------------------------------
+[36mverbose[39m: token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJ1dWlkIjoiNjBmMjQyNjUtZWY0NS00ODkxLWI0ZWYtZThmYWQ0NDM1MzA4In0.ZiPnFVy1lBRzmrGEUX0d0KVoa9kZ9dsGsnENOfozzoA
+[36mverbose[39m: redisStored: {"user_id":"1","uuid":"60f24265-ef45-4891-b4ef-e8fad4435308"}
+[35msilly[39m: Worker 65503 handling
+select
+  "id",
+  "main",
+  "sub",
+  "calories",
+  "protein",
+  "fat",
+  "carbohydrates",
+  "gmwt_1",
+  "gmwt_desc1",
+  "gmwt_2",
+  "gmwt_desc2",
+  "user_uuid",
+  "photo",
+  "createdAt",
+  "updatedAt" 
+from "abbrevs" as "abbrev"
+where "abbrev"."id" = 900000000000000;
+-----------------------------------
+    ✓ fails when food doesn't exist
+delete 
+from "users"
+-----------------------------------
+delete 
+from "abbrevs"
+-----------------------------------
+insert into "users" ("id","uuid","firstname","lastname","username","email","password","salt","birthdate","googleId","fitbitId","fitbitToken","fitbitRefreshToken","createdAt","updatedAt") values (1,'60f24265-ef45-4891-b4ef-e8fad4435308','Test','Test','','test@test.test','791d4f73043d9efc470bd5dc398753e24390e23a2ce462c656e7cf832e622615566a8e0c2c9355c7f0bf8f119389d843c468e2f96e081af293fdf69c6f466d98','743952ef5168028d','1989-01-01','123','213','456','789','2022-09-10 22:45:12.937 +00:00','2022-09-10 22:45:12.937 +00:00'),(2,'2a413eff-6eab-44f4-aafa-485e814b025b','Test','Test','','test1@test.test','3cb7073bf6b9b18c9f7fc38b7654a3e85204c2af80462252d8f231c6f51ffa3eba8bc4d030996a4145507117143eeb26d24258cbecf880681cc5209f90630d19','78290541baceb0b6','1989-01-01','123','213','456','789','2022-09-10 22:45:12.937 +00:00','2022-09-10 22:45:12.937 +00:00') RETURNING *;
+-----------------------------------
+insert into "abbrevs" ("id","main","sub","calories","protein","fat","carbohydrates","gmwt_1","gmwt_desc1","gmwt_2","gmwt_desc2","user_uuid","createdAt","updatedAt") values (2514,'Chicken','broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','165','31.02','3.57','0.00','140','1 cup,
+  chopped or diced','52','1 unit,
+   (yield from 1 lb ready-to-cook chicken)','60f24265-ef45-4891-b4ef-e8fad4435308','2022-09-10 22:45:12.940 +00:00','2022-09-10 22:45:12.940 +00:00'),(5470,'Avocados','raw,
+  Florida','120','2.23','10.06','7.82','230','1 cup,
+  pureed','304','1 fruit,
+  without skin and seeds',null,'2022-09-10 22:45:12.940 +00:00','2022-09-10 22:45:12.940 +00:00'),(2583,'Chicken','broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','220','24.17','12.92','0.00','140','1 cup,
+  chopped or diced','75','1 unit,
+   (yield from 1 lb ready-to-cook chicken)',null,'2022-09-10 22:45:12.940 +00:00','2022-09-10 22:45:12.940 +00:00'),(2768,'Sweet potato','cooked,
+  boiled,
+  without skin,
+  with salt','76','1.37','0.14','17.72','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.940 +00:00','2022-09-10 22:45:12.940 +00:00'),(1,'EssenceOf','Protein','400','100','0','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.940 +00:00','2022-09-10 22:45:12.940 +00:00'),(2,'EssenceOf','Carbs','400','0','0','100','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.940 +00:00','2022-09-10 22:45:12.940 +00:00'),(3,'EssenceOf','Fat','900','0','100','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.940 +00:00','2022-09-10 22:45:12.940 +00:00') RETURNING *;
+-----------------------------------
+[36mverbose[39m: token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJ1dWlkIjoiNjBmMjQyNjUtZWY0NS00ODkxLWI0ZWYtZThmYWQ0NDM1MzA4In0.ZiPnFVy1lBRzmrGEUX0d0KVoa9kZ9dsGsnENOfozzoA
+[36mverbose[39m: redisStored: {"user_id":"1","uuid":"60f24265-ef45-4891-b4ef-e8fad4435308"}
+[35msilly[39m: Worker 65503 handling
+[34mdebug[39m: [{"message":"\"id\" must be a number","path":["id"],"type":"number.base","context":{"value":"something absurd","key":"id","label":"id"}}]
+    ✓ fails when the request is malformed
+delete 
+from "users"
+-----------------------------------
+delete 
+from "abbrevs"
+-----------------------------------
+
+  routes/database/getBestGroup
+insert into "abbrevs" ("id","main","sub","calories","protein","fat","carbohydrates","gmwt_1","gmwt_desc1","gmwt_2","gmwt_desc2","user_uuid","createdAt","updatedAt") values (2514,'Chicken','broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','165','31.02','3.57','0.00','140','1 cup,
+  chopped or diced','52','1 unit,
+   (yield from 1 lb ready-to-cook chicken)','60f24265-ef45-4891-b4ef-e8fad4435308','2022-09-10 22:45:12.950 +00:00','2022-09-10 22:45:12.950 +00:00'),(5470,'Avocados','raw,
+  Florida','120','2.23','10.06','7.82','230','1 cup,
+  pureed','304','1 fruit,
+  without skin and seeds',null,'2022-09-10 22:45:12.950 +00:00','2022-09-10 22:45:12.950 +00:00'),(2583,'Chicken','broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','220','24.17','12.92','0.00','140','1 cup,
+  chopped or diced','75','1 unit,
+   (yield from 1 lb ready-to-cook chicken)',null,'2022-09-10 22:45:12.950 +00:00','2022-09-10 22:45:12.950 +00:00'),(2768,'Sweet potato','cooked,
+  boiled,
+  without skin,
+  with salt','76','1.37','0.14','17.72','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.950 +00:00','2022-09-10 22:45:12.950 +00:00'),(1,'EssenceOf','Protein','400','100','0','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.950 +00:00','2022-09-10 22:45:12.950 +00:00'),(2,'EssenceOf','Carbs','400','0','0','100','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.950 +00:00','2022-09-10 22:45:12.950 +00:00'),(3,'EssenceOf','Fat','900','0','100','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.950 +00:00','2022-09-10 22:45:12.950 +00:00') RETURNING *;
+-----------------------------------
+insert into "foodGroups" ("groupid","description","createdAt","updatedAt") values ('0500','Poultry Products','2022-09-10 22:45:12.953 +00:00','2022-09-10 22:45:12.953 +00:00'),('0900','Fruits and Fruit Juices','2022-09-10 22:45:12.953 +00:00','2022-09-10 22:45:12.953 +00:00'),('1100','Vegetables and Vegetable Products','2022-09-10 22:45:12.953 +00:00','2022-09-10 22:45:12.953 +00:00') RETURNING *;
+-----------------------------------
+insert into "foodDescs" ("id","Long_Desc","Short_Desc","ComName","ManufacName","Survey","Ref_desc","Refuse","SciName","N_Factor","Pro_Factor","Fat_Factor","CHO_Factor","createdAt","updatedAt","abbrev_id","FdGrp_Cd") values (default,'Chicken,
+  broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','CHICKEN,BROILERS or FRYERS,BRE','','','Y','19% bone,
+  9% skin','28','','6.25','4.27','9.02','3.87','2022-09-10 22:45:12.956 +00:00','2022-09-10 22:45:12.956 +00:00','2514','0500'),(default,'Chicken,
+  broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','CHICKEN,BROILERS or FRYERS,LEG','','','Y','Bone','30','','6.25','4.27','9.02','3.87','2022-09-10 22:45:12.956 +00:00','2022-09-10 22:45:12.956 +00:00','2583','0500'),(default,'Avocados,
+  raw,
+  Florida','AVOCADOS,RAW,FLORIDA','','','','Seed and skin','33','Persea americana','6.25','3.36','8.37','3.60','2022-09-10 22:45:12.956 +00:00','2022-09-10 22:45:12.956 +00:00','5470','0900'),(default,'Sweet potato,
+  cooked,
+  boiled,
+  without skin,
+  with salt','SWEET POTATO,CKD,BLD,WO/ SKN,W','Sweetpotato','','','','0','','6.25','2.78','8.37','4.03','2022-09-10 22:45:12.956 +00:00','2022-09-10 22:45:12.956 +00:00','2768','1100') RETURNING *;
+-----------------------------------
+select
+  "id",
+  "Long_Desc",
+  "Short_Desc",
+  "ComName",
+  "ManufacName",
+  "Survey",
+  "Ref_desc",
+  "Refuse",
+  "SciName",
+  "N_Factor",
+  "Pro_Factor",
+  "Fat_Factor",
+  "CHO_Factor",
+  "createdAt",
+  "updatedAt",
+  "abbrev_id",
+  "FdGrp_Cd" 
+from "foodDescs" as "foodDesc";
+-----------------------------------
+[
+  foodDesc {
+    dataValues: {
+      id: 8746,
+      Long_Desc: 'Chicken, broilers or fryers, breast, meat only, cooked, roasted',
+      Short_Desc: 'CHICKEN,BROILERS OR FRYERS,BRE',
+      ComName: '',
+      ManufacName: '',
+      Survey: 'Y',
+      Ref_desc: '19% bone, 9% skin',
+      Refuse: 28,
+      SciName: '',
+      N_Factor: '6.25',
+      Pro_Factor: '4.27',
+      Fat_Factor: '9.02',
+      CHO_Factor: '3.87',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 2514,
+      FdGrp_Cd: 500
+    },
+    _previousDataValues: {
+      id: 8746,
+      Long_Desc: 'Chicken, broilers or fryers, breast, meat only, cooked, roasted',
+      Short_Desc: 'CHICKEN,BROILERS OR FRYERS,BRE',
+      ComName: '',
+      ManufacName: '',
+      Survey: 'Y',
+      Ref_desc: '19% bone, 9% skin',
+      Refuse: 28,
+      SciName: '',
+      N_Factor: '6.25',
+      Pro_Factor: '4.27',
+      Fat_Factor: '9.02',
+      CHO_Factor: '3.87',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 2514,
+      FdGrp_Cd: 500
+    },
+    _changed: {},
+    _modelOptions: {
+      timestamps: true,
+      validate: {},
+      freezeTableName: false,
+      underscored: false,
+      paranoid: false,
+      rejectOnEmpty: false,
+      whereCollection: null,
+      schema: null,
+      schemaDelimiter: '',
+      defaultScope: {},
+      scopes: [Object],
+      indexes: [],
+      name: [Object],
+      omitNull: false,
+      sequelize: [Sequelize],
+      hooks: {}
+    },
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  foodDesc {
+    dataValues: {
+      id: 8747,
+      Long_Desc: 'Chicken, broilers or fryers, leg, meat and skin, cooked, stewed',
+      Short_Desc: 'CHICKEN,BROILERS OR FRYERS,LEG',
+      ComName: '',
+      ManufacName: '',
+      Survey: 'Y',
+      Ref_desc: 'Bone',
+      Refuse: 30,
+      SciName: '',
+      N_Factor: '6.25',
+      Pro_Factor: '4.27',
+      Fat_Factor: '9.02',
+      CHO_Factor: '3.87',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 2583,
+      FdGrp_Cd: 500
+    },
+    _previousDataValues: {
+      id: 8747,
+      Long_Desc: 'Chicken, broilers or fryers, leg, meat and skin, cooked, stewed',
+      Short_Desc: 'CHICKEN,BROILERS OR FRYERS,LEG',
+      ComName: '',
+      ManufacName: '',
+      Survey: 'Y',
+      Ref_desc: 'Bone',
+      Refuse: 30,
+      SciName: '',
+      N_Factor: '6.25',
+      Pro_Factor: '4.27',
+      Fat_Factor: '9.02',
+      CHO_Factor: '3.87',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 2583,
+      FdGrp_Cd: 500
+    },
+    _changed: {},
+    _modelOptions: {
+      timestamps: true,
+      validate: {},
+      freezeTableName: false,
+      underscored: false,
+      paranoid: false,
+      rejectOnEmpty: false,
+      whereCollection: null,
+      schema: null,
+      schemaDelimiter: '',
+      defaultScope: {},
+      scopes: [Object],
+      indexes: [],
+      name: [Object],
+      omitNull: false,
+      sequelize: [Sequelize],
+      hooks: {}
+    },
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  foodDesc {
+    dataValues: {
+      id: 8748,
+      Long_Desc: 'Avocados, raw, Florida',
+      Short_Desc: 'AVOCADOS,RAW,FLORIDA',
+      ComName: '',
+      ManufacName: '',
+      Survey: '',
+      Ref_desc: 'Seed and skin',
+      Refuse: 33,
+      SciName: 'Persea americana',
+      N_Factor: '6.25',
+      Pro_Factor: '3.36',
+      Fat_Factor: '8.37',
+      CHO_Factor: '3.60',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 5470,
+      FdGrp_Cd: 900
+    },
+    _previousDataValues: {
+      id: 8748,
+      Long_Desc: 'Avocados, raw, Florida',
+      Short_Desc: 'AVOCADOS,RAW,FLORIDA',
+      ComName: '',
+      ManufacName: '',
+      Survey: '',
+      Ref_desc: 'Seed and skin',
+      Refuse: 33,
+      SciName: 'Persea americana',
+      N_Factor: '6.25',
+      Pro_Factor: '3.36',
+      Fat_Factor: '8.37',
+      CHO_Factor: '3.60',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 5470,
+      FdGrp_Cd: 900
+    },
+    _changed: {},
+    _modelOptions: {
+      timestamps: true,
+      validate: {},
+      freezeTableName: false,
+      underscored: false,
+      paranoid: false,
+      rejectOnEmpty: false,
+      whereCollection: null,
+      schema: null,
+      schemaDelimiter: '',
+      defaultScope: {},
+      scopes: [Object],
+      indexes: [],
+      name: [Object],
+      omitNull: false,
+      sequelize: [Sequelize],
+      hooks: {}
+    },
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  foodDesc {
+    dataValues: {
+      id: 8749,
+      Long_Desc: 'Sweet potato, cooked, boiled, without skin, with salt',
+      Short_Desc: 'SWEET POTATO,CKD,BLD,WO/ SKN,W',
+      ComName: 'Sweetpotato',
+      ManufacName: '',
+      Survey: '',
+      Ref_desc: '',
+      Refuse: 0,
+      SciName: '',
+      N_Factor: '6.25',
+      Pro_Factor: '2.78',
+      Fat_Factor: '8.37',
+      CHO_Factor: '4.03',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 2768,
+      FdGrp_Cd: 1100
+    },
+    _previousDataValues: {
+      id: 8749,
+      Long_Desc: 'Sweet potato, cooked, boiled, without skin, with salt',
+      Short_Desc: 'SWEET POTATO,CKD,BLD,WO/ SKN,W',
+      ComName: 'Sweetpotato',
+      ManufacName: '',
+      Survey: '',
+      Ref_desc: '',
+      Refuse: 0,
+      SciName: '',
+      N_Factor: '6.25',
+      Pro_Factor: '2.78',
+      Fat_Factor: '8.37',
+      CHO_Factor: '4.03',
+      createdAt: 2022-09-10T22:45:12.956Z,
+      updatedAt: 2022-09-10T22:45:12.956Z,
+      abbrev_id: 2768,
+      FdGrp_Cd: 1100
+    },
+    _changed: {},
+    _modelOptions: {
+      timestamps: true,
+      validate: {},
+      freezeTableName: false,
+      underscored: false,
+      paranoid: false,
+      rejectOnEmpty: false,
+      whereCollection: null,
+      schema: null,
+      schemaDelimiter: '',
+      defaultScope: {},
+      scopes: [Object],
+      indexes: [],
+      name: [Object],
+      omitNull: false,
+      sequelize: [Sequelize],
+      hooks: {}
+    },
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  }
+]
+[36mverbose[39m: token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJ1dWlkIjoiNjBmMjQyNjUtZWY0NS00ODkxLWI0ZWYtZThmYWQ0NDM1MzA4In0.ZiPnFVy1lBRzmrGEUX0d0KVoa9kZ9dsGsnENOfozzoA
+[36mverbose[39m: redisStored: {"user_id":"1","uuid":"60f24265-ef45-4891-b4ef-e8fad4435308"}
+[35msilly[39m: Worker 65503 handling
+select
+  "foodDesc"."id",
+  "foodDesc"."Long_Desc",
+  "foodDesc"."Short_Desc",
+  "foodDesc"."ComName",
+  "foodDesc"."ManufacName",
+  "foodDesc"."Survey",
+  "foodDesc"."Ref_desc",
+  "foodDesc"."Refuse",
+  "foodDesc"."SciName",
+  "foodDesc"."N_Factor",
+  "foodDesc"."Pro_Factor",
+  "foodDesc"."Fat_Factor",
+  "foodDesc"."CHO_Factor",
+  "foodDesc"."createdAt",
+  "foodDesc"."updatedAt",
+  "foodDesc"."abbrev_id",
+  "foodDesc"."FdGrp_Cd",
+  "foodGroup"."groupid" as "foodGroup.groupid",
+  "foodGroup"."description" as "foodGroup.description",
+  "foodGroup"."createdAt" as "foodGroup.createdAt",
+  "foodGroup"."updatedAt" as "foodGroup.updatedAt" 
+from "foodDescs" as "foodDesc" 
+left outer join "foodGroups" as "foodGroup"
+  on "foodDesc"."FdGrp_Cd" = "foodGroup"."groupid"
+where "foodDesc"."Long_Desc" like '%chicken%';
+-----------------------------------
+Error: cannot GET /api/database/foodgroup/v1?food[]=chicken (500)
+    at Response.toError (/home/richard/Documents/Projects/kym-api/node_modules/superagent/lib/node/response.js:94:15)
+    at ResponseBase._setStatusProperties (/home/richard/Documents/Projects/kym-api/node_modules/superagent/lib/response-base.js:123:16)
+    at new Response (/home/richard/Documents/Projects/kym-api/node_modules/superagent/lib/node/response.js:41:8)
+    at Test.Request._emitResponse (/home/richard/Documents/Projects/kym-api/node_modules/superagent/lib/node/index.js:752:20)
+    at IncomingMessage.<anonymous> (/home/richard/Documents/Projects/kym-api/node_modules/superagent/lib/node/index.js:916:38)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  status: 500,
+  text: 'No similar foods found',
+  method: 'GET',
+  path: '/api/database/foodgroup/v1?food[]=chicken'
+}
+    1) returns a group
+delete 
+from "abbrevs"
+-----------------------------------
+delete 
+from "foodDescs"
+-----------------------------------
+delete 
+from "foodGroups"
+-----------------------------------
+
+  routes/database/getUserCreated
+insert into "users" ("id","uuid","firstname","lastname","username","email","password","salt","birthdate","googleId","fitbitId","fitbitToken","fitbitRefreshToken","createdAt","updatedAt") values (1,'60f24265-ef45-4891-b4ef-e8fad4435308','Test','Test','','test@test.test','8cd0560b554680b384b531abba68ad70a13c3d0e0823addc360618ec3de548aabd5ee25ea03755425375ecf9d10d103d0a6e7cd39d27b52761e46bb000547e3b','83545a83a41aee5b','1989-01-01','123','213','456','789','2022-09-10 22:45:12.975 +00:00','2022-09-10 22:45:12.975 +00:00'),(2,'2a413eff-6eab-44f4-aafa-485e814b025b','Test','Test','','test1@test.test','511b6bc5fa0dc0199a8a172aa8081b8766e630a15048bb5f5b3ee00afc9e2f8f7e9e7d30a542b38688b63a588c212a54dde654721956538d500a8bd087f886ff','cc421e0d05654ca7','1989-01-01','123','213','456','789','2022-09-10 22:45:12.975 +00:00','2022-09-10 22:45:12.975 +00:00') RETURNING *;
+-----------------------------------
+insert into "abbrevs" ("id","main","sub","calories","protein","fat","carbohydrates","gmwt_1","gmwt_desc1","gmwt_2","gmwt_desc2","user_uuid","createdAt","updatedAt") values (2514,'Chicken','broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','165','31.02','3.57','0.00','140','1 cup,
+  chopped or diced','52','1 unit,
+   (yield from 1 lb ready-to-cook chicken)','60f24265-ef45-4891-b4ef-e8fad4435308','2022-09-10 22:45:12.978 +00:00','2022-09-10 22:45:12.978 +00:00'),(5470,'Avocados','raw,
+  Florida','120','2.23','10.06','7.82','230','1 cup,
+  pureed','304','1 fruit,
+  without skin and seeds',null,'2022-09-10 22:45:12.978 +00:00','2022-09-10 22:45:12.978 +00:00'),(2583,'Chicken','broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','220','24.17','12.92','0.00','140','1 cup,
+  chopped or diced','75','1 unit,
+   (yield from 1 lb ready-to-cook chicken)',null,'2022-09-10 22:45:12.978 +00:00','2022-09-10 22:45:12.978 +00:00'),(2768,'Sweet potato','cooked,
+  boiled,
+  without skin,
+  with salt','76','1.37','0.14','17.72','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.978 +00:00','2022-09-10 22:45:12.978 +00:00'),(1,'EssenceOf','Protein','400','100','0','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.978 +00:00','2022-09-10 22:45:12.978 +00:00'),(2,'EssenceOf','Carbs','400','0','0','100','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.978 +00:00','2022-09-10 22:45:12.978 +00:00'),(3,'EssenceOf','Fat','900','0','100','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.978 +00:00','2022-09-10 22:45:12.978 +00:00') RETURNING *;
+-----------------------------------
+[36mverbose[39m: token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJ1dWlkIjoiNjBmMjQyNjUtZWY0NS00ODkxLWI0ZWYtZThmYWQ0NDM1MzA4In0.ZiPnFVy1lBRzmrGEUX0d0KVoa9kZ9dsGsnENOfozzoA
+[36mverbose[39m: redisStored: {"user_id":"1","uuid":"60f24265-ef45-4891-b4ef-e8fad4435308"}
+[35msilly[39m: Worker 65503 handling
+select
+  "abbrev"."id",
+  "abbrev"."main",
+  "abbrev"."sub",
+  "abbrev"."calories",
+  "abbrev"."protein",
+  "abbrev"."fat",
+  "abbrev"."carbohydrates",
+  "abbrev"."gmwt_1",
+  "abbrev"."gmwt_desc1",
+  "abbrev"."gmwt_2",
+  "abbrev"."gmwt_desc2",
+  "abbrev"."user_uuid",
+  "abbrev"."photo",
+  "abbrev"."createdAt",
+  "abbrev"."updatedAt",
+  "weights"."id" as "weights.id",
+  "weights"."seq" as "weights.seq",
+  "weights"."amount" as "weights.amount",
+  "weights"."description" as "weights.description",
+  "weights"."gr_wgt" as "weights.gr_wgt",
+  "weights"."createdAt" as "weights.createdAt",
+  "weights"."updatedAt" as "weights.updatedAt",
+  "weights"."abbrev_id" as "weights.abbrev_id",
+  "abbrevMicro"."id" as "abbrevMicro.id",
+  "abbrevMicro"."Water" as "abbrevMicro.Water",
+  "abbrevMicro"."Ash" as "abbrevMicro.Ash",
+  "abbrevMicro"."Fiber" as "abbrevMicro.Fiber",
+  "abbrevMicro"."Sugar" as "abbrevMicro.Sugar",
+  "abbrevMicro"."Calcium" as "abbrevMicro.Calcium",
+  "abbrevMicro"."Iron" as "abbrevMicro.Iron",
+  "abbrevMicro"."Magnesium" as "abbrevMicro.Magnesium",
+  "abbrevMicro"."Phosphorus" as "abbrevMicro.Phosphorus",
+  "abbrevMicro"."Potassium" as "abbrevMicro.Potassium",
+  "abbrevMicro"."Sodium" as "abbrevMicro.Sodium",
+  "abbrevMicro"."Zinc" as "abbrevMicro.Zinc",
+  "abbrevMicro"."Copper" as "abbrevMicro.Copper",
+  "abbrevMicro"."Manganese" as "abbrevMicro.Manganese",
+  "abbrevMicro"."Selenium" as "abbrevMicro.Selenium",
+  "abbrevMicro"."Vit_C" as "abbrevMicro.Vit_C",
+  "abbrevMicro"."Thiamin" as "abbrevMicro.Thiamin",
+  "abbrevMicro"."Riboflavin" as "abbrevMicro.Riboflavin",
+  "abbrevMicro"."Niacin" as "abbrevMicro.Niacin",
+  "abbrevMicro"."Panto_acid" as "abbrevMicro.Panto_acid",
+  "abbrevMicro"."Vit_B6" as "abbrevMicro.Vit_B6",
+  "abbrevMicro"."Folate_Tot" as "abbrevMicro.Folate_Tot",
+  "abbrevMicro"."Folic_acid" as "abbrevMicro.Folic_acid",
+  "abbrevMicro"."Food_Folate" as "abbrevMicro.Food_Folate",
+  "abbrevMicro"."Folate_DFE" as "abbrevMicro.Folate_DFE",
+  "abbrevMicro"."Choline_Tot" as "abbrevMicro.Choline_Tot",
+  "abbrevMicro"."Vit_B12" as "abbrevMicro.Vit_B12",
+  "abbrevMicro"."Vit_A_IU" as "abbrevMicro.Vit_A_IU",
+  "abbrevMicro"."Vit_A_RAE" as "abbrevMicro.Vit_A_RAE",
+  "abbrevMicro"."Retinol" as "abbrevMicro.Retinol",
+  "abbrevMicro"."Alpha_Carot" as "abbrevMicro.Alpha_Carot",
+  "abbrevMicro"."Beta_Carot" as "abbrevMicro.Beta_Carot",
+  "abbrevMicro"."Beta_Crypt" as "abbrevMicro.Beta_Crypt",
+  "abbrevMicro"."Lycopene" as "abbrevMicro.Lycopene",
+  "abbrevMicro"."Lut_Zea" as "abbrevMicro.Lut_Zea",
+  "abbrevMicro"."Vit_E" as "abbrevMicro.Vit_E",
+  "abbrevMicro"."Vit_D_mcg" as "abbrevMicro.Vit_D_mcg",
+  "abbrevMicro"."Vit_D_IU" as "abbrevMicro.Vit_D_IU",
+  "abbrevMicro"."Vit_K" as "abbrevMicro.Vit_K",
+  "abbrevMicro"."FA_Sat" as "abbrevMicro.FA_Sat",
+  "abbrevMicro"."FA_Mono" as "abbrevMicro.FA_Mono",
+  "abbrevMicro"."FA_Poly" as "abbrevMicro.FA_Poly",
+  "abbrevMicro"."Cholestrl" as "abbrevMicro.Cholestrl",
+  "abbrevMicro"."createdAt" as "abbrevMicro.createdAt",
+  "abbrevMicro"."updatedAt" as "abbrevMicro.updatedAt",
+  "abbrevMicro"."abbrev_id" as "abbrevMicro.abbrev_id",
+  "foodDesc"."id" as "foodDesc.id",
+  "foodDesc"."Long_Desc" as "foodDesc.Long_Desc",
+  "foodDesc"."Short_Desc" as "foodDesc.Short_Desc",
+  "foodDesc"."ComName" as "foodDesc.ComName",
+  "foodDesc"."ManufacName" as "foodDesc.ManufacName",
+  "foodDesc"."Survey" as "foodDesc.Survey",
+  "foodDesc"."Ref_desc" as "foodDesc.Ref_desc",
+  "foodDesc"."Refuse" as "foodDesc.Refuse",
+  "foodDesc"."SciName" as "foodDesc.SciName",
+  "foodDesc"."N_Factor" as "foodDesc.N_Factor",
+  "foodDesc"."Pro_Factor" as "foodDesc.Pro_Factor",
+  "foodDesc"."Fat_Factor" as "foodDesc.Fat_Factor",
+  "foodDesc"."CHO_Factor" as "foodDesc.CHO_Factor",
+  "foodDesc"."createdAt" as "foodDesc.createdAt",
+  "foodDesc"."updatedAt" as "foodDesc.updatedAt",
+  "foodDesc"."abbrev_id" as "foodDesc.abbrev_id",
+  "foodDesc"."FdGrp_Cd" as "foodDesc.FdGrp_Cd" 
+from "abbrevs" as "abbrev" 
+left outer join "weights" as "weights"
+  on "abbrev"."id" = "weights"."abbrev_id" 
+left outer join "abbrevMicros" as "abbrevMicro"
+  on "abbrev"."id" = "abbrevMicro"."abbrev_id" 
+left outer join "foodDescs" as "foodDesc"
+  on "abbrev"."id" = "foodDesc"."abbrev_id"
+where "abbrev"."user_uuid" = '60f24265-ef45-4891-b4ef-e8fad4435308' order by "abbrev"."id" desc;
+-----------------------------------
+    ✓ returns an array
+delete 
+from "users"
+-----------------------------------
+delete 
+from "abbrevs"
+-----------------------------------
+
+  foodQuery
+    ✓ handles when there's no food
+    ✓ handles when there's food
+    ✓ only deals with an array
+
+  macronutrient queries
+    proteinQuery
+      ✓ gives a query
+      ✓ fails without a percent
+      ✓ fails without a comparator
+      ✓ fails without a valid comparator
+    carbQuery
+      ✓ gives a query
+      ✓ fails without a percent
+      ✓ fails without a comparator
+      ✓ fails without a valid comparator
+    fatQuery
+      ✓ gives a query
+      ✓ fails without a percent
+      ✓ fails without a comparator
+      ✓ fails without a valid comparator
+
+  percentQuery
+    ✓ makes an empty query with invalid percents
+    ✓ makes an query with valid percents
+
+  routes/database/searchDetail
+insert into "abbrevs" ("id","main","sub","calories","protein","fat","carbohydrates","gmwt_1","gmwt_desc1","gmwt_2","gmwt_desc2","user_uuid","createdAt","updatedAt") values (2514,'Chicken','broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','165','31.02','3.57','0.00','140','1 cup,
+  chopped or diced','52','1 unit,
+   (yield from 1 lb ready-to-cook chicken)','60f24265-ef45-4891-b4ef-e8fad4435308','2022-09-10 22:45:12.993 +00:00','2022-09-10 22:45:12.993 +00:00'),(5470,'Avocados','raw,
+  Florida','120','2.23','10.06','7.82','230','1 cup,
+  pureed','304','1 fruit,
+  without skin and seeds',null,'2022-09-10 22:45:12.993 +00:00','2022-09-10 22:45:12.993 +00:00'),(2583,'Chicken','broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','220','24.17','12.92','0.00','140','1 cup,
+  chopped or diced','75','1 unit,
+   (yield from 1 lb ready-to-cook chicken)',null,'2022-09-10 22:45:12.993 +00:00','2022-09-10 22:45:12.993 +00:00'),(2768,'Sweet potato','cooked,
+  boiled,
+  without skin,
+  with salt','76','1.37','0.14','17.72','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.993 +00:00','2022-09-10 22:45:12.993 +00:00'),(1,'EssenceOf','Protein','400','100','0','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.993 +00:00','2022-09-10 22:45:12.993 +00:00'),(2,'EssenceOf','Carbs','400','0','0','100','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.993 +00:00','2022-09-10 22:45:12.993 +00:00'),(3,'EssenceOf','Fat','900','0','100','0','328','1 cup,
+  mashed','151','1 medium',null,'2022-09-10 22:45:12.993 +00:00','2022-09-10 22:45:12.993 +00:00') RETURNING *;
+-----------------------------------
+insert into "foodGroups" ("groupid","description","createdAt","updatedAt") values ('0500','Poultry Products','2022-09-10 22:45:12.996 +00:00','2022-09-10 22:45:12.996 +00:00'),('0900','Fruits and Fruit Juices','2022-09-10 22:45:12.996 +00:00','2022-09-10 22:45:12.996 +00:00'),('1100','Vegetables and Vegetable Products','2022-09-10 22:45:12.996 +00:00','2022-09-10 22:45:12.996 +00:00') RETURNING *;
+-----------------------------------
+insert into "foodDescs" ("id","Long_Desc","Short_Desc","ComName","ManufacName","Survey","Ref_desc","Refuse","SciName","N_Factor","Pro_Factor","Fat_Factor","CHO_Factor","createdAt","updatedAt","abbrev_id","FdGrp_Cd") values (default,'Chicken,
+  broilers or fryers,
+  breast,
+  meat only,
+  cooked,
+  roasted','CHICKEN,BROILERS or FRYERS,BRE','','','Y','19% bone,
+  9% skin','28','','6.25','4.27','9.02','3.87','2022-09-10 22:45:12.999 +00:00','2022-09-10 22:45:12.999 +00:00','2514','0500'),(default,'Chicken,
+  broilers or fryers,
+  leg,
+  meat and skin,
+  cooked,
+  stewed','CHICKEN,BROILERS or FRYERS,LEG','','','Y','Bone','30','','6.25','4.27','9.02','3.87','2022-09-10 22:45:12.999 +00:00','2022-09-10 22:45:12.999 +00:00','2583','0500'),(default,'Avocados,
+  raw,
+  Florida','AVOCADOS,RAW,FLORIDA','','','','Seed and skin','33','Persea americana','6.25','3.36','8.37','3.60','2022-09-10 22:45:12.999 +00:00','2022-09-10 22:45:12.999 +00:00','5470','0900'),(default,'Sweet potato,
+  cooked,
+  boiled,
+  without skin,
+  with salt','SWEET POTATO,CKD,BLD,WO/ SKN,W','Sweetpotato','','','','0','','6.25','2.78','8.37','4.03','2022-09-10 22:45:12.999 +00:00','2022-09-10 22:45:12.999 +00:00','2768','1100') RETURNING *;
+-----------------------------------
+select
+  count(*) as "count" 
+from "abbrevs" as "abbrev"
+where (("abbrev"."main" ILIKE '%chicken%' or "abbrev"."sub" ILIKE '%chicken%'));
+-----------------------------------
+select
+  "id",
+  "main",
+  "sub",
+  "calories",
+  "protein",
+  "fat",
+  "carbohydrates",
+  "gmwt_1",
+  "gmwt_desc1",
+  "gmwt_2",
+  "gmwt_desc2",
+  "user_uuid",
+  "photo",
+  "createdAt",
+  "updatedAt" 
+from "abbrevs" as "abbrev"
+where (("abbrev"."main" ILIKE '%chicken%' or "abbrev"."sub" ILIKE '%chicken%')) order by 
+      case
+        when ("abbrev"."main" ILIKE 'chicken') then 'aaaa'
+        when ("abbrev"."main" ILIKE 'chicken %') then 'aaaaa'
+        when ("abbrev"."main" ILIKE 'chicken%') then 'aaaaaa'
+        else "abbrev"."main"
+      end limit 50;
+-----------------------------------
+    ✓ returns records
+select
+  count(*) as "count" 
+from "abbrevs" as "abbrev"
+where "abbrev"."main" != '';
+-----------------------------------
+select
+  "id",
+  "main",
+  "sub",
+  "calories",
+  "protein",
+  "fat",
+  "carbohydrates",
+  "gmwt_1",
+  "gmwt_desc1",
+  "gmwt_2",
+  "gmwt_desc2",
+  "user_uuid",
+  "photo",
+  "createdAt",
+  "updatedAt" 
+from "abbrevs" as "abbrev"
+where "abbrev"."main" != '' order by "abbrev"."main" desc,
+  "abbrev"."sub" desc limit 50;
+-----------------------------------
+    ✓ returns records
+delete 
+from "abbrevs"
+-----------------------------------
+delete 
+from "foodDescs"
+-----------------------------------
+delete 
+from "foodGroups"
+-----------------------------------
+
+
+  24 passing (205ms)
+  1 failing
+
+  1) routes/database/getBestGroup
+       returns a group:
+
+      AssertionError: expected 500 to equal 200
+      + expected - actual
+
+      -500
+      +200
+      
+      at Context.<anonymous> (server/api/routes/database/controllers/getBestGroupV1/tests/index.test.js:29:31)
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+
+
+
+---------------------------------------|---------|----------|---------|---------|-------------------
+File                                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------------------------|---------|----------|---------|---------|-------------------
+All files                              |   59.77 |    37.15 |   23.41 |   60.19 |                   
+ server                                |   33.33 |    22.22 |   14.28 |   31.66 |                   
+  NaiveBayes.js                        |    6.89 |        0 |       0 |    6.89 | 7,27-43,55-282    
+  app.js                               |   97.22 |    72.72 |     100 |   96.96 | 59                
+ server/api                            |   76.82 |       25 |     100 |   76.82 |                   
+  index.js                             |   76.82 |       25 |     100 |   76.82 | ...,65-73,118-137 
+ server/api/routes                     |     100 |      100 |     100 |     100 |                   
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ server/api/routes/calculate           |      50 |      100 |       0 |      50 |                   
+  index.js                             |    42.1 |      100 |       0 |    42.1 | 10-15,20-26       
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...te/controllers/dayMealsCalculateV1 |      75 |        0 |       0 |      75 |                   
+  index.js                             |   71.42 |        0 |       0 |   71.42 | 7-9               
+  validation.js                        |      80 |      100 |       0 |      80 | 6                 
+ .../controllers/singleMealCalculateV1 |   61.53 |        0 |       0 |   72.72 |                   
+  index.js                             |   41.66 |        0 |       0 |   45.45 | 6-24              
+  validation.js                        |   78.57 |      100 |       0 |     100 |                   
+ server/api/routes/database            |   77.27 |      100 |      75 |   77.27 |                   
+  index.js                             |   76.19 |      100 |      75 |   76.19 | 24,33-43,56-57    
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ .../database/controllers/deleteFoodV1 |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...atabase/controllers/getBestGroupV1 |   76.92 |        0 |     100 |   76.92 |                   
+  index.js                             |      70 |        0 |     100 |      70 | 14-20             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...abase/controllers/getUserCreatedV1 |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+ ...atabase/controllers/searchDetailV1 |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...controllers/searchDetailV1/queries |    98.3 |    96.66 |     100 |    98.3 |                   
+  food.js                              |     100 |      100 |     100 |     100 |                   
+  macronutrients.js                    |   97.14 |    94.44 |     100 |   97.14 | 25                
+  percent.js                           |     100 |      100 |     100 |     100 |                   
+ server/api/routes/day                 |      50 |      100 |       0 |      50 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 13-16,21-25,30-33 
+ ...s/day/controllers/createUpdateDays |      60 |        0 |       0 |      60 |                   
+  index.js                             |      60 |        0 |       0 |      60 | 8-21              
+ ...routes/day/controllers/destroyDays |      60 |        0 |       0 |      60 |                   
+  index.js                             |      60 |        0 |       0 |      60 | 8-20              
+ ...api/routes/day/controllers/getDays |   41.66 |        0 |       0 |   41.66 |                   
+  index.js                             |   41.66 |        0 |       0 |   41.66 | 8-27              
+ server/api/routes/favorites           |   73.33 |      100 |       0 |   73.33 |                   
+  index.js                             |   66.66 |      100 |       0 |   66.66 | 9-13              
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...orites/controllers/addFavoriteFood |   56.25 |      100 |       0 |   56.25 |                   
+  index.js                             |   46.15 |      100 |       0 |   46.15 | 8-27              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...rites/controllers/getFavoriteFoods |   57.14 |      100 |       0 |   57.14 |                   
+  index.js                             |   57.14 |      100 |       0 |   57.14 | 5-7               
+ ...tes/controllers/removeFavoriteFood |   56.25 |      100 |       0 |   56.25 |                   
+  index.js                             |   46.15 |      100 |       0 |   46.15 | 7-24              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ server/api/routes/fitbit              |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...tes/fitbit/controllers/getCalories |   46.15 |      100 |       0 |   46.15 |                   
+  getCalories.js                       |      40 |      100 |       0 |      40 | 13-30             
+  index.js                             |   38.46 |      100 |       0 |   38.46 | 6-16              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ server/api/routes/food                |      55 |        0 |       0 |      55 |                   
+  index.js                             |   51.35 |        0 |       0 |   51.35 | 19-31,36-41,48-56 
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ server/api/routes/food-groups         |   35.29 |        0 |       0 |   35.29 |                   
+  index.js                             |   35.29 |        0 |       0 |   35.29 | 8-29              
+ ...d-groups/controllers/getFoodGroups |   66.66 |      100 |       0 |   66.66 |                   
+  index.js                             |   66.66 |      100 |       0 |   66.66 | 5-6               
+ server/api/routes/food-record         |   83.33 |      100 |       0 |   83.33 |                   
+  index.js                             |   79.16 |      100 |       0 |   79.16 | 16-21             
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...d-record/controllers/addFoodRecord |      55 |      100 |       0 |      55 |                   
+  index.js                             |   43.75 |      100 |       0 |   43.75 | 12-46             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...ecord/controllers/deleteFoodRecord |   52.63 |        0 |       0 |   55.55 |                   
+  index.js                             |      40 |        0 |       0 |   42.85 | 12-29             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...d-record/controllers/getAllRecords |   41.66 |      100 |       0 |   45.45 |                   
+  index.js                             |   41.66 |      100 |       0 |   45.45 | 6-13              
+ ...ord/controllers/getFoodRecordMicro |   52.63 |      100 |       0 |   55.55 |                   
+  index.js                             |      40 |      100 |       0 |   42.85 | 16-36             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...d/controllers/getFoodRecordsByDate |      55 |      100 |       0 |   57.89 |                   
+  index.js                             |      40 |      100 |       0 |   42.85 | 11-27             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...-record/controllers/makeMealPublic |   33.33 |      100 |       0 |   33.33 |                   
+  index.js                             |   33.33 |      100 |       0 |   33.33 | 5-21              
+ ...-record/controllers/updateQuantity |   52.63 |      100 |       0 |   52.63 |                   
+  index.js                             |   43.75 |      100 |       0 |   43.75 | 9-29              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...ord/controllers/updateRecordStatus |   61.11 |      100 |       0 |   61.11 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 8-19              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...tes/food/controllers/addPreference |      60 |      100 |       0 |      60 |                   
+  index.js                             |      60 |      100 |       0 |      60 | 5-13              
+ ...utes/food/controllers/autocomplete |    37.5 |      100 |       0 |    37.5 |                   
+  index.js                             |    37.5 |      100 |       0 |    37.5 | 8-27              
+ ...routes/food/controllers/createFood |   46.66 |        0 |      50 |   46.42 |                   
+  index.js                             |      36 |        0 |       0 |    37.5 | 18-52             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...od/controllers/createFood/cleaners |   30.76 |      100 |       0 |   30.76 |                   
+  cleanAbbrev.js                       |   28.57 |      100 |       0 |   28.57 | 14-33             
+  cleanFoodDesc.js                     |   33.33 |      100 |       0 |   33.33 | 2-4               
+  cleanWeight.js                       |   33.33 |      100 |       0 |   33.33 | 2-4               
+ ...tes/food/controllers/getFoodByName |   54.54 |        0 |       0 |   54.54 |                   
+  index.js                             |   44.44 |        0 |       0 |   44.44 | 11-49             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ .../controllers/getFoodByName/helpers |      20 |        0 |       0 |      20 |                   
+  Query.js                             |      20 |        0 |       0 |      20 | 5-19              
+ ...od/controllers/getFoodByName/redis |   42.85 |      100 |       0 |   42.85 |                   
+  counter.js                           |   42.85 |      100 |       0 |   42.85 | 5-8               
+ .../routes/food/controllers/getRandom |      60 |      100 |       0 |      60 |                   
+  index.js                             |      60 |      100 |       0 |      60 | 5-6               
+ .../api/routes/food/controllers/train |      36 |        0 |       0 |      36 |                   
+  index.js                             |      36 |        0 |       0 |      36 | 13-37             
+ server/api/routes/foodmicro           |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...foodmicro/controllers/getFoodMicro |   56.25 |      100 |       0 |      60 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 8-20              
+  validation.js                        |      75 |      100 |       0 |     100 |                   
+ server/api/routes/generate            |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...er/api/routes/generate/controllers |   47.05 |      100 |       0 |   47.05 |                   
+  calculateFoodQuantities.js           |   44.44 |      100 |       0 |   44.44 | 5-20              
+  getRandomFood.js                     |      50 |      100 |       0 |      50 | 5-17              
+ server/api/routes/goals               |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...utes/goals/controllers/createGoals |   61.11 |      100 |       0 |   61.11 |                   
+  index.js                             |   46.15 |      100 |       0 |   46.15 | 10-27             
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ server/api/routes/meal                |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+ server/api/routes/meal-goals          |      60 |      100 |       0 |      60 |                   
+  index.js                             |      60 |      100 |       0 |      60 | 8-12              
+ ...-goals/controllers/createMealGoals |    64.7 |      100 |       0 |    64.7 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 7-20              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...eal-goals/controllers/getMealGoals |   55.55 |        0 |       0 |   55.55 |                   
+  index.js                             |   55.55 |        0 |       0 |   55.55 | 8-17              
+ ...pi/routes/meal/controllers/getMeal |      40 |      100 |       0 |      40 |                   
+  index.js                             |      40 |      100 |       0 |      40 | 12-47             
+ ...s/meal/controllers/getMeal/helpers |   28.57 |        0 |       0 |   28.57 |                   
+  makeInclWhere.js                     |   33.33 |        0 |       0 |   33.33 | 8-15              
+  makeWhere.js                         |      25 |        0 |       0 |      25 | 10-24             
+ server/api/routes/programs            |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ ...programs/controllers/createProgram |   56.25 |      100 |       0 |   56.25 |                   
+  index.js                             |   46.15 |      100 |       0 |   46.15 | 7-19              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...es/programs/controllers/getProgram |      50 |      100 |       0 |      50 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 5-15              
+ ...s/programs/controllers/getPrograms |      50 |      100 |       0 |      50 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 5-14              
+ server/api/routes/session             |   52.63 |      100 |       0 |   52.63 |                   
+  index.js                             |   43.75 |      100 |       0 |   43.75 | 9-28              
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+ server/api/routes/session/controllers |   45.45 |        0 |       0 |   45.45 |                   
+  getUserFromToken.js                  |   42.85 |        0 |       0 |   42.85 | 7-24              
+  signIn.js                            |      50 |        0 |       0 |      50 | 8-19              
+ server/api/routes/shopping-list       |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+ ...i/routes/shopping-list/controllers |   28.57 |      100 |       0 |   30.76 |                   
+  getList.js                           |   28.57 |      100 |       0 |   30.76 | 5-26              
+ server/api/routes/user                |      50 |      100 |       0 |      50 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 14-19,25-33,40-45 
+ server/api/routes/user-measurements   |      50 |      100 |       0 |      50 |                   
+  index.js                             |      50 |      100 |       0 |      50 | 7-11              
+ ...ements/controllers/getMeasurements |      60 |      100 |       0 |      60 |                   
+  index.js                             |      60 |      100 |       0 |      60 | 7-18              
+ ...ser/controllers/createMeasurements |   39.28 |        0 |       0 |   40.74 |                   
+  index.js                             |   27.27 |        0 |       0 |   28.57 | 7-48              
+  validation.js                        |   83.33 |      100 |       0 |   83.33 | 6                 
+ ...ser/controllers/deleteMeasurements |   55.55 |      100 |       0 |   55.55 |                   
+  index.js                             |   42.85 |      100 |       0 |   42.85 | 7-23              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...pi/routes/user/controllers/getUser |   33.33 |        0 |       0 |   33.33 |                   
+  index.js                             |   33.33 |        0 |       0 |   33.33 | 8-31              
+ ...api/routes/user/controllers/signup |   29.54 |        0 |       0 |   29.54 |                   
+  index.js                             |    22.5 |        0 |       0 |    22.5 | 19-111            
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...ser/controllers/updateMeasurements |   52.94 |        0 |       0 |   56.25 |                   
+  index.js                             |   42.85 |        0 |       0 |   46.15 | 8-22              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ ...routes/user/controllers/updateUser |   44.44 |      100 |       0 |   44.44 |                   
+  index.js                             |   33.33 |      100 |       0 |   33.33 | 7-22              
+  validation.js                        |     100 |      100 |     100 |     100 |                   
+ server/configure                      |   82.45 |     62.5 |   71.42 |   82.45 |                   
+  ValidationError.js                   |      20 |      100 |       0 |      20 | 8-11              
+  app-variables.js                     |     100 |      100 |     100 |     100 |                   
+  appError.js                          |     100 |       50 |     100 |     100 | 19                
+  oauthInfo.js                         |     100 |      100 |     100 |     100 |                   
+  raven.js                             |   42.85 |       50 |     100 |   42.85 | 5-12              
+  redis-client.js                      |      90 |       50 |      50 |      90 | 7,20              
+ server/swagger                        |     100 |       90 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+  paths.js                             |     100 |      100 |     100 |     100 |                   
+  swaggerPaths.js                      |     100 |       90 |     100 |     100 | 59                
+ server/swagger/definitions            |     100 |      100 |     100 |     100 |                   
+  Abbrev.js                            |     100 |      100 |     100 |     100 |                   
+  AbbrevMicro.js                       |     100 |      100 |     100 |     100 |                   
+  FoodRecord.js                        |     100 |      100 |     100 |     100 |                   
+  Goal.js                              |     100 |      100 |     100 |     100 |                   
+  Meal.js                              |     100 |      100 |     100 |     100 |                   
+  MealCalculation.js                   |     100 |      100 |     100 |     100 |                   
+  Measurement.js                       |     100 |      100 |     100 |     100 |                   
+  Program.js                           |     100 |      100 |     100 |     100 |                   
+  User.js                              |     100 |      100 |     100 |     100 |                   
+  Weight.js                            |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+ server/utils/Controller               |   33.33 |        0 |   33.33 |   33.33 |                   
+  index.js                             |   33.33 |        0 |   33.33 |   33.33 | 10-22             
+ server/utils/handleRouteError         |     100 |      100 |     100 |     100 |                   
+  index.js                             |     100 |      100 |     100 |     100 |                   
+ server/utils/logger                   |     100 |       50 |     100 |     100 |                   
+  index.js                             |     100 |       50 |     100 |     100 | 21                
+---------------------------------------|---------|----------|---------|---------|-------------------

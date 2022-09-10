@@ -1,5 +1,5 @@
 [
-  { "GroupID": "0500", "Description": "Poultry Products" },
-  { "GroupID": "0900", "Description": "Fruits and Fruit Juices" },
-  { "GroupID": "1100", "Description": "Vegetables and Vegetable Products" }
+  { "groupid": "0500", "description": "Poultry Products" },
+  { "groupid": "0900", "description": "Fruits and Fruit Juices" },
+  { "groupid": "1100", "description": "Vegetables and Vegetable Products" }
 ]

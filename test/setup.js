@@ -15,7 +15,9 @@ logger.verbose('mocha setup complete');
 const users = require('../test-data/users.json');
 const userMeasurements = require('../test-data/user-measurements.json');
 const abbrevs = require('../test-data/abbrev.json');
+const foodGroups = require('../test-data/fd-group.json');
 const foodRecords = require('../test-data/food-record.json');
+const foodDesc = require('../test-data/food-des.json');
 const abbrevsMicro = require('../test-data/abbrev-micro.json');
 const meals = require('../test-data/meals.json');
 const mealGoals = require('../test-data/meal-goals.json');
@@ -27,6 +29,8 @@ global.testData = {
   userMeasurements,
   abbrevs,
   abbrevsMicro,
+  foodGroups,
+  foodDesc,
   foodRecords,
   meals,
   mealGoals,

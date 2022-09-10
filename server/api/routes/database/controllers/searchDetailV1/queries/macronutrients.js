@@ -41,7 +41,7 @@ function proteinQuery(percent, comparator) {
   }
   const safePercent = makeSafePercent(percent);
   return sequelize.where(
-    sequelize.col('abbrev.Protein'),
+    sequelize.col('abbrev.protein'),
     comparator,
     sequelize.literal(`(((${safePercent * 4} * ${carbs}) + (${safePercent * 9} * ${fat}))/ (${4 - (safePercent * 4)}))`),
   );
@@ -61,7 +61,7 @@ function carbQuery(percent, comparator) {
   }
   const safePercent = makeSafePercent(percent);
   return sequelize.where(
-    sequelize.col('abbrev.Carbohydrates'),
+    sequelize.col('abbrev.carbohydrates'),
     comparator,
     sequelize.literal(`(((${safePercent * 4} * ${protein}) + (${safePercent * 9} * ${fat}))/ (${4 - (safePercent * 4)}))`),
   );
@@ -81,7 +81,7 @@ function fatQuery(percent, comparator) {
   }
   const safePercent = makeSafePercent(percent);
   return sequelize.where(
-    sequelize.col('abbrev.Fat'),
+    sequelize.col('abbrev.fat'),
     comparator,
     sequelize.literal(`(((${safePercent * 4} * ${protein}) + (${safePercent * 4} * ${carbs}))/ (${9 - (safePercent * 9)}))`),
   );

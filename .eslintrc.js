@@ -1,7 +1,7 @@
-const fs = require('fs');
+// const fs = require('fs');
 
 module.exports = {
-  extends: ['standard'],
+  extends: ['standard', 'plugin:chai-friendly/recommended'],
   // parser: 'babel-eslint',
   globals: {
     __DEV__: true,
@@ -18,6 +18,7 @@ module.exports = {
     ecmaVersion: 2022,
     sourceType: 'module',
   },
+  plugins: ['chai-friendly'],
   rules: {
     semi: ['error', 'always'],
     'space-before-function-paren': ['error', {

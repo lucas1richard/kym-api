@@ -1,21 +1,14 @@
+const app = include('app');
 const { connectDatabase } = require('@kym/db');
 const { Abbrev, User } = connectDatabase();
 const users = include('test-data/users.json');
 const abbrevs = include('test-data/abbrev.json');
-const sinon = require('sinon');
-const getUserCreated = require('../');
 const { expect } = require('chai');
+const supertest = require('supertest');
+
+const agent = supertest.agent(app);
 
 describe('routes/database/getUserCreated', () => {
-  let next;
-  let res;
-  beforeEach(() => {
-    next = sinon.spy();
-    res = {
-      locals: { user_id: 1 },
-      json: sinon.spy(),
-    };
-  });
   before(async () => {
     await User.bulkCreate(users);
     await Abbrev.bulkCreate(abbrevs);
@@ -24,13 +17,11 @@ describe('routes/database/getUserCreated', () => {
     await User.destroy({ where: {}, force: true });
     await Abbrev.destroy({ where: {}, force: true });
   });
-  it('catches an error', async () => {
-    delete res.locals.user_id;
-    await getUserCreated({}, res, next);
-    expect(next.called).equal(true);
-  });
   it('returns an array', async () => {
-    await getUserCreated({}, res, next);
-    expect(res.json.called).equal(true);
+    const res = await agent
+      .get('/api/database/user-created/v1')
+      .set('token', testData.tokens.user0);
+
+    expect(Array.isArray(res.body)).to.be.true;
   });
 });
