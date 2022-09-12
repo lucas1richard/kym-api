@@ -5,10 +5,8 @@ const createUpdateDays = require('../');
 const { expect } = require('chai');
 
 describe('(unit) routes/day/createUpdateDays', () => {
-  let userId;
   let date;
   beforeEach(() => {
-    userId = 1;
     date = '2018-08-01';
   });
   before(async () => {
@@ -20,13 +18,14 @@ describe('(unit) routes/day/createUpdateDays', () => {
   });
   it('doesn\'t catch an error', async () => {
     try {
-      await createUpdateDays(null, date);
+      await createUpdateDays({ uuid: null, days: { [date]: true } });
     } catch (err) {
-      expect(err.message).equal('No user_id provided');
+      expect(err.message).equal('NO_UUID_PROVIDED');
     }
   });
-  it('returns an object', async () => {
-    const day = await createUpdateDays(userId, date);
-    expect(day).eql({ [date]: true });
+  it('returns an array', async () => {
+    const days = await createUpdateDays({ uuid: testData.users[0].uuid, days: { [date]: true } });
+    expect(Array.isArray(days)).to.be.true;
+    expect(days.length).eql(1);
   });
 });

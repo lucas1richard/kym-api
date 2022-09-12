@@ -1,7 +1,7 @@
 const { connectDatabase } = require('@kym/db');
 const { User, Day } = connectDatabase();
 const users = include('test-data/users.json');
-const { getDays, daysReduce } = require('../');
+const getDaysV1 = require('../');
 const { expect } = require('chai');
 
 describe('routes/day/getDays', () => {
@@ -18,23 +18,13 @@ describe('routes/day/getDays', () => {
   });
   it('doesn\'t catch an error', async () => {
     try {
-      await getDays(null);
+      await getDaysV1(null);
     } catch (err) {
-      expect(err.message).equal('No user_id provided');
+      expect(err.message).equal('NO_UUID_PROVIDED');
     }
   });
   it('returns an object', async () => {
-    const day = await getDays(userId);
+    const day = await getDaysV1(userId);
     expect(day).eql({});
-  });
-
-  describe('daysReduce', () => {
-    it('returns an object', () => {
-      const memo = {};
-      const day = { date: '2018-08-01', dayType: 'train' };
-      expect(daysReduce(memo, day)).eql({
-        '2018-08-01': 'train',
-      });
-    });
   });
 });

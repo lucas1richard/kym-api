@@ -1,14 +1,13 @@
 const app = include('app');
 const { connectDatabase } = require('@kym/db');
-const { User, Day, destroyAll } = connectDatabase();
+const { User, Day } = connectDatabase();
 const users = include('test-data/users.json');
 const days = include('test-data/days.json');
-const { assert } = require('chai');
 const supertest = require('supertest');
 
 const agent = supertest(app);
 
-describe('(route) day/controllers/createUpdateDays', () => {
+describe('(route) day/controllers/destroyDays', () => {
   beforeEach(async () => {
     await User.destroy({ where: {}, force: true });
     await User.bulkCreate(users);
@@ -16,22 +15,19 @@ describe('(route) day/controllers/createUpdateDays', () => {
     await Day.bulkCreate(days);
   });
   after(async () => {
-    await destroyAll();
+    await User.destroy({ where: {}, force: true });
   });
-  it('creates days', (done) => {
+  it('destroys days', (done) => {
     agent
-      .post('/api/day/days')
-      .send({ days: '2018-08-02', dayType: true })
-      .expect((res) => {
-        assert(Object.keys(res.body).length > 0, 'Should have days');
-        assert(res.body['2018-08-02'] === true, 'Should be an object with date value true');
-      })
-      .expect(201, done);
+      .delete('/api/day/days/V1')
+      .set('token', testData.tokens.user0)
+      .send(['2018-08-02'])
+      .expect(204, done);
   });
   it('handles errors', (done) => {
     agent
-      .post('/api/day/days')
-      .set('user_id', null)
+      .delete('/api/day/days/v1')
+      .set('token', testData.tokens.user0)
       .expect(500, done);
   });
 });

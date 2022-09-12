@@ -1,35 +1,34 @@
-// const chalk = require('chalk');
-const Controller = include('utils/Controller');
+const { handleRouteError } = include('utils/handleRouteError');
 const router = require('express').Router();
-const { getDays } = require('./controllers/getDays');
-const createUpdateDays = require('./controllers/createUpdateDays');
-const destroyDays = require('./controllers/destroyDays');
+const getDaysV1 = require('./controllers/getDaysv1');
+const createUpdateDaysV1 = require('./controllers/createUpdateDaysv1');
+const destroyDaysV1 = require('./controllers/destroyDaysv1');
+
+router.get('/days/v1', async (req, res, next) => {
+  const data = await getDaysV1(res.locals.uuid);
+  res.json(data);
+});
+
+router.post('/days/v1', async (req, res, next) => {
+  try {
+    const { body: days } = req;
+    const data = await createUpdateDaysV1({ uuid: res.locals.uuid, days });
+    res.status(201).json(data);
+  } catch (err) {
+    handleRouteError(err, err.message);
+    next(err);
+  }
+});
+
+router.delete('/days/v1', async (req, res, next) => {
+  try {
+    const { body: days } = req;
+    await destroyDaysV1(res.locals.uuid, days);
+    res.sendStatus(204);
+  } catch (err) {
+    handleRouteError(err, err.message);
+    next(err);
+  }
+});
 
 module.exports = router;
-
-const controller = new Controller();
-
-router.get('/days', async function getDayDays(req, res, next) {
-  await controller.tryFunction(
-    getDays(controller.getUserId(res)),
-    (data) => res.json(data),
-    (err) => next(err),
-  );
-});
-
-router.post('/days', async function postDayDays(req, res, next) {
-  const { days, dayType } = req.body;
-  await controller.tryFunction(
-    createUpdateDays(controller.getUserId(res), days, dayType),
-    (data) => res.status(201).json(data),
-    (err) => next(err),
-  );
-});
-
-router.delete('/days', async function deleteDayDays(req, res, next) {
-  await controller.tryFunction(
-    destroyDays(controller.getUserId(res), req.body.days),
-    (data) => res.status(204).send(data),
-    (err) => next(err),
-  );
-});
