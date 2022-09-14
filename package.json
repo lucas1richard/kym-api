@@ -13,9 +13,6 @@
   "author": "Richard Lucas",
   "license": "MIT",
   "scripts": {
-    "db:sync": "node ./server/db/sync",
-    "db:sync:force": "FORCE_DB_SYNC=true node ./server/db/sync",
-    "db:seed": "node ./server/db/seed",
     "start:dev": "NODE_ENV=development nodemon server",
     "start:test": "NODE_ENV=test nodemon server",
     "start": "npm run start:prod",

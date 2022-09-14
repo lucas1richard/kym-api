@@ -30,14 +30,16 @@ describe('favorites/controllers/removeFood', () => {
   });
   it('removes a favorite successfully', (done) => {
     agent
-      .delete('/api/favorites/food')
+      .delete('/api/favorites/food/v1')
+      .set('token', testData.tokens.user0)
       .send(body)
       .expect(204, done);
   });
   it('fails with a bad request', (done) => {
     delete body.meal;
     agent
-      .delete('/api/favorites/food')
+      .delete('/api/favorites/food/v1')
+      .set('token', testData.tokens.user0)
       .send(body)
       .expect(400, done);
   });
