@@ -58,8 +58,8 @@ router.use(async function authMiddleware(req, res, next) {
     }
 
     const { token } = req.headers;
-    const { user_id: userId, uuid } = await checkSecureRoute(token);
-    Object.assign(res.locals, { user_id: userId, uuid });
+    const uuid = await checkSecureRoute(token);
+    Object.assign(res.locals, { uuid });
     next();
   } catch (err) {
     logger.error(chalk.yellow(err.message));
@@ -109,30 +109,27 @@ module.exports = router;
 async function checkSecureRoute(token) {
   logger.verbose(`token: ${token}`);
   const key = `user:token:${token}`;
-  const redisStored = await redisClient.hgetAllAsync(key);
-  logger.verbose(`redisStored: ${JSON.stringify(redisStored)}`);
-  if (redisStored && redisStored.user_id) {
-    return redisStored;
+  logger.verbose(`redisClient.isConnected: ${redisClient.isConnected}`);
+  if (redisClient.isConnected) {
+    const redisStored = await redisClient.get(key);
+    logger.verbose(`redisStored: ${JSON.stringify(redisStored)}`);
+    if (redisStored) {
+      redisClient.expire(key, 86400); // expire in 24 hours
+      return redisStored;
+    }
   }
-
-  redisClient.expire(key, 86400); // expire in 24 hours
-  if (!token || token === '[object Object]') {
-    throw Error('NO_ACCOUNT_LOGGED_IN');
-  }
+  if (!token || token === '[object Object]') throw Error('NO_ACCOUNT_LOGGED_IN');
 
   const secret = process.env.JWT_SECRET;
-  const decoded = jwt.decode(token, secret);
+  const uuid = jwt.decode(token, secret);
 
-  logger.verbose(`decoded: ${JSON.stringify(decoded)}`);
+  logger.verbose(`decoded: ${JSON.stringify(uuid)}`);
 
-  const userId = decoded.id || decoded.token;
-  const { uuid } = decoded;
   const user = await User.findByPk(uuid);
 
-  if (!user) {
-    throw Error('NO_ACCOUNT_LOGGED_IN');
-  }
+  if (!user) throw Error('NO_ACCOUNT_LOGGED_IN');
 
-  redisClient.hmsetAsync(key, { user_id: userId, uuid });
-  return decoded;
+  if (redisClient.isConnected) await redisClient.set(key, uuid);
+
+  return uuid;
 }

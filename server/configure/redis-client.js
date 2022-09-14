@@ -1,29 +1,14 @@
-const logger = include('utils/logger');
-const redis = require('redis');
-const { promisify } = require('util');
+const { createClient } = require('redis');
 
-function safeFunction(func) {
-  if (process.env.NODE_ENV !== 'test') {
-    return func;
-  }
-  return func;
-}
+const redisClient = createClient();
+redisClient.isConnected = false;
 
-const client = redis.createClient(process.env.REDIS_URL);
-const getAsync = promisify(safeFunction(client.get)).bind(client);
-const hgetAsync = promisify(safeFunction(client.hget)).bind(client);
-const hsetAsync = promisify(safeFunction(client.hset)).bind(client);
-const hmsetAsync = promisify(safeFunction(client.hmset)).bind(client);
-const hgetAllAsync = promisify(safeFunction(client.hgetall)).bind(client);
-
-client.on('error', (err) => {
-  logger.error(`Error: ${err}`);
+redisClient.on('error', () => {
+  redisClient.isConnected = false;
 });
 
-client.getAsync = getAsync;
-client.hgetAsync = hgetAsync;
-client.hsetAsync = hsetAsync;
-client.hmsetAsync = hmsetAsync;
-client.hgetAllAsync = hgetAllAsync;
+redisClient.on('ready', () => {
+  redisClient.isConnected = true;
+});
 
-module.exports = client;
+module.exports = redisClient;

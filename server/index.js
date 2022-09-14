@@ -11,14 +11,9 @@ const logger = require('./logger');
 const argv = require('./argv');
 const port = require('./port');
 const app = require('./app');
+const redisClient = require('./configure/redis-client');
 
 const WORKERS = process.env.WEB_CONCURRENCY || 1;
-
-const isDev = process.env.NODE_ENV !== 'production';
-const ngrok =
-  (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
-    ? require('ngrok')
-    : false;
 
 const customHost = argv.host || process.env.HOST;
 const host = customHost || null; // Let http.Server use its default IPv6/4 host
@@ -44,25 +39,12 @@ if (cluster.isMaster) {
       return logger.error(err.message);
     }
 
-    // Connect to ngrok in dev mode
-    if (ngrok) {
-      let url;
-      try {
-        url = await ngrok.connect(port);
-      } catch (e) {
-        return logger.error(e);
-      }
-      if (cluster.isMaster) {
-        logger.appStarted(port, prettyHost, url);
-      } else {
-        winston.info(`Worker ${process.pid} listening on ${prettyHost}`);
-      }
+    await redisClient.connect();
+
+    if (cluster.isMaster) {
+      logger.appStarted(port, prettyHost);
     } else {
-      if (cluster.isMaster) {
-        logger.appStarted(port, prettyHost);
-      } else {
-        winston.info(`Worker ${process.pid} listening on ${prettyHost}:${port}`);
-      }
+      winston.info(`Worker ${process.pid} listening on ${prettyHost}:${port}`);
     }
   });
 }

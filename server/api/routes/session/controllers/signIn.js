@@ -12,9 +12,7 @@ async function signIn(email, password) {
     },
   });
 
-  if (user) {
-    return jwt.encode({ id: user.id, uuid: user.uuid }, process.env.JWT_SECRET);
-  }
+  if (user) return jwt.encode(user.uuid, process.env.JWT_SECRET);
 
   throw new Error('Invalid login');
 }
