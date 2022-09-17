@@ -12,6 +12,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger');
 const makeAppVariables = require('./configure/app-variables');
 const configureRaven = require('./configure/raven');
+const AppError = require('./configure/appError');
 
 /**
  * - Make routes for static assets to be loaded
@@ -67,7 +68,11 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     const body = Array.isArray(devmessage) ? devmessage : [devmessage];
 
     res.status(400).send(body);
+  } else if (err instanceof AppError) {
+    const { message: { devmessage } } = err;
+    res.status(err.commonType || err.status || 500).send([{ message: devmessage }]);
   } else {
+    console.error(err);
     res.status(err.commonType || err.status || 500).send(err.message);
   }
 });

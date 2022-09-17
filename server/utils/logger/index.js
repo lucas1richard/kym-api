@@ -14,11 +14,14 @@ const logger = winston.createLogger({
   ],
 });
 
+// if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+
+const sendToConsole = process.env.NODE_ENV === 'development';
 //
 // If we're not in production then log to the `console` with the format:
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
-if (process.env.NODE_ENV !== 'production') {
+if (sendToConsole) {
   logger.add(new winston.transports.Console({
     format: winston.format.combine(
       winston.format.colorize(),

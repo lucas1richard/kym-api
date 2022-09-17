@@ -1,6 +1,8 @@
 require('babel-polyfill');
 require('dotenv').config();
+const supertest = require('supertest');
 const path = require('path');
+const app = require('../server/app');
 
 global.base_dir = path.resolve(__dirname, '..', 'server');
 
@@ -24,8 +26,30 @@ const meals = require('../test-data/meals.json');
 const mealGoals = require('../test-data/meal-goals.json');
 const weights = require('../test-data/weight.json');
 const filteredMealsObject = require('../test-data/filteredMealsObject.json');
+const { connectDatabase } = require('@kym/db');
 
-global.testData = {
+const tokens = {
+  user0: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjYwZjI0MjY1LWVmNDUtNDg5MS1iNGVmLWU4ZmFkNDQzNTMwOCI.LuRpYNcpwae3lJSHMfB727LewwjRb9Kb7Gh8v2BGsLw',
+  user1: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjJhNDEzZWZmLTZlYWItNDRmNC1hYWZhLTQ4NWU4MTRiMDI1YiI.Rfva259Cm-7wtGA5TZ-3YxFR7ExjU2z_UkZaiY7HxVw',
+};
+
+const superagent = supertest.agent(app);
+const agent = {
+  ...superagent,
+  getWithToken: (route) => superagent.get(route).set('token', tokens.user0),
+  postWithToken: (route) => superagent.post(route).set('token', tokens.user0),
+  deleteWithToken: (route) => superagent.delete(route).set('token', tokens.user0),
+  putWithToken: (route) => superagent.put(route).set('token', tokens.user0),
+  sendWithToken: (route, method) => superagent[method](route).set('token', tokens.user0),
+};
+
+const { destroyAll } = connectDatabase();
+
+// const { connectDatabase } = require('@kym/db');
+// const { User } = connectDatabase();
+// User.bulkCreate(users).then(() => process.exit());
+
+const testData = {
   users,
   userMeasurements,
   abbrevs,
@@ -38,8 +62,18 @@ global.testData = {
   mealGoals,
   weights,
   filteredMealsObject,
-  tokens: {
-    user0: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJ1dWlkIjoiNjBmMjQyNjUtZWY0NS00ODkxLWI0ZWYtZThmYWQ0NDM1MzA4In0.ZiPnFVy1lBRzmrGEUX0d0KVoa9kZ9dsGsnENOfozzoA',
-    user1: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjIiLCJ1dWlkIjoiMmE0MTNlZmYtNmVhYi00NGY0LWFhZmEtNDg1ZTgxNGIwMjViIn0.ji7ATKYy-HhRyzGPfsK7y5BnhrB7_SwOZQTHscLdPDk',
-  },
+  tokens,
 };
+
+const globals = {
+  destroyAllHook: async () => {
+    await destroyAll();
+  },
+  agent,
+  testData,
+};
+
+global.globals = globals;
+
+global.agent = agent; // deprecate
+global.testData = testData; // deprecate

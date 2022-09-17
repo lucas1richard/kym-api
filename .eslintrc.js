@@ -8,6 +8,8 @@ module.exports = {
     Raven: true,
     include: true,
     testData: true,
+    agent: true,
+    globals: true,
   },
   env: {
     node: true,
@@ -60,7 +62,7 @@ module.exports = {
     // 'no-undefined': 1,
     // 'newline-per-chained-call': 0,
     // 'no-confusing-arrow': 0,
-    // 'no-console': 1,
+    'no-console': 1,
     // 'semi': ['error', 'always'],
     // 'quotes': ['error', 'single'],
     // 'no-use-before-define': 0,

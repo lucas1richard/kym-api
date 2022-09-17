@@ -22,8 +22,6 @@ describe('routes/database/getBestGroup', () => {
     const res = await agent.get('/api/database/foodgroup/v1?food[]=chicken')
       .set('token', testData.tokens.user0);
 
-    console.log(res.error);
-
     expect(res.statusCode).to.equal(200);
   });
 });

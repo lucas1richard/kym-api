@@ -25,6 +25,17 @@
     "posttest": "npm run nyc-coverage",
     "nyc-coverage": "nyc report --reporter=html"
   },
+  "nyc": {
+    "all": true,
+    "include": [
+      "server/**"
+    ]    
+  },
+  "mocha": {
+    "spec": [
+      "server/**"
+    ]    
+  },
   "jest": {
     "setupFiles": [
       "./jest-setup.js"

@@ -8,7 +8,6 @@ router.get('/', async function getFoodGroupsRoute(req, res, next) {
   try {
     if (redisClient.isConnected) {
       const cachedGroups = await redisClient.hGetAll(key);
-      console.log({ cachedGroups });
       if (Object.keys(cachedGroups).length) return res.json(cachedGroups);
     }
 

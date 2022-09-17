@@ -27,7 +27,6 @@ describe('calculate api', () => {
 
       expect(res.get('Content-Type').includes('json')).to.eql(true);
       expect(res.statusCode).to.eql(200);
-      // eslint-disable-next-line no-unused-expressions
       expect(res.body.result).to.be.ok;
     });
 
@@ -56,7 +55,6 @@ describe('calculate api', () => {
   describe('post /api/calculate/day', () => {
     it('is okay', async () => {
       const meal = await dayMealsCalculation({ type: 'TRAIN' }, testData.users[0].uuid);
-      // eslint-disable-next-line no-unused-expressions
       expect(meal).to.be.ok;
     });
     it('post is okay', async () => {
@@ -66,7 +64,6 @@ describe('calculate api', () => {
         .set('token', testData.tokens.user0)
         .set('Accept', 'application/json');
 
-      // eslint-disable-next-line no-unused-expressions
       expect(res).to.be.ok;
     });
     it('post fails body validation', async () => {
@@ -76,7 +73,6 @@ describe('calculate api', () => {
         .set('token', testData.tokens.user0)
         .set('Accept', 'application/json');
 
-      // eslint-disable-next-line no-unused-expressions
       expect(res).to.be.ok;
       expect(res.statusCode).to.eql(400);
     });
