@@ -43,7 +43,7 @@ const agent = {
   sendWithToken: (route, method) => superagent[method](route).set('token', tokens.user0),
 };
 
-const { destroyAll } = connectDatabase();
+agent.prototype = superagent.prototype;
 
 // const { connectDatabase } = require('@kym/db');
 // const { User } = connectDatabase();
@@ -67,6 +67,7 @@ const testData = {
 
 const globals = {
   destroyAllHook: async () => {
+    const { destroyAll } = connectDatabase();
     await destroyAll();
   },
   agent,

@@ -1,30 +1,28 @@
 const router = require('express').Router();
 const redisClient = require('../../../configure/redis-client');
-const getFoodGroupsController = require('./controllers/getFoodGroups');
+const getFoodGroupsControllerV1 = require('./controllers/getFoodGroupsV1');
 
 const key = 'food:groups:cache';
 
-router.get('/', async function getFoodGroupsRoute(req, res, next) {
-  try {
-    if (redisClient.isConnected) {
-      const cachedGroups = await redisClient.hGetAll(key);
-      if (Object.keys(cachedGroups).length) return res.json(cachedGroups);
-    }
-
-    const groups = await getFoodGroupsController();
-
-    const groupsObject = Object.fromEntries(
-      groups.map((group) => [group.get('groupid'), group.get('description')]),
-    );
-
-    if (redisClient.isConnected) {
-      await redisClient.hSet(key, groupsObject);
-    }
-
-    res.json(groupsObject);
-  } catch (err) {
-    next(err);
+router.get('/v1', async function getFoodGroupsRoute(req, res, next) {
+  /* istanbul ignore next */
+  if (redisClient.isConnected) {
+    const cachedGroups = await redisClient.hGetAll(key);
+    if (Object.keys(cachedGroups).length) return res.json(cachedGroups);
   }
+
+  const groups = await getFoodGroupsControllerV1();
+
+  const groupsObject = Object.fromEntries(
+    groups.map((group) => [group.get('groupid'), group.get('description')]),
+  );
+
+  /* istanbul ignore next */
+  if (redisClient.isConnected) {
+    await redisClient.hSet(key, groupsObject);
+  }
+
+  res.json(groupsObject);
 });
 
 module.exports = router;

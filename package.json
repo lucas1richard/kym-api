@@ -28,12 +28,7 @@
   "nyc": {
     "all": true,
     "include": [
-      "server/**"
-    ]    
-  },
-  "mocha": {
-    "spec": [
-      "server/**"
+      "server/**/*.js"
     ]    
   },
   "jest": {
