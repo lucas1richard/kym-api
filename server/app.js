@@ -13,6 +13,7 @@ const swaggerDocument = require('./swagger');
 const makeAppVariables = require('./configure/app-variables');
 const configureRaven = require('./configure/raven');
 const AppError = require('./configure/appError');
+const ValidationError = require('./configure/ValidationError');
 
 /**
  * - Make routes for static assets to be loaded
@@ -60,6 +61,9 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     logger.error(err);
   }
   if (err.isJoi) {
+    if (err instanceof ValidationError) {
+      return res.status(400).send(err.message);
+    }
     const { toSend: { devmessage } } = err;
     if (process.env.NODE_ENV !== 'production') logger.debug(JSON.stringify(devmessage));
 
@@ -72,7 +76,6 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     const { message: { devmessage } } = err;
     res.status(err.commonType || err.status || 500).send([{ message: devmessage }]);
   } else {
-    console.error(err);
     res.status(err.commonType || err.status || 500).send(err.message);
   }
 });

@@ -11,9 +11,6 @@ global.abs_path = (pth) => global.base_dir + pth;
 // eslint-disable-next-line import/no-dynamic-require
 global.include = (file) => require(global.abs_path(`/${file}`));
 
-const logger = include('utils/logger');
-logger.verbose('mocha setup complete');
-
 const users = require('../test-data/users.json');
 const userMeasurements = require('../test-data/user-measurements.json');
 const abbrevs = require('../test-data/abbrev.json');
@@ -69,6 +66,45 @@ const globals = {
   destroyAllHook: async () => {
     const { destroyAll } = connectDatabase();
     await destroyAll();
+  },
+  seedTestData: async () => {
+    const {
+      User,
+      UserMeasurement,
+      Meal,
+      Abbrev,
+      AbbrevMicro,
+      FoodRecord,
+      FoodGroup,
+      FoodDesc,
+      Weight,
+      Day,
+      sequelize,
+    } = connectDatabase();
+    await Promise.all([
+      User.bulkCreate(testData.users),
+      FoodGroup.bulkCreate(testData.foodGroups),
+    ]);
+    await Promise.all([
+      Abbrev.bulkCreate(testData.abbrevs),
+      UserMeasurement.bulkCreate(testData.userMeasurements),
+      Day.bulkCreate(testData.days),
+      Meal.bulkCreate(testData.meals),
+    ]);
+    await Promise.all([
+      FoodRecord.bulkCreate(testData.foodRecords),
+      AbbrevMicro.bulkCreate(testData.abbrevsMicro),
+      FoodDesc.bulkCreate(testData.foodDesc),
+      Weight.bulkCreate(testData.weights),
+    ]);
+    await Promise.all([
+      sequelize.query('ALTER SEQUENCE abbrevs_id_seq RESTART WITH 8804'),
+      sequelize.query('ALTER SEQUENCE "abbrevMicros_id_seq" RESTART WITH 8463'),
+      sequelize.query('ALTER SEQUENCE "foodDescs_id_seq" RESTART WITH 8650'),
+      sequelize.query('ALTER SEQUENCE "weights_id_seq" RESTART WITH 15242'),
+      sequelize.query('ALTER SEQUENCE "foodRecords_id_seq" RESTART WITH 6037'),
+      sequelize.query('ALTER SEQUENCE "meals_id_seq" RESTART WITH 6037'),
+    ]);
   },
   agent,
   testData,

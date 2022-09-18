@@ -10,6 +10,7 @@ module.exports = {
     testData: true,
     agent: true,
     globals: true,
+    AppError: true,
   },
   env: {
     node: true,

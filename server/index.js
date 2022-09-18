@@ -3,7 +3,6 @@ global.base_dir = __dirname;
 global.abs_path = (pth) => global.base_dir + pth;
 // eslint-disable-next-line import/no-dynamic-require
 global.include = (file) => require(global.abs_path(`/${file}`));
-
 require('dotenv').config();
 const cluster = require('cluster');
 const winston = include('utils/logger');
@@ -12,6 +11,9 @@ const argv = require('./argv');
 const port = require('./port');
 const app = require('./app');
 const redisClient = require('./configure/redis-client');
+const AppError = require('./configure/appError');
+
+global.AppError = AppError;
 
 const WORKERS = process.env.WEB_CONCURRENCY || 1;
 

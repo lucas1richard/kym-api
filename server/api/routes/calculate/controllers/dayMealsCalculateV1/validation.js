@@ -1,9 +1,10 @@
 const Joi = require('joi');
+const ValidationError = require('../../../../../configure/ValidationError');
 
 const typeSchema = Joi
   .string()
   .valid(['REST', 'TRAIN'])
-  .error(() => 'INVALID_GOAL_TYPE');
+  .error(() => new ValidationError('INVALID_GOAL_TYPE'));
 
 const bodySchema = Joi.object().keys({
   type: typeSchema,
