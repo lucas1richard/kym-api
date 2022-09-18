@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate routes GET /api/generate/calculate/v1 validates goals 1`] = `
+Array [
+  Object {
+    "context": Object {
+      "label": "value",
+    },
+    "message": "GOALS_REQUIRED",
+    "path": Array [],
+    "type": "override",
+  },
+]
+`;

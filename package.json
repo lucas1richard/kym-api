@@ -24,7 +24,8 @@
     "test": "NODE_ENV=test nyc mocha --timeout=4000 --recursive --exit",
     "test:update-snapshots": "UPDATE_SNAPSHOT=1 NODE_ENV=test nyc mocha --timeout=4000 --recursive --exit",
     "posttest": "npm run nyc-coverage",
-    "nyc-coverage": "nyc report --reporter=html"
+    "nyc-coverage": "nyc report --reporter=html",
+    "generate": "plop --plopfile internals/generators/index.js"
   },
   "nyc": {
     "all": true,
@@ -89,6 +90,7 @@
     "mocha-chai-jest-snapshot": "^1.1.4",
     "nodemon": "^2.0.19",
     "nyc": "^15.1.0",
+    "plop": "^3.1.1",
     "rimraf": "2.6.2",
     "sinon": "^7.5.0"
   }

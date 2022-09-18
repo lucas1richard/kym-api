@@ -3,7 +3,7 @@ const { idSchema } = require('./validation');
 
 const { Abbrev } = connectDatabase();
 
-const getFoodMicro = async ({ id }) => {
+const getFoodMicroV1 = async ({ id }) => {
   await idSchema.validate(id);
 
   const food = await Abbrev
@@ -13,4 +13,4 @@ const getFoodMicro = async ({ id }) => {
   return food;
 };
 
-module.exports = getFoodMicro;
+module.exports = getFoodMicroV1;

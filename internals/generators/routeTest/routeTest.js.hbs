@@ -1,0 +1,16 @@
+const { expect, use } = require('chai');
+const { jestSnapshotPlugin } = require('mocha-chai-jest-snapshot');
+
+describe('{{ route }} routes', () => {
+  use(jestSnapshotPlugin());
+  const routePrefix = '/api/{{ route }}';
+
+  describe(`GET ${routePrefix}/v1`, () => {
+    before(globals.seedTestData);
+    after(globals.destroyAllHook);
+  });
+
+  it('does something', async () => {
+    expect(1).equals(2);
+  });
+});
