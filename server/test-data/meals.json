@@ -2,7 +2,7 @@
   "id": 1,
   "date": "2018-01-01",
   "meal": 1,
-  "public": false,
+  "public": true,
   "postWorkout": false,
-  "user_id": 1
+  "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308"
 }]

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`meal routes GET /api/meal/v1 gets public meals with keyword 1`] = `Array []`;
+
+exports[`meal routes GET /api/meal/v1 gets public meals without keyword 1`] = `Array []`;

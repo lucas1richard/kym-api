@@ -8,9 +8,9 @@ describe('{{ route }} routes', () => {
   describe(`GET ${routePrefix}/v1`, () => {
     before(globals.seedTestData);
     after(globals.destroyAllHook);
-  });
 
-  it('does something', async () => {
-    expect(1).equals(2);
+    it('does something', async () => {
+      expect(1).equals(2);
+    });
   });
 });

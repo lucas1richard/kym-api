@@ -6,33 +6,40 @@ const makeWhere = require('../makeWhere');
 describe('meal/controllers/getMeal/helpers/makeWhere', () => {
   let postWorkout;
   let meals;
-  let userId;
+  let uuid;
   beforeEach(() => {
     meals = [3];
-    userId = users[0].uuid;
+    uuid = users[0].uuid;
     postWorkout = 'false';
   });
 
   it('gives a basic where statement', () => {
-    const where = makeWhere(null, postWorkout, userId);
+    const where = makeWhere({ postWorkout, uuid, excludeOwnMeals: true });
     expect(where).to.eql({
-      user_uuid: { [Op.ne]: userId },
+      user_uuid: { [Op.ne]: uuid },
       public: true,
     });
   });
+
+  it('gives a basic where statement including ownMeals', () => {
+    const where = makeWhere({ postWorkout, uuid });
+    expect(where).to.eql({ public: true });
+  });
+
   it('gives a where statement with meals', () => {
-    const where = makeWhere(meals, postWorkout, userId);
+    const where = makeWhere({ meals, postWorkout, uuid, excludeOwnMeals: true });
     expect(where).to.eql({
-      user_uuid: { [Op.ne]: userId },
+      user_uuid: { [Op.ne]: uuid },
       public: true,
       meal: { [Op.or]: meals },
     });
   });
+
   it('gives a where statement with postWorkout="true"', () => {
     postWorkout = true;
-    const where = makeWhere(meals, 'true', userId);
+    const where = makeWhere({ meals, postWorkout: 'true', uuid, excludeOwnMeals: true });
     expect(where).to.eql({
-      user_uuid: { [Op.ne]: userId },
+      user_uuid: { [Op.ne]: uuid },
       public: true,
       postWorkout: true,
       meal: { [Op.or]: meals },
