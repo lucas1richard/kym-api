@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`goals routes GET /api/goals/meals/v1 creates goals and responds with the new goals 1`] = `
+Object {
+  "createdAt": "2022-09-19T01:52:28.386Z",
+  "goals": Object {
+    "REST": Array [
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+    ],
+    "TRAIN": Array [
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+      Object {
+        "carbs": 30,
+        "fat": 10,
+        "protein": 20,
+      },
+    ],
+  },
+  "id": 9,
+  "updatedAt": "2022-09-19T01:52:28.386Z",
+  "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+}
+`;
+
+exports[`goals routes GET /api/goals/meals/v1 validates the req 1`] = `
+Array [
+  Object {
+    "context": Object {
+      "key": "protein",
+      "label": "protein",
+    },
+    "message": "\\"protein\\" is required",
+    "path": Array [
+      "TRAIN",
+      0,
+      "protein",
+    ],
+    "type": "any.required",
+  },
+]
+`;
