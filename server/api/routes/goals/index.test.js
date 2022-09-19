@@ -9,6 +9,17 @@ describe('goals routes', () => {
     before(globals.seedTestData);
     after(globals.destroyAllHook);
 
+    it('gets meal goals', async () => {
+      const res = await globals.agent.getWithToken(`${routePrefix}/meals/v1`);
+      expect(res.statusCode).equal(200);
+      expect(res.body).toMatchSnapshot();
+    });
+  });
+
+  describe(`POST ${routePrefix}/meals/v1`, () => {
+    before(globals.seedTestData);
+    after(globals.destroyAllHook);
+
     it('creates goals and responds with the new goals', async () => {
       const goal = { protein: 20, carbs: 30, fat: 10 };
       const res = await globals.agent.postWithToken(`${routePrefix}/meals/v1`)
