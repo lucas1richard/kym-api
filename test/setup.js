@@ -22,6 +22,7 @@ const abbrevsMicro = require('../test-data/abbrev-micro.json');
 const meals = require('../test-data/meals.json');
 const mealGoals = require('../test-data/meal-goals.json');
 const weights = require('../test-data/weight.json');
+const programs = require('../test-data/programs.json');
 const filteredMealsObject = require('../test-data/filteredMealsObject.json');
 const { connectDatabase } = require('@kym/db');
 
@@ -59,6 +60,7 @@ const testData = {
   mealGoals,
   weights,
   filteredMealsObject,
+  programs,
   tokens,
 };
 
@@ -79,6 +81,7 @@ const globals = {
       FoodDesc,
       Weight,
       Day,
+      Program,
       sequelize,
     } = connectDatabase();
     await Promise.all([
@@ -90,6 +93,7 @@ const globals = {
       UserMeasurement.bulkCreate(testData.userMeasurements),
       Day.bulkCreate(testData.days),
       Meal.bulkCreate(testData.meals),
+      Program.bulkCreate(testData.programs),
     ]);
     await Promise.all([
       FoodRecord.bulkCreate(testData.foodRecords),
@@ -104,6 +108,7 @@ const globals = {
       sequelize.query('ALTER SEQUENCE "weights_id_seq" RESTART WITH 15242'),
       sequelize.query('ALTER SEQUENCE "foodRecords_id_seq" RESTART WITH 6037'),
       sequelize.query('ALTER SEQUENCE "meals_id_seq" RESTART WITH 6037'),
+      sequelize.query('ALTER SEQUENCE "programs_id_seq" RESTART WITH 6037'),
     ]);
   },
   agent,
