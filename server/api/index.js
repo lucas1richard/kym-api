@@ -7,7 +7,6 @@
 
 const logger = include('utils/logger');
 const router = require('express').Router();
-const nodepath = require('path');
 const jwt = require('jwt-simple');
 const chalk = require('chalk');
 const { connectDatabase } = require('@kym/db');
@@ -34,43 +33,25 @@ const shoppingListRouter = require('./routes/shopping-list');
 const userRouter = require('./routes/user');
 const userMeasurementsRouter = require('./routes/user-measurements');
 
-/**
- * These routes do not require a token
- */
-const openRoutes = [
-  '/user/signup',
-  '/session',
-];
+router.use(function setJwtSecret(req, res, next) {
+  res.locals = {
+    jwtSecret: process.env.JWT_SECRET,
+  };
+  next();
+});
+
+// this route does not require a token check middleware
+router.use('/session', sessionRouter);
 
 router.use(async function authMiddleware(req, res, next) {
   try {
-    res.locals = {
-      jwtSecret: process.env.JWT_SECRET,
-    };
-
-    /**
-     * If the route is open, move along
-     */
-    if (openRoutes.includes(req.path)) {
-      next();
-      return;
-    }
-
     const { token } = req.headers;
     const uuid = await checkSecureRoute(token);
     Object.assign(res.locals, { uuid });
     next();
   } catch (err) {
     logger.error(chalk.yellow(err.message));
-    if (req.method === 'GET') {
-      res.sendFile(
-        nodepath.join(
-          __dirname, '..', 'public', 'unauthorized.html',
-        ),
-      );
-    } else {
-      res.status(401).send(err.message);
-    }
+    res.status(401).send(err.message);
   }
 });
 
@@ -93,7 +74,6 @@ router.use('/generate', generateRouter);
 router.use('/goals', goalsRouter);
 router.use('/meal', mealRouter);
 router.use('/programs', programsRouter);
-router.use('/session', sessionRouter);
 router.use('/shopping-list', shoppingListRouter);
 router.use('/user-measurements', userMeasurementsRouter);
 

@@ -33,7 +33,10 @@ const tokens = {
 
 const superagent = supertest.agent(app);
 const agent = {
-  ...superagent,
+  get: (route) => superagent.get(route),
+  post: (route) => superagent.post(route),
+  put: (route) => superagent.put(route),
+  delete: (route) => superagent.delete(route),
   getWithToken: (route) => superagent.get(route).set('token', tokens.user0),
   postWithToken: (route) => superagent.post(route).set('token', tokens.user0),
   deleteWithToken: (route) => superagent.delete(route).set('token', tokens.user0),

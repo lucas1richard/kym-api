@@ -41,7 +41,7 @@ module.exports = (app) => {
     failureRedirect: '/',
     session: false,
   }), function redirectWithToken(req, res) {
-    const jwtToken = jwt.encode({ id: req.user.id }, app.get('jwtSecret'));
+    const jwtToken = jwt.encode(req.user.id, app.get('jwtSecret'));
     res.redirect(`/?token=${jwtToken}`);
   });
 };

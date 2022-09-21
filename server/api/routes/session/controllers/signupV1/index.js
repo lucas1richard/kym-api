@@ -1,23 +1,20 @@
-const { handleRouteError } = include('utils/handleRouteError');
 const AppError = include('configure/appError');
 const { connectDatabase, foreignKeys } = require('@kym/db');
+const moment = require('moment');
+const jwt = require('jwt-simple');
+const { bodySchema, userMeasurementsSchema } = require('./validation');
+
 const {
   sequelize,
   User,
   UserMeasurement,
   Program,
 } = connectDatabase();
-const moment = require('moment');
-const jwt = require('jwt-simple');
-const {
-  bodySchema,
-  userMeasurementsSchema,
-} = require('./validation');
 
-const signup = async (req, res, next) => {
+const signupV1 = async ({ jwtSecret, data }) => {
   let transaction;
   try {
-    await bodySchema.validate(req.body);
+    await bodySchema.validate(data);
 
     const params = [
       'gender',
@@ -28,19 +25,16 @@ const signup = async (req, res, next) => {
       'goal',
     ];
 
-    const { body } = req;
-    const { userMeasurements, birthdate } = body;
+    const { userMeasurements, birthdate } = data;
 
-    const hasMeasurements = params.reduce((memo, param) => {
-      return memo && userMeasurements && userMeasurements[param];
-    }, true);
+    const hasMeasurements = params.every((param) => userMeasurements?.[param]);
 
     if (hasMeasurements) {
       try {
         await userMeasurementsSchema.validate(userMeasurements);
 
         const config = {
-          ...body,
+          ...data,
           ...userMeasurements,
         };
 
@@ -68,16 +62,15 @@ const signup = async (req, res, next) => {
 
         await transaction.commit();
 
-        // Get the user with measurements, goals, and programs
         const userFull = await User.scope(
           'withMeasurements',
           'withMealGoals',
           'withPrograms',
         ).findByPk(user.uuid);
 
-        const token = jwt.encode({ id: user.id, uuid: user.uuid }, res.locals.jwtSecret);
+        const token = jwt.encode(user.uuid, jwtSecret);
 
-        res.status(201).set('token', token).json(userFull);
+        return { token, user: userFull };
       } catch (err) {
         throw new AppError(400, {
           usermessage: 'This email is already taken',
@@ -86,16 +79,10 @@ const signup = async (req, res, next) => {
       }
     } else {
       try {
-        const user = await User.create(req.body);
-        const token = jwt.encode({
-          id: user.id,
-          uuid: user.uuid,
-        }, res.locals.jwtSecret);
+        const user = await User.create(data);
+        const token = jwt.encode(user.uuid, jwtSecret);
 
-        res
-          .status(201)
-          .set('token', token)
-          .json(user);
+        return { token, user: User.sanitize(user) };
       } catch (err) {
         throw new AppError(400, {
           usermessage: 'This email is already taken',
@@ -104,12 +91,9 @@ const signup = async (req, res, next) => {
       }
     }
   } catch (err) {
-    if (transaction) {
-      transaction.rollback();
-    }
-    handleRouteError(err, 'Couldn\'t create an account');
-    next(err);
+    if (transaction) transaction.rollback();
+    throw err;
   }
 };
 
-module.exports = signup;
+module.exports = signupV1;

@@ -1,7 +1,7 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const router = require('express').Router();
 const getUser = require('./controllers/getUser');
-const signup = require('./controllers/signup');
+
 const createMeasurements = require('./controllers/createMeasurements');
 const updateMeasurements = require('./controllers/updateMeasurements');
 const deleteMeasurements = require('./controllers/deleteMeasurements');
@@ -19,7 +19,6 @@ router.put('/', async function putUser(req, res, next) {
     next(err);
   }
 });
-router.post('/signup', signup);
 
 async function postUserMeasurements(req, res, next) {
   try {
@@ -47,6 +46,3 @@ router.put('/measurements', async function putUserMeasurements(req, res, next) {
 });
 
 router.delete('/measurements', deleteMeasurements);
-
-// db.User.requestFoodLog(3, '2017-10-04')
-//   .then(({data}) => console.log(data));

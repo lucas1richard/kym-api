@@ -18,6 +18,8 @@ const bodySchema = Joi.object().keys({
   password: Joi.string().required(),
   loggedIn: Joi.bool().required(),
   userMeasurements: Joi.any().optional(),
+  preferredlocale: Joi.string().required(),
+  // .pattern(/\.[a-z]{2}-[A-Z]{2}$/, { name: 'localeString' }).required(),
 });
 
 module.exports = {

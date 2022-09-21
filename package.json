@@ -30,7 +30,7 @@
   "nyc": {
     "all": true,
     "include": [
-      "server/api/routes/programs"
+      "server/api/routes/session"
     ]
   },
   "jest": {

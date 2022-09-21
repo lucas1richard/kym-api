@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`session routes GET /api/session/token/v1 gets user from token 1`] = `
+Object {
+  "birthdate": "1989-01-01",
+  "email": "test@test.test",
+  "firstname": "Test",
+  "lastname": "Test",
+  "preferredlocale": null,
+  "username": "",
+  "uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+}
+`;
+
+exports[`session routes POST /api/session/signin/v1 signs in and sends token 1`] = `
+Object {
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjYwZjI0MjY1LWVmNDUtNDg5MS1iNGVmLWU4ZmFkNDQzNTMwOCI.LuRpYNcpwae3lJSHMfB727LewwjRb9Kb7Gh8v2BGsLw",
+}
+`;
