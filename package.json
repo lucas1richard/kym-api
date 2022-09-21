@@ -30,7 +30,7 @@
   "nyc": {
     "all": true,
     "include": [
-      "server/api/routes/user"
+      "server/api/routes/user-measurements"
     ]
   },
   "jest": {

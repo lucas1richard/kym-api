@@ -1,9 +1,7 @@
 const { connectDatabase, foreignKeys } = require('@kym/db');
 const { UserMeasurement } = connectDatabase();
 
-module.exports = getMeasurements;
-
-async function getMeasurements(uuid) {
+const getMeasurementsV1 = async ({ uuid }) => {
   const measurements = await UserMeasurement.findAll({
     where: {
       [foreignKeys.USER]: uuid,
@@ -16,4 +14,6 @@ async function getMeasurements(uuid) {
     ],
   });
   return measurements;
-}
+};
+
+module.exports = getMeasurementsV1;

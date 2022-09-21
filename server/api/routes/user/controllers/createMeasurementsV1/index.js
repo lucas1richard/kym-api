@@ -3,7 +3,7 @@ const { UserMeasurement } = connectDatabase();
 const moment = require('moment');
 const { bodySchema } = require('./validation');
 
-const createMeasurements = async ({ data, uuid }) => {
+const createMeasurementsV1 = async ({ data, uuid }) => {
   await bodySchema.validate(data, { abortEarly: false });
 
   const { date = moment().format('YYYY-MM-DD') } = data;
@@ -46,4 +46,4 @@ const createMeasurements = async ({ data, uuid }) => {
   return allMeasurements;
 };
 
-module.exports = createMeasurements;
+module.exports = createMeasurementsV1;
