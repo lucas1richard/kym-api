@@ -1,48 +1,66 @@
 const { handleRouteError } = include('utils/handleRouteError');
 const router = require('express').Router();
-const getUser = require('./controllers/getUser');
+const getUserV1 = require('./controllers/getUserV1');
 
-const createMeasurements = require('./controllers/createMeasurements');
-const updateMeasurements = require('./controllers/updateMeasurements');
-const deleteMeasurements = require('./controllers/deleteMeasurements');
-const updateUser = require('./controllers/updateUser');
+const createMeasurementsV1 = require('./controllers/createMeasurementsV1');
+const updateMeasurementsV1 = require('./controllers/updateMeasurementsV1');
+const deleteMeasurementsV1 = require('./controllers/deleteMeasurementsV1');
+const updateUserV1 = require('./controllers/updateUserV1');
 
 module.exports = router;
 
-router.get('/', getUser);
-router.put('/', async function putUser(req, res, next) {
+router.get('/v1', async (req, res, next) => {
   try {
-    const updatedUser = await updateUser(req.body, res.locals.uuid);
-    res.json(updatedUser);
+    const { uuid } = res.locals;
+    const user = await getUserV1({ uuid });
+    res.json(user);
+  } catch (err) {
+    /* istanbul ignore next */ handleRouteError(err, err.message);
+    /* istanbul ignore next */ next(err);
+  }
+});
+
+router.put('/v1', async function putUser(req, res, next) {
+  try {
+    const updatedUser = await updateUserV1({ data: req.body, uuid: res.locals.uuid });
+    res.status(201).json(updatedUser);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t update your information');
     next(err);
   }
 });
 
-async function postUserMeasurements(req, res, next) {
+router.post('/measurements/v1', async function postUserMeasurements(req, res, next) {
   try {
-    const measurements = await createMeasurements(
-      req.body,
-      res.locals.uuid,
-    );
-    res.json(measurements);
+    const measurements = await createMeasurementsV1({
+      data: req.body,
+      uuid: res.locals.uuid,
+    });
+    res.status(201).json(measurements);
   } catch (err) {
-    handleRouteError(err, 'Couldn\'t create measurements');
+    handleRouteError(err, err.message);
     next(err);
   }
-}
+});
 
-router.post('/measurements', postUserMeasurements);
-
-router.put('/measurements', async function putUserMeasurements(req, res, next) {
+router.put('/measurements/v1', async function putUserMeasurements(req, res, next) {
   try {
-    const measurements = await updateMeasurements(req.body, res.locals.uuid);
-    res.json(measurements);
+    const measurements = await updateMeasurementsV1({ data: req.body, uuid: res.locals.uuid });
+    res.status(201).json(measurements);
   } catch (err) {
     handleRouteError(err, 'Couldn\'t update measurements');
     next(err);
   }
 });
 
-router.delete('/measurements', deleteMeasurements);
+router.delete('/measurements/v1', async (req, res, next) => {
+  try {
+    const { id } = req.body;
+    const { uuid } = res.locals;
+    await deleteMeasurementsV1({ id, uuid });
+    res.sendStatus(204);
+  } catch (err) {
+    handleRouteError(err, err.message);
+    next(err);
+  }
+});

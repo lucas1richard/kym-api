@@ -105,7 +105,9 @@ const globals = {
       Weight.bulkCreate(testData.weights),
     ]);
     await Promise.all([
-      sequelize.query('ALTER SEQUENCE abbrevs_id_seq RESTART WITH 8804'),
+      sequelize.query('ALTER SEQUENCE "users_id_seq" RESTART WITH 8804'),
+      sequelize.query('ALTER SEQUENCE "userMeasurements_id_seq" RESTART WITH 2'),
+      sequelize.query('ALTER SEQUENCE "abbrevs_id_seq" RESTART WITH 8804'),
       sequelize.query('ALTER SEQUENCE "abbrevMicros_id_seq" RESTART WITH 8463'),
       sequelize.query('ALTER SEQUENCE "foodDescs_id_seq" RESTART WITH 8650'),
       sequelize.query('ALTER SEQUENCE "weights_id_seq" RESTART WITH 15242'),

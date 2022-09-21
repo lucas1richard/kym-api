@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user routes GET /api/user/v1 gets the user 1`] = `
+Object {
+  "birthdate": "1989-01-01",
+  "email": "test@test.test",
+  "firstname": "Test",
+  "lastname": "Test",
+  "mealGoals": Array [],
+  "preferredlocale": null,
+  "programs": Array [
+    Object {
+      "enddate": "2022-10-23",
+      "endgoal": "180",
+      "endweight": null,
+      "id": 1,
+      "result": "TBD",
+      "startdate": "2022-09-18",
+      "startweight": "175",
+      "status": "IN_PROGRESS",
+      "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+    },
+  ],
+  "userMeasurements": Array [
+    Object {
+      "age": "28",
+      "bmrBodyFat": 1900,
+      "bmrTraditional": 1876,
+      "bodyfat": "16",
+      "date": "2018-01-01T00:00:00.000Z",
+      "gender": "MALE",
+      "goal": "LOSE_FAT",
+      "height": "186",
+      "id": 1,
+      "lifestyle": "NORMAL",
+      "units": "METRIC",
+      "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+      "weight": "86",
+    },
+  ],
+  "username": "",
+  "uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+}
+`;

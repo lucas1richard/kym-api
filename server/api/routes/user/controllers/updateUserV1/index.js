@@ -3,11 +3,11 @@ const { bodySchema } = require('./validation');
 
 const { User } = connectDatabase();
 
-const updateUser = async (body, uuid) => {
-  await bodySchema.validate(body, { allowUnknown: true });
+const updateUserV1 = async ({ data, uuid }) => {
+  await bodySchema.validate(data, { abortEarly: false, allowUnknown: true });
   const user = await User.findByPk(uuid);
 
-  const bodyCopy = { ...body };
+  const bodyCopy = { ...data };
 
   delete bodyCopy.id;
   delete bodyCopy.createdAt;
@@ -22,4 +22,4 @@ const updateUser = async (body, uuid) => {
   return savedUser;
 };
 
-module.exports = updateUser;
+module.exports = updateUserV1;

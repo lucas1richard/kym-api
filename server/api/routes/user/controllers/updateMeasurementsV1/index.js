@@ -4,22 +4,21 @@ const AppError = include('configure/appError');
 
 const { UserMeasurement } = connectDatabase();
 
-const updateMeasurements = async (body, uuid) => {
-  await bodySchema.validate(body);
+const updateMeasurementsV1 = async ({ data, uuid }) => {
+  await bodySchema.validate(data);
   const measurement = await UserMeasurement.findOne({
     where: {
-      id: body.id,
+      id: data.id,
       [foreignKeys.USER]: uuid,
     },
   });
 
   if (!measurement) throw new AppError(400, { userMessage: 'MEASUREMENT_NOT_FOUND' });
 
-  Object.assign(measurement, { ...body });
+  Object.assign(measurement, { ...data });
   await measurement.save();
 
-  const allMeasurements = await UserMeasurement.findAllByUserId({ uuid });
-  return allMeasurements;
+  return measurement;
 };
 
-module.exports = updateMeasurements;
+module.exports = updateMeasurementsV1;
