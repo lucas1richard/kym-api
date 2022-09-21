@@ -30,7 +30,7 @@
   "nyc": {
     "all": true,
     "include": [
-      "server/api/routes/session"
+      "server/api/routes/shopping-list"
     ]
   },
   "jest": {
