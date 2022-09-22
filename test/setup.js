@@ -85,6 +85,7 @@ const globals = {
       Weight,
       Day,
       Program,
+      MealGoals,
       sequelize,
     } = connectDatabase();
     await Promise.all([
@@ -97,6 +98,7 @@ const globals = {
       Day.bulkCreate(testData.days),
       Meal.bulkCreate(testData.meals),
       Program.bulkCreate(testData.programs),
+      MealGoals.bulkCreate(testData.mealGoals),
     ]);
     await Promise.all([
       FoodRecord.bulkCreate(testData.foodRecords),
@@ -114,6 +116,7 @@ const globals = {
       sequelize.query('ALTER SEQUENCE "foodRecords_id_seq" RESTART WITH 6037'),
       sequelize.query('ALTER SEQUENCE "meals_id_seq" RESTART WITH 6037'),
       sequelize.query('ALTER SEQUENCE "programs_id_seq" RESTART WITH 6037'),
+      sequelize.query('ALTER SEQUENCE "mealGoals_id_seq" RESTART WITH 6037'),
     ]);
   },
   agent,

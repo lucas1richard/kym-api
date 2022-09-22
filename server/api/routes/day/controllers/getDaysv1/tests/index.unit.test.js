@@ -1,21 +1,8 @@
-const { connectDatabase } = require('@kym/db');
-const { User, Day } = connectDatabase();
-const users = include('test-data/users.json');
-const getDaysV1 = require('../');
 const { expect } = require('chai');
+const getDaysV1 = require('../');
 
 describe('routes/day/getDays', () => {
-  let userId;
-  beforeEach(() => {
-    userId = users[0].uuid;
-  });
-  before(async () => {
-    await User.bulkCreate(users);
-  });
-  after(async () => {
-    await User.destroy({ where: {}, force: true });
-    await Day.destroy({ where: {}, force: true });
-  });
+  const uuid = globals.testData.users[0].uuid;
   it('doesn\'t catch an error', async () => {
     try {
       await getDaysV1(null);
@@ -24,7 +11,7 @@ describe('routes/day/getDays', () => {
     }
   });
   it('returns an object', async () => {
-    const day = await getDaysV1(userId);
+    const day = await getDaysV1(uuid);
     expect(day).eql({});
   });
 });

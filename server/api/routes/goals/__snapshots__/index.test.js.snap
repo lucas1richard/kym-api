@@ -1,10 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`goals routes GET /api/goals/meals/v1 gets meal goals 1`] = `Array []`;
+exports[`goals routes GET /api/goals/meals/v1 gets meal goals 1`] = `
+Array [
+  Object {
+    "goals": Object {
+      "REST": Array [
+        Object {
+          "carbs": 29.3,
+          "fat": 13.1,
+          "protein": 33.3,
+        },
+        Object {
+          "carbs": 29.3,
+          "fat": 13.1,
+          "protein": 33.3,
+        },
+        Object {
+          "carbs": 77.8,
+          "fat": 34.7,
+          "protein": 88.2,
+        },
+        Object {
+          "carbs": 0,
+          "fat": 0,
+          "protein": 0,
+        },
+        Object {
+          "carbs": 64.6,
+          "fat": 28.8,
+          "protein": 73.2,
+        },
+        Object {
+          "carbs": 0,
+          "fat": 0,
+          "protein": 0,
+        },
+      ],
+      "TRAIN": Array [
+        Object {
+          "carbs": 79.5,
+          "fat": 29.9,
+          "protein": 63.3,
+        },
+        Object {
+          "carbs": 0,
+          "fat": 0,
+          "protein": 0,
+        },
+        Object {
+          "carbs": 119.2,
+          "fat": 44.8,
+          "protein": 95,
+        },
+        Object {
+          "carbs": 0,
+          "fat": 0,
+          "protein": 0,
+        },
+        Object {
+          "carbs": 87.4,
+          "fat": 32.8,
+          "protein": 69.7,
+        },
+        Object {
+          "carbs": 0,
+          "fat": 0,
+          "protein": 0,
+        },
+      ],
+    },
+    "id": 1,
+    "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+  },
+]
+`;
 
 exports[`goals routes POST /api/goals/meals/v1 creates goals and responds with the new goals 1`] = `
 Object {
-  "createdAt": "2022-09-19T02:52:38.062Z",
   "goals": Object {
     "REST": Array [
       Object {
@@ -71,8 +143,7 @@ Object {
       },
     ],
   },
-  "id": 10,
-  "updatedAt": "2022-09-19T02:52:38.062Z",
+  "id": 6037,
   "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
 }
 `;

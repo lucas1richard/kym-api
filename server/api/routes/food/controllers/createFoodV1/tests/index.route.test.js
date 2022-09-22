@@ -1,6 +1,4 @@
-const supertest = require('supertest');
 const { expect } = require('chai');
-const app = include('/app');
 const { connectDatabase } = require('@kym/db');
 const {
   Abbrev,
@@ -9,8 +7,6 @@ const {
   destroyAll,
   sequelize,
 } = connectDatabase();
-
-const agent = supertest.agent(app);
 
 describe('routes/food/controllers/createFoodV1', () => {
   beforeEach(async () => {
@@ -39,25 +35,22 @@ describe('routes/food/controllers/createFoodV1', () => {
     };
     it('should create a food', async () => {
       await sequelize.query('ALTER SEQUENCE abbrevs_id_seq RESTART WITH 1');
-      const res = await agent.post('/api/food/v1')
-        .send(mockFood)
-        .set('token', testData.tokens.user0);
+      const res = await agent.postWithToken('/api/food/v1')
+        .send(mockFood);
 
       expect(res.statusCode).equal(201);
       expect(res.body.abbrevId).equal(1);
     });
     it('fails nicely', async () => {
-      const res = await agent.post('/api/food/v1')
-        .send({})
-        .set('token', testData.tokens.user0);
+      const res = await agent.postWithToken('/api/food/v1')
+        .send({});
       expect(res.statusCode).equal(400);
     });
     it('fails nicely with duplicate id', async () => {
       await Abbrev.bulkCreate(testData.abbrevs);
       await sequelize.query('ALTER SEQUENCE abbrevs_id_seq RESTART WITH 1');
-      const res = await agent.post('/api/food/v1')
-        .send(mockFood)
-        .set('token', testData.tokens.user0);
+      const res = await agent.postWithToken('/api/food/v1')
+        .send(mockFood);
 
       expect(res.statusCode).equal(500);
     });

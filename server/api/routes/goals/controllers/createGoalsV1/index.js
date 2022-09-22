@@ -17,7 +17,11 @@ const createGoalsV1 = async ({ uuid, goals }) => {
   //   'withPrograms',
   // ).findByPk(uuid);
 
-  return newGoals;
+  return {
+    ...newGoals.toJSON(),
+    createdAt: undefined,
+    updatedAt: undefined,
+  };
 };
 
 module.exports = createGoalsV1;

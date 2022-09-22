@@ -30,20 +30,6 @@ Array [
 ]
 `;
 
-exports[`programs routes POST /api/programs/v1 creates a program for the user 1`] = `
-Object {
-  "enddate": "2022-10-23",
-  "endgoal": "180",
-  "endweight": null,
-  "id": 6037,
-  "result": "TBD",
-  "startdate": "2022-09-18",
-  "startweight": "175",
-  "status": "IN_PROGRESS",
-  "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
-}
-`;
-
 exports[`programs routes POST /api/programs/v1 validates the req 1`] = `
 Array [
   Object {

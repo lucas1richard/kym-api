@@ -34,7 +34,7 @@ describe('programs routes', () => {
         .send({ units: 'IMPERIAL', weight: 175, goal: 'GAIN_MUSCLE' });
 
       expect(res.statusCode).equal(201);
-      expect(res.body).toMatchSnapshot();
+      expect(res.body.id).to.be.ok;
     });
 
     it('validates the req', async () => {

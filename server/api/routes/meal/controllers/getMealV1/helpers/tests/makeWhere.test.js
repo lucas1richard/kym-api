@@ -1,6 +1,5 @@
 const { Op } = require('@kym/db');
 const { expect } = require('chai');
-const users = include('test-data/users.json');
 const makeWhere = require('../makeWhere');
 
 describe('meal/controllers/getMeal/helpers/makeWhere', () => {
@@ -9,7 +8,7 @@ describe('meal/controllers/getMeal/helpers/makeWhere', () => {
   let uuid;
   beforeEach(() => {
     meals = [3];
-    uuid = users[0].uuid;
+    uuid = globals.testData.users[0].uuid;
     postWorkout = 'false';
   });
 

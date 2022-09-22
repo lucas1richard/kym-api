@@ -1,11 +1,7 @@
-const app = include('app');
-const supertest = require('supertest');
 const { connectDatabase } = require('@kym/db');
 const { expect } = require('chai');
 
 const { User, Abbrev, destroyAll } = connectDatabase();
-
-const agent = supertest(app);
 
 describe('favorites', () => {
   before(async () => {
@@ -18,16 +14,14 @@ describe('favorites', () => {
 
   it('adds a favorite food for a meal', async () => {
     const abbrevId = testData.abbrevs[0].id;
-    const res = await agent.post('/api/favorites/food/v1')
-      .send({ abbrevId, meal: 3 })
-      .set('token', testData.tokens.user0);
+    const res = await globals.agent.postWithToken('/api/favorites/food/v1')
+      .send({ abbrevId, meal: 3 });
 
     expect(res.body.id.toString()).equal(abbrevId.toString());
   });
   it('handles errors', async () => {
-    const res = await agent.post('/api/favorites/food/v1')
-      .send({})
-      .set('token', testData.tokens.user0);
+    const res = await globals.agent.postWithToken('/api/favorites/food/v1')
+      .send({});
 
     expect(res.error).to.be.ok;
   });

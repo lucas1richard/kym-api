@@ -1,15 +1,8 @@
-const app = include('/app');
-const supertest = require('supertest');
-// const assert = require('assert');
-
-const agent = supertest.agent(app);
-
 describe('food api (GET :foodname)', () => {
-  it('should get a food', (done) => {
-    agent
-      .get('/api/food/chicken?offset=0')
-      .set('token', testData.tokens.user0)
-      .set('Accept', 'application/json')
-      .expect(200, done);
+  before(globals.seedTestData);
+  after(globals.destroyAllHook);
+  it('should get a food', async () => {
+    await globals.agent.getWithToken('/api/food/chicken/v1?offset=0')
+      .expect(200);
   });
 });
