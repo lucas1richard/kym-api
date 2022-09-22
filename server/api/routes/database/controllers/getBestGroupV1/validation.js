@@ -1,11 +1,12 @@
 const Joi = require('joi');
 
+const foodSchema = Joi.array().items(Joi.string().required()).required();
+
 const querySchema = Joi.object().keys({
-  food: Joi.array().items(
-    Joi.string().required(),
-  ).required(),
+  food: foodSchema,
 });
 
 module.exports = {
   querySchema,
+  foodSchema,
 };

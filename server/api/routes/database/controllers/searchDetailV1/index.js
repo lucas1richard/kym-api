@@ -1,10 +1,15 @@
 const { connectDatabase, Op } = require('@kym/db');
 const makeFoodQuery = require('./queries/food');
 const makePercentQuery = require('./queries/percent');
+const { bodySchema } = require('./validation');
 
 const { Abbrev, sequelize } = connectDatabase();
 
-const searchDetail = async ({ searchVal, proteinPer, carbsPer, fatPer }) => {
+const searchDetail = async (data) => {
+  await bodySchema.validate(data, { abortEarly: false, allowUnknown: true });
+
+  const { searchVal, proteinPer, carbsPer, fatPer } = data;
+
   const food = searchVal ? searchVal.split(' ') : null;
   let foodQuery = {
     main: {

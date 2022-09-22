@@ -7,7 +7,6 @@ describe('dayMealsCalculateV1', () => {
 
   it('is okay', async () => {
     const meal = await dayMealsCalculationV1({ type: 'TRAIN' }, globals.testData.users[0].uuid);
-    // eslint-disable-next-line no-unused-expressions
     expect(meal).to.be.ok;
   });
 });

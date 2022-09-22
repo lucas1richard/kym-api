@@ -4,8 +4,6 @@ const getUserCreatedV1 = require('./controllers/getUserCreatedV1');
 const deleteFoodV1 = require('./controllers/deleteFoodV1');
 const searchDetailV1 = require('./controllers/searchDetailV1');
 const deleteFoodV1BodySchema = require('./controllers/deleteFoodV1/validation');
-const { querySchema: getBestGroupV1QuerySchema } = require('./controllers/getBestGroupV1/validation');
-const { bodySchema: searchDetailV1BodySchema } = require('./controllers/searchDetailV1/validation');
 
 const { handleRouteError } = include('utils/handleRouteError');
 
@@ -15,8 +13,6 @@ module.exports = router;
 // to assign
 router.get('/foodgroup/v1', async (req, res, next) => {
   try {
-    await getBestGroupV1QuerySchema.validate(req.query);
-
     const { food } = req.query;
 
     const group = await getBestGroupV1({ food });
@@ -31,31 +27,22 @@ router.get('/foodgroup/v1', async (req, res, next) => {
 // A complex search including macronutrient percent
 router.post('/search-detail/v1', async (req, res, next) => {
   try {
-    await searchDetailV1BodySchema.validate(req.body, { allowUnknown: true });
-
     const { searchVal, proteinPer, carbsPer, fatPer } = req.body;
 
     const results = await searchDetailV1({ searchVal, proteinPer, carbsPer, fatPer });
 
     res.json(results);
   } catch (err) {
-    handleRouteError(err, err.message);
-    next(err);
+    /* istanbul ignore next */ handleRouteError(err, err.message);
+    /* istanbul ignore next */ next(err);
   }
 });
 
 // Gets foods created by the user
 router.get('/user-created/v1', async (req, res, next) => {
-  try {
-    const { uuid } = res.locals;
-
-    const abbrevs = await getUserCreatedV1({ uuid });
-
-    res.json(abbrevs);
-  } catch (err) {
-    handleRouteError(err, err.message);
-    next(err);
-  }
+  const { uuid } = res.locals;
+  const abbrevs = await getUserCreatedV1({ uuid });
+  res.json(abbrevs);
 });
 
 // Deletes a food created by the user
