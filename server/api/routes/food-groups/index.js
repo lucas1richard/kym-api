@@ -1,32 +1,28 @@
-const redisClient = include('configure/redis-client');
 const router = require('express').Router();
-const getFoodGroupsController = require('./controllers/getFoodGroups');
+const redisClient = require('../../../configure/redis-client');
+const getFoodGroupsControllerV1 = require('./controllers/getFoodGroupsV1');
 
 const key = 'food:groups:cache';
 
-router.get('/', async function getFoodGroupsRoute(req, res, next) {
-  try {
-    const cachedGroups = await redisClient.hgetAllAsync(key);
-
-    if (cachedGroups) {
-      res.json(cachedGroups);
-      return;
-    }
-
-    const groups = await getFoodGroupsController();
-
-    redisClient.hmset(key, groups.reduce(groupsReduce, {}));
-
-    res.json(groups);
-  } catch (err) {
-    next(err);
+router.get('/v1', async function getFoodGroupsRoute(req, res, next) {
+  /* istanbul ignore next */
+  if (redisClient.isConnected) {
+    const cachedGroups = await redisClient.hGetAll(key);
+    if (Object.keys(cachedGroups).length) return res.json(cachedGroups);
   }
-});
 
-function groupsReduce(memo, groupObj) {
-  // eslint-disable-next-line no-param-reassign
-  memo[groupObj.GroupID] = groupObj.Description;
-  return memo;
-}
+  const groups = await getFoodGroupsControllerV1();
+
+  const groupsObject = Object.fromEntries(
+    groups.map((group) => [group.get('groupid'), group.get('description')]),
+  );
+
+  /* istanbul ignore next */
+  if (redisClient.isConnected) {
+    await redisClient.hSet(key, groupsObject);
+  }
+
+  res.json(groupsObject);
+});
 
 module.exports = router;

@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user routes GET /api/user/v1 gets the user 1`] = `
+Object {
+  "birthdate": "1989-01-01",
+  "email": "test@test.test",
+  "firstname": "Test",
+  "lastname": "Test",
+  "mealGoals": Array [
+    Object {
+      "goals": Object {
+        "REST": Array [
+          Object {
+            "carbs": 29.3,
+            "fat": 13.1,
+            "protein": 33.3,
+          },
+          Object {
+            "carbs": 29.3,
+            "fat": 13.1,
+            "protein": 33.3,
+          },
+          Object {
+            "carbs": 77.8,
+            "fat": 34.7,
+            "protein": 88.2,
+          },
+          Object {
+            "carbs": 0,
+            "fat": 0,
+            "protein": 0,
+          },
+          Object {
+            "carbs": 64.6,
+            "fat": 28.8,
+            "protein": 73.2,
+          },
+          Object {
+            "carbs": 0,
+            "fat": 0,
+            "protein": 0,
+          },
+        ],
+        "TRAIN": Array [
+          Object {
+            "carbs": 79.5,
+            "fat": 29.9,
+            "protein": 63.3,
+          },
+          Object {
+            "carbs": 0,
+            "fat": 0,
+            "protein": 0,
+          },
+          Object {
+            "carbs": 119.2,
+            "fat": 44.8,
+            "protein": 95,
+          },
+          Object {
+            "carbs": 0,
+            "fat": 0,
+            "protein": 0,
+          },
+          Object {
+            "carbs": 87.4,
+            "fat": 32.8,
+            "protein": 69.7,
+          },
+          Object {
+            "carbs": 0,
+            "fat": 0,
+            "protein": 0,
+          },
+        ],
+      },
+      "id": 1,
+      "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+    },
+  ],
+  "preferredlocale": null,
+  "programs": Array [
+    Object {
+      "enddate": "2022-10-23",
+      "endgoal": "180",
+      "endweight": null,
+      "id": 1,
+      "result": "TBD",
+      "startdate": "2022-09-18",
+      "startweight": "175",
+      "status": "IN_PROGRESS",
+      "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+    },
+  ],
+  "userMeasurements": Array [
+    Object {
+      "age": "28",
+      "bmrBodyFat": 1900,
+      "bmrTraditional": 1876,
+      "bodyfat": "16",
+      "date": "2018-01-01T00:00:00.000Z",
+      "gender": "MALE",
+      "goal": "LOSE_FAT",
+      "height": "186",
+      "id": 1,
+      "lifestyle": "NORMAL",
+      "units": "METRIC",
+      "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+      "weight": "86",
+    },
+  ],
+  "username": "",
+  "uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+}
+`;

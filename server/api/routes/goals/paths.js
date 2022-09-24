@@ -14,18 +14,18 @@ swaggerPaths.addPath('/goals/meals', {
             train: {
               type: 'array',
               items: {
-                $ref: '#/definitions/Goal'
-              }
+                $ref: '#/definitions/Goal',
+              },
             },
             rest: {
               type: 'array',
               items: {
-                $ref: '#/definitions/Goal'
-              }
-            }
-          }
-        }
-      }
+                $ref: '#/definitions/Goal',
+              },
+            },
+          },
+        },
+      },
     ],
     responses: {
       200: {
@@ -34,7 +34,7 @@ swaggerPaths.addPath('/goals/meals', {
           properties: {
             id: {
               type: 'integer',
-              example: 6
+              example: 6,
             },
             goals: {
               type: 'object',
@@ -42,34 +42,34 @@ swaggerPaths.addPath('/goals/meals', {
                 train: {
                   type: 'array',
                   items: {
-                    $ref: '#/definitions/Goal'
-                  }
+                    $ref: '#/definitions/Goal',
+                  },
                 },
                 rest: {
                   type: 'array',
                   items: {
-                    $ref: '#/definitions/Goal'
-                  }
-                }
-              }
+                    $ref: '#/definitions/Goal',
+                  },
+                },
+              },
             },
             [foreignKeys.USER]: {
               type: 'integer',
-              example: 3
+              example: 3,
             },
             updatedAt: {
               type: 'string',
-              example: '2017-11-23T21:24:16.847Z'
+              example: '2017-11-23T21:24:16.847Z',
             },
             createdAt: {
               type: 'string',
-              example: '2017-11-23T21:24:16.847Z'
-            }
-          }
-        }
-      }
-    }
-  }
+              example: '2017-11-23T21:24:16.847Z',
+            },
+          },
+        },
+      },
+    },
+  },
 }, {
-  protected: true
+  protected: true,
 });

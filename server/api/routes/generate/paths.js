@@ -7,15 +7,15 @@ swaggerPaths.addPath('/generate', {
       200: {
         id: {
           type: 'integer',
-          example: 1546
+          example: 1546,
         },
         foodName: {
           type: 'string',
-          example: 'Avocado, raw Florida'
-        }
-      }
-    }
-  }
+          example: 'Avocado, raw Florida',
+        },
+      },
+    },
+  },
 });
 
 swaggerPaths.addPath('/generate/calculate', {
@@ -23,18 +23,18 @@ swaggerPaths.addPath('/generate/calculate', {
     tags: ['generate'],
     parameters: [{
       name: 'proteinGoal',
-      in: 'query'
+      in: 'query',
     }, {
       name: 'carbGoal',
-      in: 'query'
+      in: 'query',
     }, {
       name: 'fatGoal',
-      in: 'query'
+      in: 'query',
     }],
     responses: {
       200: {
 
-      }
-    }
-  }
+      },
+    },
+  },
 });

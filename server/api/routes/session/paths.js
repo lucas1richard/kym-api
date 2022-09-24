@@ -7,14 +7,14 @@ swaggerPaths.addPath('/session/{token}', {
     parameters: [{
       name: 'token',
       in: 'path',
-      description: 'The token'
+      description: 'The token',
     }],
     responses: {
       200: {
-        $ref: '#/definitions/User'
-      }
-    }
-  }
+        $ref: '#/definitions/User',
+      },
+    },
+  },
 });
 
 swaggerPaths.addPath('/session', {
@@ -24,12 +24,12 @@ swaggerPaths.addPath('/session', {
       description: 'The user chosen password',
       name: 'password',
       type: 'string',
-      in: 'body'
+      in: 'body',
     }, {
       description: 'The user chosen username',
       name: 'username',
       type: 'string',
-      in: 'body'
+      in: 'body',
     }],
     responses: {
       200: {
@@ -38,11 +38,11 @@ swaggerPaths.addPath('/session', {
           properties: {
             token: {
               type: 'string',
-              example: 'abc123xyz'
-            }
-          }
-        }
-      }
-    }
-  }
+              example: 'abc123xyz',
+            },
+          },
+        },
+      },
+    },
+  },
 });

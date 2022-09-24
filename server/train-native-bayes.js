@@ -15,7 +15,7 @@ const groups = foodGroups.reduce((memo, item) => {
   }
   return {
     ...memo,
-    [groupId]: item.Description
+    [groupId]: item.Description,
   };
 }, {});
 
@@ -46,11 +46,11 @@ async function execute() {
     allAbbrevs.forEach((abbrev) => {
       const { foodDesc } = abbrev;
       if (!foodDesc) return;
-      const { Long_Desc, FdGrp_Cd } = foodDesc;
-      if (!Long_Desc) return;
-      if (!FdGrp_Cd) return;
+      const { Long_Desc: longDesc, FdGrp_Cd: foodGrp } = foodDesc;
+      if (!longDesc) return;
+      if (!foodGrp) return;
 
-      model.learn(Long_Desc, FdGrp_Cd);
+      model.learn(longDesc, foodGrp);
     });
   }
 
@@ -84,7 +84,7 @@ async function execute() {
 
   if (!hasFile) {
     const pickled = model.toJson();
-  
+
     fs.writeFileSync('pickled.json', pickled);
   }
 

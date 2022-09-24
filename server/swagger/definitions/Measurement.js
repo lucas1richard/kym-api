@@ -5,47 +5,47 @@ module.exports = {
   properties: {
     id: {
       type: 'integer',
-      example: 2
+      example: 2,
     },
     gender: {
       type: 'string',
-      example: 'MALE'
+      example: 'MALE',
     },
     height: {
       type: 'string',
-      example: '73'
+      example: '73',
     },
     units: {
       type: 'string',
-      example: 'imperial'
+      example: 'imperial',
     },
     weight: {
       type: 'string',
-      example: '181'
+      example: '181',
     },
     bodyfat: {
       type: 'string',
-      example: null
+      example: null,
     },
     lifestyle: {
       type: 'string',
-      example: 'Normal'
+      example: 'Normal',
     },
     goal: {
       type: 'string',
-      example: null
+      example: null,
     },
     createdAt: {
       type: 'string',
-      example: '2017-10-24T18:47:05.321Z'
+      example: '2017-10-24T18:47:05.321Z',
     },
     updatedAt: {
       type: 'string',
-      example: '2017-10-24T18:47:05.321Z'
+      example: '2017-10-24T18:47:05.321Z',
     },
     [foreignKeys.USER]: {
       type: 'integer',
-      example: 3
-    }
-  }
+      example: 3,
+    },
+  },
 };

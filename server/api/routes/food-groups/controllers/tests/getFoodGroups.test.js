@@ -1,14 +1,16 @@
-const app = include('/app');
-const supertest = require('supertest');
-// const assert = require('assert');
+const { connectDatabase } = require('@kym/db');
+const { expect } = require('chai');
 
-const agent = supertest.agent(app);
+const { FoodGroup, User } = connectDatabase();
 
 describe('food-groups api (GET food-groups)', () => {
-  it('should get a list of groups', (done) => {
-    agent
-      .get('/api/food-groups')
-      .set('Accept', 'application/json')
-      .expect(200, done);
+  before(async () => {
+    await User.bulkCreate(globals.testData.users);
+    await FoodGroup.bulkCreate(globals.testData.foodGroups);
+  });
+  after(globals.destroyAllHook);
+  it('should get a list of groups', async () => {
+    const res = await globals.agent.getWithToken('/api/food-groups/v1');
+    expect(res.statusCode).equal(200);
   });
 });

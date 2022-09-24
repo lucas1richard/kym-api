@@ -1,0 +1,13 @@
+[{
+  "id": 1,
+  "startweight": "175",
+  "endgoal": "180",
+  "startdate": "2022-09-18",
+  "enddate": "2022-10-23",
+  "status": "IN_PROGRESS",
+  "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
+  "result": "TBD",
+  "updatedAt": "2022-09-19T03:06:22.269Z",
+  "createdAt": "2022-09-19T03:06:22.269Z",
+  "endweight": null
+}]

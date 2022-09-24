@@ -1,13 +1,9 @@
 const router = require('express').Router();
-const getMeasurements = require('./controllers/getMeasurements');
+const getMeasurements = require('./controllers/getMeasurementsV1');
 
 module.exports = router;
 
-router.get('/', async function getUserMeasurements(req, res, next) {
-  try {
-    const measurements = await getMeasurements(res.locals.uuid);
-    res.json(measurements);
-  } catch (err) {
-    next(err);
-  }
+router.get('/v1', async function getUserMeasurements(req, res, next) {
+  const measurements = await getMeasurements({ uuid: res.locals.uuid });
+  res.json(measurements);
 });

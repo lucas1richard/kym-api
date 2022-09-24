@@ -6,9 +6,9 @@ swaggerPaths.addPath('/foodmicro/{id}', {
     parameters: [{
       name: 'id',
       in: 'path',
-      type: 'number'
-    }]
-  }
+      type: 'number',
+    }],
+  },
 }, {
-  protected: true
+  protected: true,
 });

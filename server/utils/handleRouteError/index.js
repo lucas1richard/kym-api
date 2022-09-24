@@ -11,12 +11,12 @@ function handleRouteError(err, usermessage) {
     err.toSend = { // eslint-disable-line
       message: err.message,
       devmessage: AppError.getMessage(err),
-      usermessage
+      usermessage: usermessage || err.message,
     };
   }
   return err;
 }
 
 module.exports = {
-  handleRouteError
+  handleRouteError,
 };

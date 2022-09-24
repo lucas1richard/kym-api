@@ -1,20 +1,34 @@
-const { handleRouteError } = include('utils/handleRouteError');
-const { dateSchema } = require('./validation');
-const getCaloriesMeta = require('./getCalories');
+const app = include('app');
+const { connectDatabase } = require('@kym/db');
+const { User, Program } = connectDatabase();
 
-const getCalories = async (req, res, next) => {
+/**
+ * Try to get the calories with the user's fitbit token.
+ * If the fitbit token is invalid, exchange it and try again.
+ * @param {string} uuid
+ * @param {string} startDate
+ * @param {string} endDate
+ */
+async function getCalories(uuid, startDate, endDate) {
   try {
-    const { startDate, endDate } = req.query;
-    await dateSchema.validate(startDate);
-    await dateSchema.validate(endDate);
-
-    const activeCalories = await getCaloriesMeta(res.locals.uuid, startDate, endDate);
-
-    res.json(activeCalories);
+    const { data } = await User.requestCalories({
+      uuid, startDate, endDate, Program,
+    });
+    return data['activities-calories'];
   } catch (err) {
-    handleRouteError(err, 'Couldn\'t get calories from Fitbit');
-    next(err);
+    const user = await User.findByPk(uuid);
+
+    // If there's an error, it's because the token was expired, so get a new one */
+    /**
+     * @type {{ data: { 'activities-calories': Array<*> }}}
+     */
+    const calories = await User.exRefreshToken({
+      refTok: user.fitbitRefreshToken,
+      uuid,
+      refreshBuffer: app.get('oauth').fitbitInfo.refreshBuffer,
+    });
+    return calories.data['activities-calories'];
   }
-};
+}
 
 module.exports = getCalories;
