@@ -1,6 +1,6 @@
 {
   "name": "know-your-macros",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "An application which allows users to calculate their ideal meal to reach a desired macronutrient quantity goal",
   "repository": {
     "type": "git",
