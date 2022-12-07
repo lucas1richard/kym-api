@@ -17,7 +17,7 @@ describe('favorites', () => {
     const res = await globals.agent.postWithToken('/api/favorites/food/v1')
       .send({ abbrevId, meal: 3 });
 
-    expect(res.body.id.toString()).equal(abbrevId.toString());
+    expect(res.body.abbrev.id.toString()).equal(abbrevId.toString());
   });
   it('handles errors', async () => {
     const res = await globals.agent.postWithToken('/api/favorites/food/v1')

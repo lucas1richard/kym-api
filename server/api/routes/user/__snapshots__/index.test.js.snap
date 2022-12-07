@@ -8,6 +8,7 @@ Object {
   "lastname": "Test",
   "mealGoals": Array [
     Object {
+      "createdAt": "mockCreatedAt",
       "goals": Object {
         "REST": Array [
           Object {
@@ -75,6 +76,7 @@ Object {
         ],
       },
       "id": 1,
+      "updatedAt": "mockUpdatedAt",
       "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
     },
   ],
@@ -96,7 +98,7 @@ Object {
     Object {
       "age": "28",
       "bmrBodyFat": 1900,
-      "bmrTraditional": 1876,
+      "bmrTraditional": 1888,
       "bodyfat": "16",
       "date": "2018-01-01T00:00:00.000Z",
       "gender": "MALE",

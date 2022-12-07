@@ -6,7 +6,10 @@ describe('food-record routes', () => {
   const routePrefix = '/api/food-record';
 
   describe(`GET ${routePrefix}/all/all/all/v1`, () => {
-    before(globals.seedTestData);
+    before(async () => {
+      await globals.destroyAllHook();
+      await globals.seedTestData();
+    });
     after(globals.destroyAllHook);
 
     it('gets all records', async () => {
@@ -17,7 +20,9 @@ describe('food-record routes', () => {
   });
 
   describe(`POST ${routePrefix}/v1`, () => {
-    before(globals.seedTestData);
+    before(async () => {
+      await globals.seedTestData();
+    });
     after(globals.destroyAllHook);
 
     it('creates a record', async () => {
@@ -42,7 +47,10 @@ describe('food-record routes', () => {
   });
 
   describe(`DELETE ${routePrefix}/v1`, () => {
-    before(globals.seedTestData);
+    before(async () => {
+      await globals.destroyAllHook();
+      await globals.seedTestData();
+    });
     after(globals.destroyAllHook);
 
     it('deletes a record', async () => {

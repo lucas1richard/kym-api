@@ -51,7 +51,7 @@
     }
   },
   "dependencies": {
-    "@kym/db": "file:kym-db-1.0.0.tgz",
+    "@kym/db": "file:../kym-db-api",
     "axios": "^0.18.0",
     "babel-eslint": "^10.1.0",
     "body-parser": "^1.18.3",

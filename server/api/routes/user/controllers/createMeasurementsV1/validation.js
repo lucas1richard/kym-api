@@ -5,7 +5,7 @@ const bodySchema = Joi.object().keys({
   age: Joi.string().required().error(() => new ValidationError('AGE_NOT_PROVIDED')),
   gender: Joi.string().valid(['MALE', 'FEMALE']).required(),
   goal: Joi.string().valid(['LOSE_FAT', 'MAINTAIN', 'GAIN_MUSCLE']).required(),
-  height: Joi.string().alphanum().required(),
+  height: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required(),
   lifestyle: Joi.string().valid(['NORMAL', 'ACTIVE', 'SEDENTARY']).required(),
   units: Joi.string().valid(['IMPERIAL', 'METRIC']).required(),
   weight: Joi.string().regex(/^[1-9]\d*(\.\d+)?$/).required(),

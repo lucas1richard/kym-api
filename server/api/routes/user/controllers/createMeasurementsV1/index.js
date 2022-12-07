@@ -4,7 +4,7 @@ const moment = require('moment');
 const { bodySchema } = require('./validation');
 
 const createMeasurementsV1 = async ({ data, uuid }) => {
-  await bodySchema.validate(data, { abortEarly: false });
+  await bodySchema.validate(data, { abortEarly: false, allowUnknown: true });
 
   const { date = moment().format('YYYY-MM-DD') } = data;
 

@@ -12,7 +12,13 @@ describe('goals routes', () => {
     it('gets meal goals', async () => {
       const res = await globals.agent.getWithToken(`${routePrefix}/meals/v1`);
       expect(res.statusCode).equal(200);
-      expect(res.body).toMatchSnapshot();
+      const { body } = res;
+      const withMockedDates = body.map((item) => ({
+        ...item,
+        createdAt: 'mockCreatedAt',
+        updatedAt: 'mockUpdatedAt',
+      }));
+      expect(withMockedDates).toMatchSnapshot();
     });
   });
 
@@ -28,7 +34,13 @@ describe('goals routes', () => {
           REST: [goal, goal, goal, goal, goal, goal],
         });
       expect(res.statusCode).equal(201);
-      expect(res.body).toMatchSnapshot();
+      const { body } = res;
+      const withMockedDates = {
+        ...body,
+        createdAt: 'mockCreatedAt',
+        updatedAt: 'mockUpdatedAt',
+      };
+      expect(withMockedDates).toMatchSnapshot();
     });
     it('validates the req', async () => {
       const goal = { carbs: 30, fat: 10 };

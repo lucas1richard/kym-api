@@ -13,7 +13,15 @@ describe('user routes', () => {
     it('gets the user', async () => {
       const res = await globals.agent.getWithToken(route);
       expect(res.statusCode).equal(200);
-      expect(res.body).toMatchSnapshot();
+      const { mealGoals } = res.body;
+      expect({
+        ...res.body,
+        mealGoals: mealGoals.map((item) => ({
+          ...item,
+          createdAt: 'mockCreatedAt',
+          updatedAt: 'mockUpdatedAt',
+        })),
+      }).toMatchSnapshot();
     });
   });
 

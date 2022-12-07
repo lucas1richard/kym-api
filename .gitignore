@@ -8,6 +8,8 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+dump.rdb
+.nyc_output
 
 # dont send old logging info
 combined.log

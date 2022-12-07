@@ -19,7 +19,11 @@ const singleMealCalculateV1 = async (query) => {
     fatGoal,
   };
 
-  const output = await Abbrev.calculateMacros({ goals, abbrevIds: id });
+  const output = await Abbrev.calculateMacros({
+    goals,
+    abbrevIds: id,
+    sensitive: true,
+  });
 
   return output;
 };

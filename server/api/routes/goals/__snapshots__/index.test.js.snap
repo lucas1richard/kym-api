@@ -3,6 +3,7 @@
 exports[`goals routes GET /api/goals/meals/v1 gets meal goals 1`] = `
 Array [
   Object {
+    "createdAt": "mockCreatedAt",
     "goals": Object {
       "REST": Array [
         Object {
@@ -70,6 +71,7 @@ Array [
       ],
     },
     "id": 1,
+    "updatedAt": "mockUpdatedAt",
     "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
   },
 ]
@@ -77,6 +79,7 @@ Array [
 
 exports[`goals routes POST /api/goals/meals/v1 creates goals and responds with the new goals 1`] = `
 Object {
+  "createdAt": "mockCreatedAt",
   "goals": Object {
     "REST": Array [
       Object {
@@ -144,6 +147,7 @@ Object {
     ],
   },
   "id": 6037,
+  "updatedAt": "mockUpdatedAt",
   "user_uuid": "60f24265-ef45-4891-b4ef-e8fad4435308",
 }
 `;
