@@ -57,7 +57,13 @@ router.use(async function authMiddleware(req, res, next) {
 
 router.use((req, res, next) => {
   logger.silly(`Worker ${process.pid} handling`);
-  next();
+  if (process.env.NODE_ENV === 'development') {
+    setTimeout(() => {
+      next();
+    }, 600);
+  } else {
+    next();
+  }
 });
 
 router.use('/user', userRouter);
