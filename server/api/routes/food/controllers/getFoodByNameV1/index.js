@@ -1,8 +1,7 @@
-const { connectDatabase } = require('@kym/db');
+const { connectDatabase, Op } = require('@kym/db');
 const {
-  Abbrev, FoodDesc, Weight, sequelize,
+  Abbrev, FoodDesc, Weight,
 } = connectDatabase();
-const makeWhere = require('./helpers/makeWhere');
 const redisCounter = require('./redis/counter');
 
 /**
@@ -15,28 +14,20 @@ const getFoodByNameV1 = async ({ foodname, offset = 0 }) => {
   await redisCounter(foodname);
 
   const splitname = foodname.split(' ');
-  const [firstword] = splitname;
 
-  // const count = await Abbrev.scope().count({ where });
   const rowsToSend = await Abbrev.findAndCountAll({
     limit: 50,
     offset: offset * 50 + 1,
     distinct: true,
-    where: makeWhere(splitname),
-    // eslint-disable-next-line no-extra-boolean-cast
-    order: !!foodname
-      ? sequelize.literal(`
-      case
-        when ("abbrev"."main" ILIKE '${firstword}') then 'aaaa'
-        when ("abbrev"."main" ILIKE '${firstword} %') then 'aaaaa'
-        when ("abbrev"."main" ILIKE '${firstword}%') then 'aaaaaa'
-        else "abbrev"."main"
-      end`)
-      : [
-          ['main', 'desc'],
-          ['sub', 'desc'],
-        ],
-    include: [FoodDesc, Weight],
+    include: [
+      {
+        model: FoodDesc,
+        where: {
+          [Op.and]: splitname.map((fd) => ({ Long_Desc: { [Op.iLike]: `%${fd}%` } })),
+        },
+      },
+      Weight,
+    ],
   });
 
   const abbrevs = Object.fromEntries(

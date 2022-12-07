@@ -28,8 +28,9 @@ router.get('/foodgroup/v1', async (req, res, next) => {
 router.post('/search-detail/v1', async (req, res, next) => {
   try {
     const { searchVal, proteinPer, carbsPer, fatPer } = req.body;
+    const { offset } = req.query;
 
-    const results = await searchDetailV1({ searchVal, proteinPer, carbsPer, fatPer });
+    const results = await searchDetailV1({ searchVal, proteinPer, carbsPer, fatPer, offset });
 
     res.json(results);
   } catch (err) {

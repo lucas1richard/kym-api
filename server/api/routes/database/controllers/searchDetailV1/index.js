@@ -8,7 +8,7 @@ const { Abbrev, sequelize } = connectDatabase();
 const searchDetail = async (data) => {
   await bodySchema.validate(data, { abortEarly: false, allowUnknown: true });
 
-  const { searchVal, proteinPer, carbsPer, fatPer } = data;
+  const { searchVal, proteinPer, carbsPer, fatPer, offset = 0 } = data;
 
   const food = searchVal ? searchVal.split(' ') : null;
   let foodQuery = {
@@ -26,9 +26,9 @@ const searchDetail = async (data) => {
     ...makePercentQuery({ proteinPer, carbsPer, fatPer }),
   };
 
-  const count = await Abbrev.count({ where });
-  const rows = await Abbrev.findAll({
+  const rowsToSend = await Abbrev.scope('withFoodGroup', 'withWeight').findAndCountAll({
     where,
+    offset: offset * 50,
     order: food
       ? sequelize.literal(`
       case
@@ -44,11 +44,16 @@ const searchDetail = async (data) => {
     limit: 50,
   });
 
+  const abbrevs = Object.fromEntries(
+    rowsToSend.rows.map((abbrev) => [abbrev.get('id'), abbrev.toJSON()]),
+  );
+
   return ({
-    count,
-    rows,
+    count: rowsToSend.rows.length,
+    totalCount: rowsToSend.count,
     query: searchVal,
-    offset: 0,
+    offset,
+    abbrevs,
   });
 };
 

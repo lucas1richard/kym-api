@@ -15,7 +15,7 @@ router.get('/autocomplete/:foodname/v1', async (req, res, next) => {
     const { foodname } = req.params;
     const query = foodname.trim();
 
-    if (query.length <= 3) throw new AppError(400, { devmessage: 'FOODNAME_LENGTH_ERROR' });
+    if (query.length <= 2) throw new AppError(400, { devmessage: 'FOODNAME_LENGTH_ERROR' });
     const foods = await autocomplete({ foodname: query });
     res.json(foods);
   } catch (err) {
@@ -61,7 +61,7 @@ router.get('/:foodname/v1', async (req, res, next) => {
     const offset = parseInt(req.query.offset, 10) || 0;
     const { foodname } = req.params;
     const query = foodname.trim();
-    if (query.length <= 3) throw new AppError(400, { devmessage: 'FOODNAME_LENGTH_ERROR' });
+    if (query.length <= 2) throw new AppError(400, { devmessage: 'FOODNAME_LENGTH_ERROR' });
 
     await foodnameSchema.validate(query);
     await offsetSchema.validate(offset);
