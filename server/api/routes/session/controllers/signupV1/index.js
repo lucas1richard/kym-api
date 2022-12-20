@@ -1,5 +1,5 @@
 const AppError = include('configure/appError');
-const { connectDatabase, foreignKeys } = require('@kym/db');
+const { connectDatabase, foreignKeys, UserApi } = require('@kym/db');
 const moment = require('moment');
 const jwt = require('jwt-simple');
 const { bodySchema, userMeasurementsSchema } = require('./validation');
@@ -61,12 +61,9 @@ const signupV1 = async ({ jwtSecret, data }) => {
         ]);
 
         await transaction.commit();
+        transaction = undefined;
 
-        const userFull = await User.scope(
-          'withMeasurements',
-          'withMealGoals',
-          'withPrograms',
-        ).findByPk(user.uuid);
+        const userFull = await UserApi.findByUuidRichData(user.uuid);
 
         const token = jwt.encode(user.uuid, jwtSecret);
 

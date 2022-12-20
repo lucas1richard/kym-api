@@ -1,9 +1,8 @@
-const { connectDatabase } = require('@kym/db');
-const { User } = connectDatabase();
+const { UserApi } = require('@kym/db');
 const jwt = require('jwt-simple');
 
 const signInV1 = async ({ email, password }) => {
-  const user = await User.findByPassword({
+  const user = await UserApi.findByPassword({
     credentials: {
       email,
       password,

@@ -1,9 +1,5 @@
-const { connectDatabase } = require('@kym/db');
-const { User, UserRecordFavorites, Abbrev } = connectDatabase();
+const { UserApi } = require('@kym/db');
 
-const getFavoriteFoods = async (uuid) => {
-  const data = await User.findFavoriteFoods({ uuid, Abbrev, UserRecordFavorites });
-  return data;
-};
+const getFavoriteFoods = async (uuid) => UserApi.findFavoriteFoods({ uuid });
 
 module.exports = getFavoriteFoods;

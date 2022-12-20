@@ -1,13 +1,10 @@
-const { connectDatabase } = require('@kym/db');
-const { Abbrev, User, UserRecordFavorites } = connectDatabase();
+const { UserApi } = require('@kym/db');
 
 const removeFavoriteFood = async ({ uuid, abbrevId, meal }) => {
-  await User.removeFavoriteFood({
+  await UserApi.removeFavoriteFood({
     uuid,
     abbrevId,
     meal,
-    Abbrev,
-    UserRecordFavorites,
   });
 };
 

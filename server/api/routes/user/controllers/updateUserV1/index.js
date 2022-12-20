@@ -1,11 +1,9 @@
-const { connectDatabase } = require('@kym/db');
+const { UserApi } = require('@kym/db');
 const { bodySchema } = require('./validation');
-
-const { User } = connectDatabase();
 
 const updateUserV1 = async ({ data, uuid }) => {
   await bodySchema.validate(data, { abortEarly: false, allowUnknown: true });
-  const user = await User.findByPk(uuid);
+  const user = await UserApi.findByUuid(uuid);
 
   const bodyCopy = { ...data };
 
