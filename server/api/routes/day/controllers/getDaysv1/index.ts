@@ -1,13 +1,13 @@
-const { DayApi } = require('@kym/db');
+import { DayApi } from '@kym/db';
 
-async function getDays(uuid) {
+async function getDays(uuid: string) {
   if (!uuid) throw new Error('NO_UUID_PROVIDED');
 
   const days = await DayApi.findAllForUser({ uuid });
 
-  return Object.fromEntries(
+  return Object.fromEntries<boolean>(
     days.map(({ date, dayType }) => [date, dayType]),
   );
 }
 
-module.exports = getDays;
+export default getDays;

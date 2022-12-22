@@ -1,10 +1,12 @@
-const { handleRouteError } = include('utils/handleRouteError');
-const router = require('express').Router();
-const getDaysV1 = require('./controllers/getDaysv1');
-const createUpdateDaysV1 = require('./controllers/createUpdateDaysv1');
-const destroyDaysV1 = require('./controllers/destroyDaysv1');
+import { Router } from 'express';
+import getDaysV1 from './controllers/getDaysv1';
+import createUpdateDaysV1 from './controllers/createUpdateDaysv1';
+import destroyDaysV1 from './controllers/destroyDaysv1';
+import { handleRouteError } from '../utils';
 
-router.get('/days/v1', async (req, res, next) => {
+const router = Router();
+
+router.get('/days/v1', async (req, res) => {
   const data = await getDaysV1(res.locals.uuid);
   res.json(data);
 });
@@ -15,8 +17,7 @@ router.post('/days/v1', async (req, res, next) => {
     const data = await createUpdateDaysV1({ uuid: res.locals.uuid, days });
     res.status(201).json(data);
   } catch (err) {
-    handleRouteError(err, err.message);
-    next(err);
+    next(handleRouteError(err))
   }
 });
 
@@ -26,8 +27,8 @@ router.delete('/days/v1', async (req, res, next) => {
     await destroyDaysV1(res.locals.uuid, days);
     res.sendStatus(204);
   } catch (err) {
-    handleRouteError(err, err.message);
-    next(err);
+    console.log(err);
+    next(handleRouteError(err))
   }
 });
 
