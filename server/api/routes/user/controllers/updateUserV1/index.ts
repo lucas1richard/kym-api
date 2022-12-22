@@ -1,4 +1,11 @@
-const Joi = require('joi');
+import { UserApi } from '@kym/db';
+import { User } from '@kym/db/types/basics';
+import Joi from 'joi';
+
+type UpdateUserV1Arg = {
+  data: User;
+  uuid: string;
+};
 
 const bodySchema = Joi.object().keys({
   firstname: Joi.string().allow(null).optional(),
@@ -13,6 +20,9 @@ const bodySchema = Joi.object().keys({
   fitbitRefreshToken: Joi.string().allow(null).optional(),
 });
 
-module.exports = {
-  bodySchema,
+const updateUserV1 = async ({ data, uuid }: UpdateUserV1Arg) => {
+  await bodySchema.validate(data, { abortEarly: false, allowUnknown: true });
+  return UserApi.updateUser({ data, uuid });
 };
+
+module.exports = updateUserV1;
