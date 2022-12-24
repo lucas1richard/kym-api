@@ -1,13 +1,15 @@
-const router = require('express').Router();
-const getBestGroupV1 = require('./controllers/getBestGroupV1');
-const getUserCreatedV1 = require('./controllers/getUserCreatedV1');
-const deleteFoodV1 = require('./controllers/deleteFoodV1');
-const searchDetailV1 = require('./controllers/searchDetailV1');
-const deleteFoodV1BodySchema = require('./controllers/deleteFoodV1/validation');
+import { handleRouteError } from '../utils';
+import searchDetailV1 from './controllers/searchDetailV1';
+import Router from 'express';
+import getBestGroupV1 from './controllers/getBestGroupV1';
+import getUserCreatedV1 from './controllers/getUserCreatedV1';
+import deleteFoodV1 from './controllers/deleteFoodV1';
+import deleteFoodV1BodySchema from './controllers/deleteFoodV1/validation';
 
-const { handleRouteError } = include('utils/handleRouteError');
+const router = Router();
 
 module.exports = router;
+export default router;
 
 // Currently used for creating foods when the user doesn't what foodGroup
 // to assign
@@ -19,22 +21,34 @@ router.get('/foodgroup/v1', async (req, res, next) => {
 
     res.json(group);
   } catch (err) {
-    handleRouteError(err, err.message);
+    handleRouteError(err);
     next(err);
   }
 });
 
 // A complex search including macronutrient percent
-router.post('/search-detail/v1', async (req, res, next) => {
+router.post<
+  '/search-detail/v1',
+  {},
+  any,
+  any,
+  { offset: string }
+>('/search-detail/v1', async (req, res, next) => {
   try {
     const { searchVal, proteinPer, carbsPer, fatPer } = req.body;
     const { offset } = req.query;
 
-    const results = await searchDetailV1({ searchVal, proteinPer, carbsPer, fatPer, offset });
+    const results = await searchDetailV1({
+      searchVal,
+      proteinPer,
+      carbsPer,
+      fatPer,
+      offset: parseInt(offset, 10) || undefined
+    });
 
     res.json(results);
   } catch (err) {
-    /* istanbul ignore next */ handleRouteError(err, err.message);
+    /* istanbul ignore next */ handleRouteError(err);
     /* istanbul ignore next */ next(err);
   }
 });
@@ -57,7 +71,7 @@ router.delete('/user-created/v1', async (req, res, next) => {
     await deleteFoodV1({ uuid, id });
     res.sendStatus(204);
   } catch (err) {
-    handleRouteError(err, err.message);
+    handleRouteError(err);
     next(err);
   }
 });
