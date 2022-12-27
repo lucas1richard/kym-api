@@ -5,3 +5,4 @@ const deleteFoodV1 = async ({ uuid, id }: { uuid: string, id: number }) => {
 };
 
 module.exports = deleteFoodV1;
+export default deleteFoodV1;

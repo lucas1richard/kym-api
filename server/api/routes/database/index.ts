@@ -8,23 +8,22 @@ import deleteFoodV1BodySchema from './controllers/deleteFoodV1/validation';
 
 const router = Router();
 
-module.exports = router;
-export default router;
-
 // Currently used for creating foods when the user doesn't what foodGroup
 // to assign
-router.get('/foodgroup/v1', async (req, res, next) => {
-  try {
-    const { food } = req.query;
+router.get<'/foodgroup/v1', any, any, any, { food: string }>(
+  '/foodgroup/v1',
+  async (req, res, next) => {
+    try {
+      const { food } = req.query;
 
-    const group = await getBestGroupV1({ food });
+      const group = await getBestGroupV1({ food });
 
-    res.json(group);
-  } catch (err) {
-    handleRouteError(err);
-    next(err);
-  }
-});
+      res.json(group);
+    } catch (err) {
+      handleRouteError(err);
+      next(err);
+    }
+  });
 
 // A complex search including macronutrient percent
 router.post<
@@ -75,3 +74,6 @@ router.delete('/user-created/v1', async (req, res, next) => {
     next(err);
   }
 });
+
+module.exports = router;
+export default router;
