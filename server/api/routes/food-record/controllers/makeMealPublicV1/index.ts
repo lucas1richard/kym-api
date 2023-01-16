@@ -10,4 +10,5 @@ const makeMealPublic = async ({ mealId, uuid }: { mealId: number, uuid: string }
   return meal;
 };
 
+export default makeMealPublic;
 module.exports = makeMealPublic;

@@ -7,7 +7,7 @@ const dataSchema = Joi.object().keys({
   id: Joi.number().integer().required(),
 });
 
-type UpdateQuantityData = {
+export interface UpdateQuantityData {
   id: number;
   seq: string;
   quantity: number;

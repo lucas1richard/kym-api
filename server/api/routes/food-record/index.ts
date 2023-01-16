@@ -1,13 +1,16 @@
-const { handleRouteError } = include('utils/handleRouteError');
-const router = require('express').Router();
-const addFoodRecordV1 = require('./controllers/addFoodRecordV1');
-const getAllRecordsV1 = require('./controllers/getAllRecordsV1');
-const deleteFoodRecordV1 = require('./controllers/deleteFoodRecordV1');
-const getFoodRecordsByDateV1 = require('./controllers/getFoodRecordsByDateV1');
-const getFoodRecordMicroV1 = require('./controllers/getFoodRecordMicroV1');
-const makeMealPublicV1 = require('./controllers/makeMealPublicV1');
-const updateQuantityV1 = require('./controllers/updateQuantityV1');
-const updateRecordStatusV1 = require('./controllers/updateRecordStatusV1');
+import { Router } from 'express';
+import { handleRouteError } from '../utils';
+
+import addFoodRecordV1 from './controllers/addFoodRecordV1';
+import getAllRecordsV1 from './controllers/getAllRecordsV1';
+import deleteFoodRecordV1 from './controllers/deleteFoodRecordV1';
+import getFoodRecordsByDateV1 from './controllers/getFoodRecordsByDateV1';
+import getFoodRecordMicroV1 from './controllers/getFoodRecordMicroV1';
+import makeMealPublicV1 from './controllers/makeMealPublicV1';
+import updateQuantityV1 from './controllers/updateQuantityV1';
+import updateRecordStatusV1 from './controllers/updateRecordStatusV1';
+
+const router = Router();
 
 router.get('/all/all/all/v1', async (req, res, next) => {
   const records = await getAllRecordsV1();
@@ -80,7 +83,7 @@ router.put('/quantity/v1', async (req, res, next) => {
     const newRecord = await updateQuantityV1({ data, uuid });
     res.json(newRecord);
   } catch (err) {
-    handleRouteError(err, 'Couldn\'t update the record');
+    handleRouteError(err);
     next(err);
   }
 });
@@ -91,7 +94,7 @@ router.put('/v1', async (req, res, next) => {
     await updateRecordStatusV1({ ids, confirmed, uuid });
     res.sendStatus(204);
   } catch (err) {
-    handleRouteError(err, 'Couldn\'t update the record status');
+    handleRouteError(err);
     next(err);
   }
 });

@@ -7,7 +7,7 @@ const idsSchema = Joi.array().items(
 
 const confirmedSchema = Joi.bool().required().error(() => 'CONFIRMED_IS_REQUIRED');
 
-type UpdateRecordsStatusArg = { ids: number[]; uuid: string; confirmed: boolean };
+export type UpdateRecordsStatusArg = { ids: number[]; uuid: string; confirmed: boolean };
 
 const updateRecordStatus = async ({ ids, confirmed, uuid }: UpdateRecordsStatusArg) => {
   await idsSchema.validate(ids);

@@ -1,6 +1,10 @@
 import { DayApi } from '@kym/db';
 
-async function getDays(uuid: string) {
+export interface IGetDays {
+  (uuid: string): Promise<{ [k: string]: boolean }>;
+}
+
+const getDays: IGetDays = async (uuid) => {
   if (!uuid) throw new Error('NO_UUID_PROVIDED');
 
   const days = await DayApi.findAllForUser({ uuid });

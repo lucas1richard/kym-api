@@ -1,5 +1,5 @@
 {
-  "name": "know-your-macros",
+  "name": "@kym/api",
   "version": "1.0.0",
   "description": "An application which allows users to calculate their ideal meal to reach a desired macronutrient quantity goal",
   "repository": {
@@ -10,11 +10,14 @@
     "npm": ">=8",
     "node": "16.x.x"
   },
+  "main": "./out/server/lib",
+  "types": "./out/server/lib.d.ts",
   "author": "Richard Lucas",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
+    "build:lib": "tsc --declaration --emitDeclarationOnly",
     "start:dev": "NODE_ENV=development nodemon out/server",
     "start:test": "NODE_ENV=test nodemon out/server",
     "start": "npm run start:prod",
